@@ -1,4 +1,4 @@
-
+const {isCurrentPlayer} = require('./util.js');
   function actionSuccess(state){
     return {
       err: null,
@@ -44,6 +44,18 @@ const actions = {
           yellow : [0,0,0]
         });
       }
+
+      // check to see if its the players turn
+      if(!isCurrentPlayer(state, args)){
+        return actionFailure(state, 'not your turn');
+      }
+
+      // check to see if the player has played yet
+      if(state.history.filter((actionObj)=>actionObj.player===args.player && actionObj.action !== 'endTurn') > 1){
+        return actionFailure(state, 'already player');
+      }
+
+
       
       const requiredPieces = getRequiredPieces([...args.star, ...args.ship])
       let sufficentResources = true;
@@ -52,11 +64,8 @@ const actions = {
           updatedBank[color][size] -= requiredPieces[color][size];
           if(updatedBank[color][size] < 0){
             sufficentResources = false;
-            break;
+            return actionFailure(state, 'insufficent resources in bank to perform action')
           }
-        }
-        if(!sufficentResources){
-          break;
         }
       }
 
@@ -77,6 +86,7 @@ const actions = {
       }];
      
       const updatedHistory = [...state.history, Object.assign({action: 'chooseHomeworld', args})];
+      
       return actionSuccess(Object.assign({}, state, {
         board   : updatedBoard, 
         bank    : updatedBank,
