@@ -12,7 +12,8 @@ const util = {
     return actionSuccess(actions[action](state, args));
   },
   isCurrentPlayer(state, args){
-    return args.player === state.players[state.currentPlayer];
+    return args.player === state.players[state.activePlayer];
   }
-  }
-  module.exports=util;
+}
+
+module.exports=util;

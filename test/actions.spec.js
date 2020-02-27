@@ -4,14 +4,16 @@ const deepfreeze = require('deepfreeze');
 
 const game = require('../game.js');
 const actions = require('../actions.js');
-const mocks = require('./mocks/actions.js');
+const mockActions = require('./mocks/actions.js');
+const mockState = require('./mocks/state.js');
 
 function universalValidators(action){
   it('will update history');
   it('will fail if its not the current players turn')
   it('will fail if another (non-catastrophy or sacrifice[Start] ) turn action has already made')
 }
-function standardValidators(state){
+
+function standardActionValidators(action){
   it('can perform a colored action if in a sacrifice of said color')
   it('can perform a colored action if player has access to the color')
   it('will fail to perform a colored action in invalid cases')
@@ -23,7 +25,7 @@ describe('actions', function(){
     it('can create a homeworld', function(){
       const initialState = game.initState();
       deepfreeze(initialState);
-      const actionResponse = actions.chooseHomeworld(initialState, mocks.newHomeworld);
+      const actionResponse = actions.chooseHomeworld(initialState, mockActions.chooseHomeworld.valid.B3Y2SG3);
       const {bank} = actionResponse.state
       
       // did call report success
@@ -65,17 +67,20 @@ describe('actions', function(){
   });
   describe('transform', function(){
     universalValidators('transform');
+    standardActionValidators('transform');
     it('will return piece to bank');
     it('will take piece from bank');
     it('will not allow one size to transform to another');
   });
   describe('attack', function(){
     universalValidators('attack');
+    standardActionValidators('attack');
     it('can only take equal or smaller ships');
     it('successfully changes ownership of a ship');
   });
   describe('move', function(){
     universalValidators('move');
+    standardActionValidators('move');
     it('cannot move between systems sharing a common sized star')
     it('removes ship from first system')
     it('adds ship to destination system')
@@ -84,6 +89,7 @@ describe('actions', function(){
   });
   describe('build', function(){
     universalValidators('build');
+    standardActionValidators('build');
     it('can only build a ship if a like ship color is controlled in system')
     it('takes a piece from the bank of the smallest size')
     it('will not allow building if the piece does not exist in the bank')
