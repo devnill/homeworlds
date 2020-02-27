@@ -58,12 +58,10 @@ const actions = {
 
       
       const requiredPieces = getRequiredPieces([...args.star, ...args.ship])
-      let sufficentResources = true;
       for(const color in updatedBank){
         for(let size = 0; size < updatedBank[color].length; size++){
           updatedBank[color][size] -= requiredPieces[color][size];
           if(updatedBank[color][size] < 0){
-            sufficentResources = false;
             return actionFailure(state, 'insufficent resources in bank to perform action')
           }
         }
