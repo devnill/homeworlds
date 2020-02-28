@@ -19,7 +19,7 @@ const actions = {
     catastrophy(state, args){},
     sacrificeStart(state, args){},
     sacrifice(state, args){
-      
+
     },
     concede(state, args){
       // check to see if its the players turn
@@ -83,7 +83,8 @@ const actions = {
         }],
         ships: [{
           size: 3,
-          color: 'green'
+          color: 'green',
+          owner: 'player1'
         }]
       }];
      

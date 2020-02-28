@@ -4,8 +4,7 @@ const deepfreeze = require('deepfreeze');
 
 const game = require('../game.js');
 const actions = require('../actions.js');
-const mockActions = require('./mocks/actions.js');
-const mockState = require('./mocks/state.js');
+const mocks = require('./mocks/');
 
 function universalValidators(action){
   it('will update history');
@@ -23,10 +22,10 @@ describe('actions', function(){
   describe('chooseHomeworld', function(){
     universalValidators('chooseHomeworld');
     it('can create a homeworld', function(){
-      const initialState = game.initState();
-      deepfreeze(initialState);
-      const actionResponse = actions.chooseHomeworld(initialState, mockActions.chooseHomeworld.valid.B3Y2SG3);
-      const {bank} = actionResponse.state
+      const mock = deepfreeze(mocks.chooseHomeworld.valid);
+      const initialState = mock.state;
+      const actionResponse = actions.chooseHomeworld(mock.state, mock.action);
+      const {bank} = actionResponse.state;
       
       // did call report success
       assert.isNull(actionResponse.err)
@@ -35,18 +34,18 @@ describe('actions', function(){
       expect(bank.green[2]).to.equal(initialState.bank.yellow[1]-1);
     })
     it('will fail if its not the current players turn', function(){
-      const initialState = game.initState();
-      initialState.activePlayer = 1;
-      deepfreeze(initialState);
-      const actionResponse = actions.chooseHomeworld(initialState, mockActions.chooseHomeworld.valid.B3Y2SG3);
+      const mock = mocks.chooseHomeworld.valid;
+      mock.state.activePlayer = 1;
+      deepfreeze(mock);
+      const actionResponse = actions.chooseHomeworld(mock.state, mock.action);
       expect(actionResponse.err).to.be.a('string')
       expect(actionResponse.err).to.equal('not your turn');
-      expect(actionResponse.state).to.deep.equal(initialState)
+      expect(actionResponse.state).to.deep.equal(mock.state)
     })
     it('will fail if there are not enough pieces in the bank', function(){
-      const initialState = mockState.chooseHomeworld.insufficentPieces;
-      deepfreeze(initialState);
-      const actionResponse = actions.chooseHomeworld(initialState, mockActions.chooseHomeworld.insufficentPieces);
+      const mock = deepfreeze(mocks.chooseHomeworld.insufficentPieces);
+      const initialState = mock.state;
+      const actionResponse = actions.chooseHomeworld(initialState, mock.action);
       assert.isNotNull(actionResponse.err)
       expect(actionResponse.state).to.deep.equal(initialState)
     })
@@ -62,7 +61,8 @@ describe('actions', function(){
       expect(actionResponse.state.activePlayer).to.not.equal(initialState.currentPlayer);
     });
     it('will reset turn state', function(){
-      const initialState = mockState.endTurn.sacrificeInProgress;
+      const mock = mocks.endTurn.sacrificeInProgress;
+      const initialState = mock.state;
       deepfreeze(initialState);
       const actionResponse = actions.endTurn(initialState); 
       assert.isNotNull(actionResponse.err);
@@ -75,7 +75,7 @@ describe('actions', function(){
   });
   describe('sacrificeStart', function(){
     universalValidators('sacrificeStart');
-    it('will return the sacrificed ship to the bank');
+    it('will return the sacrificed ship to the bank', function(){});
     it('will return an unoccupied star to the bank');
     it('will update state to have sacrifice counters')
   });
