@@ -1,16 +1,16 @@
-const {isCurrentPlayer} = require('./util.js');
-  function actionSuccess(state){
+const {isCurrentPlayer, countPieces} = require('./util.js');
+function actionSuccess(state){
     return {
       err: null,
       state
     }
-  }
-  function actionFailure(state, reason){
+}
+function actionFailure(state, reason){
     return {
       err: reason || true,
       state
     }
-  }
+}
 const actions = {
     build(state, args){},
     move(state, args){},
@@ -18,10 +18,30 @@ const actions = {
     transform(state, args){},
     catastrophy(state, args){},
     sacrificeStart(state, args){},
-    sacrifice(state, args){},
-    concede(state, args){},
+    sacrifice(state, args){
+      
+    },
+    concede(state, args){
+      // check to see if its the players turn
+      if(!isCurrentPlayer(state, args)){
+        return actionFailure(state, 'not your turn');
+      }
+      const updatedHistory = [...state.history, Object.assign({action: 'endTurn', args})];
+      const updatedState   = { history      : updatedHistory };
+      return actionSuccess(Object.assign({}, state, updatedState));
+    },
     endTurn(state, args){
-  
+      // check to see if its the players turn
+      if(!isCurrentPlayer(state, args)){
+        return actionFailure(state, 'not your turn');
+      }
+
+      const updatedHistory = [...state.history, Object.assign({action: 'endTurn', args})];
+      const updatedState   = {
+        activePlayer : (state.activePlayer + 1) % state.players.length,
+        history      : updatedHistory
+      };
+      return actionSuccess(Object.assign({}, state, updatedState));
     },
     chooseHomeworld(state, args){
       const updatedBank  = {
@@ -31,20 +51,6 @@ const actions = {
         yellow : [...state.bank.yellow]
       };
       
-      function getRequiredPieces(pieces){
-        return pieces.reduce((requiredPieces, piece)=>{
-          const size = piece.size - 1;
-          const {color} = piece; 
-          requiredPieces[color][size]++
-          return requiredPieces;
-        }, {
-          red    : [0,0,0],
-          blue   : [0,0,0],
-          green  : [0,0,0],
-          yellow : [0,0,0]
-        });
-      }
-
       // check to see if its the players turn
       if(!isCurrentPlayer(state, args)){
         return actionFailure(state, 'not your turn');
@@ -55,9 +61,8 @@ const actions = {
         return actionFailure(state, 'already player');
       }
 
+      const requiredPieces = countPieces([...args.star, ...args.ship]);
 
-      
-      const requiredPieces = getRequiredPieces([...args.star, ...args.ship])
       for(const color in updatedBank){
         for(let size = 0; size < updatedBank[color].length; size++){
           updatedBank[color][size] -= requiredPieces[color][size];
@@ -66,7 +71,6 @@ const actions = {
           }
         }
       }
-
 
       const updatedBoard = [...state.board, {
         name: 'player1',
@@ -91,5 +95,5 @@ const actions = {
         history : updatedHistory
       }));
     }
-  };
+};
 module.exports = actions;

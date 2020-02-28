@@ -13,59 +13,79 @@ const chooseHomeworld = {
       "activePlayer": 0,
       "history": []
     },
-    turnTwo: {  
+  },
+  insufficentPieces:{  
+    "bank": {
+    "red": [3,3,3],
+    "yellow": [3,3,3],
+    "green": [3,3,3],
+    "blue": [0,0,0]
+  },
+  "board": [],
+  "players": ["player1", "player2"],
+  "activePlayer": 0,
+  "history": []
+  }
+};
+
+const endTurn = {
+  valid:{
+    sacrificeInProgress: {  
       "bank": {
       "red": [3,3,3],
       "yellow": [3,3,3],
       "green": [3,3,3],
       "blue": [3,3,3]
-    },
-    "board": [],
-    "players": ["player1", "player2"],
-    "activePlayer": 0,
-    "history": []
+      },
+      "board": [],
+      "players": ["player1", "player2"],
+      "activePlayer": 0,
+      "history": [],
+      "turn":{
+        sacrifice:{
+          color: 'blue',
+          count: 3
+      }
     }
-  },
-  invalid:{
-    gameInProgress:{}
+  }
   }
 };
-
-const endTurn = {
-  valid:{},
-  invalid:{}
-};
 const concede = {
-  valid:{},
-  invalid:{}
+  valid:{}
 };
 const sacrificeStart = {
-  valid:{},
-  invalid:{}
+  valid:{}
 };
 const sacrifice = {
-  valid:{},
-  invalid:{}
+  valid:{}
 };
 const transform = {
-  valid:{},
-  invalid:{}
+  valid:{}
 };
 const attack = {
-  valid:{},
-  invalid:{}
+  valid:{}
 };
 const move = {
-  valid:{},
-  invalid:{}
+  valid:{}
 };
 const build = {
-  valid:{},
-  invalid:{}
+  valid:{}
 };
 const catastrophy = {
-  valid:{},
-  invalid:{}
+  valid:{}
+};
+
+const initial = {
+  bank: {
+    red: [ 3, 3, 3 ],
+    yellow: [ 3, 3, 3 ],
+    green: [ 3, 3, 3 ],
+    blue: [ 3, 3, 3 ]
+  },
+  board: [],
+  players: [ 'player1', 'player2' ],
+  activePlayer: 0,
+  history: []
 };
 
 module.exports = {
@@ -78,5 +98,6 @@ module.exports = {
   attack,
   move,
   build,
-  catastrophy
+  catastrophy,
+  initial
 }

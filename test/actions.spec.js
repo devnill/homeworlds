@@ -34,14 +34,41 @@ describe('actions', function(){
       expect(bank.yellow[1]).to.equal(initialState.bank.yellow[1]-1);
       expect(bank.green[2]).to.equal(initialState.bank.yellow[1]-1);
     })
-    it('will fail if its not the current players turn')
-    it('will fail if there are not enough pieces in the bank')
+    it('will fail if its not the current players turn', function(){
+      const initialState = game.initState();
+      initialState.activePlayer = 1;
+      deepfreeze(initialState);
+      const actionResponse = actions.chooseHomeworld(initialState, mockActions.chooseHomeworld.valid.B3Y2SG3);
+      expect(actionResponse.err).to.be.a('string')
+      expect(actionResponse.err).to.equal('not your turn');
+      expect(actionResponse.state).to.deep.equal(initialState)
+    })
+    it('will fail if there are not enough pieces in the bank', function(){
+      const initialState = mockState.chooseHomeworld.insufficentPieces;
+      deepfreeze(initialState);
+      const actionResponse = actions.chooseHomeworld(initialState, mockActions.chooseHomeworld.insufficentPieces);
+      assert.isNotNull(actionResponse.err)
+      expect(actionResponse.state).to.deep.equal(initialState)
+    })
     it('will fail if exactly two stars are not provided')
     it('will fail if exactly one ship is not provided')
   });
   describe('endTurn', function(){
-    it('will updateCurrentPlayer')
-    it('will reset sacrifice state')
+    it('will updateCurrentPlayer', function(){
+      const initialState = game.initState();
+      deepfreeze(initialState);
+      const actionResponse = actions.endTurn(initialState); 
+      assert.isNotNull(actionResponse.err);
+      expect(actionResponse.state.activePlayer).to.not.equal(initialState.currentPlayer);
+    });
+    it('will reset turn state', function(){
+      const initialState = mockState.endTurn.sacrificeInProgress;
+      deepfreeze(initialState);
+      const actionResponse = actions.endTurn(initialState); 
+      assert.isNotNull(actionResponse.err);
+      expect(actionResponse.state.activePlayer).to.not.equal(initialState.currentPlayer);
+      expect(actionResponse.state.turn).to.not.exist
+    })
   });
   describe('concede', function(){
     it('will fail if a concession has already been made')

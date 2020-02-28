@@ -16,6 +16,20 @@ const chooseHomeworld = {
         color: 'green'
       }]
     }
+  },
+  insufficentPieces: {
+    player: 'player1',
+    star: [{
+      size: 3,
+      color: 'blue'
+    },{
+      size: 2,
+      color: 'blue'
+    }],
+    ship: [{
+      size: 3,
+      color: 'blue'
+    }]
   }
 }
 
