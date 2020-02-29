@@ -1,14 +1,14 @@
 const {expect} = require('chai');
-const game = require('../game.js');
+const game = require('../src/game.js');
 
 describe('init', function(){
-  describe('game state', function(){
-    it('can create a fresh game state', function(){
-      const state = game.initState();
-      expect(state.bank);
-      expect(state.board);
-      expect(state.players)
-      expect(state.activePlayer).to.equal(0);
-    })
-  })
-})
+    describe('game state', function(){
+        it('can create a fresh game state', function(){
+            const state = game.initState();
+            expect(state.bank);
+            expect(state.board);
+            expect(state.players);
+            expect(state.activePlayer).to.equal(0);
+        });
+    });
+});
