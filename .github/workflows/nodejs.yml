@@ -24,3 +24,4 @@ jobs:
       uses: SonarSource/sonarcloud-github-action@v1.1
       env:
         CI: true
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
