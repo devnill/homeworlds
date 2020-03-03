@@ -1,40 +1,10 @@
-const _ = require('lodash');
 const {
   isCurrentPlayer,
   countPieces,
   actionSuccess,
   actionFailure
-} = require('./util.js');
+} = require('../util.js');
 
-function build(state, args) { }
-function move(state, args) { }
-function attack(state, args) { }
-function transform(state, args) { }
-function catastrophy(state, args) { }
-function sacrificeStart(state, args) { }
-function sacrifice(state, args) { }
-function concede(state, args) {
-  // check to see if its the players turn
-  if (!isCurrentPlayer(state, args)) {
-    return actionFailure(state, 'not your turn');
-  }
-  const updatedHistory = [...state.history, Object.assign({ action: 'endTurn', args })];
-  const updatedState = { history: updatedHistory };
-  return actionSuccess(Object.assign({}, state, updatedState));
-}
-function endTurn(state, args) {
-  // check to see if its the players turn
-  if (!isCurrentPlayer(state, args)) {
-    return actionFailure(state, 'not your turn');
-  }
-
-  const updatedHistory = [...state.history, Object.assign({ action: 'endTurn', args })];
-  const updatedState = Object.assign({}, _.omit(state, ['turn']), {
-    activePlayer: (state.activePlayer + 1) % state.players.length,
-    history: updatedHistory
-  });
-  return actionSuccess(updatedState);
-}
 function chooseHomeworld(state, args) {
   const updatedBank = {
     red: [...state.bank.red],
@@ -89,15 +59,4 @@ function chooseHomeworld(state, args) {
   }));
 }
 
-module.exports = {
-  build,
-  move,
-  attack,
-  transform,
-  catastrophy,
-  sacrificeStart,
-  sacrifice,
-  concede,
-  endTurn,
-  chooseHomeworld
-};
+module.exports = chooseHomeworld;

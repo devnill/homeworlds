@@ -3,13 +3,13 @@ const deepfreeze = require('deepfreeze');
 const _ = require('lodash');
 
 const game = require('../src/game.js');
-const actions = require('../src/actions.js');
+const actions = require('../src/actions/');
 const mocks = require('./mocks/');
 
 function universalValidators(action) {
-  it('will update history');
-  it('will fail if its not the current players turn');
-  it('will fail if another (non-catastrophy or sacrifice[Start] ) turn action has already made');
+  // it('will update history');
+  // it('will fail if its not the current players turn');
+  // it('will fail if another (non-catastrophy or sacrifice[Start] ) turn action has already made');
 }
 
 function standardActionValidators(action) {
@@ -20,7 +20,7 @@ function standardActionValidators(action) {
 
 describe('actions', function () {
   describe('chooseHomeworld', function () {
-    universalValidators('chooseHomeworld');
+    // universalValidators('chooseHomeworld');
     it('can create a homeworld', function () {
       const mock = deepfreeze(mocks.chooseHomeworld.valid);
       const initialState = mock.state;
@@ -73,14 +73,14 @@ describe('actions', function () {
       expect(actionResponse.state.turn).to.not.exist;
     });
   });
-  describe('concede', function () {
+  describe.skip('concede', function () {
     it('will fail if a concession has already been made', function () {
 
     });
     it('will otherwise work');
   });
   describe('sacrificeStart', function () {
-    universalValidators('sacrificeStart');
+    //universalValidators('sacrificeStart');
     it('will return the sacrificed ship to the bank', function () {
       const mock = deepfreeze(mocks.sacrificeStart.valid);
       const result = actions.chooseHomeworld(mock.state, mock.action);
@@ -98,7 +98,7 @@ describe('actions', function () {
     });
   });
   describe('sacrifice', function () {
-    universalValidators('sacrifice');
+    // universalValidators('sacrifice');
     it('will decrement sacrifice counter', function () {
       const mock = deepfreeze(mocks.sacrifice.valid);
       const result = actions.chooseHomeworld(mock.state, mock.action);
@@ -108,10 +108,17 @@ describe('actions', function () {
     it('will fail if action is not valid');
   });
   describe('catastrophy', function () {
-    universalValidators('catastrophy');
+    // universalValidators('catastrophy');
     it('will only allow sacrifce in overpopulated systems');
-    it('will return pieces to bank');
-    it('remove all pieces if the star is destroyed');
+    it('will return pieces to bank', function () {
+      
+    });
+    it('remove all pieces if the star is destroyed', function () {
+
+      const mock = deepfreeze(mocks.sacrificeStart.valid);
+      const result = actions.chooseHomeworld(mock.state, mock.action);
+      expect(result.state).to.deep.equal(mock.state);
+    });
   });
   describe('transform', function () {
     universalValidators('transform');
