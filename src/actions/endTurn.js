@@ -3,7 +3,7 @@ const {
   isCurrentPlayer,
   actionSuccess,
   actionFailure
-} = require('./util.js');
+} = require('../util.js');
 
 function endTurn(state, args) {
   // check to see if its the players turn
