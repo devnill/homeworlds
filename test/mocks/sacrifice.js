@@ -38,7 +38,7 @@ const valid = {
       'action': 'sacrificeStart',
       'args': {
         shipId: 2,
-        starId: 1,
+        systemId: 1,
         systems: [{
           id: 1,
           name: 'Andoria',
@@ -78,7 +78,7 @@ const valid = {
       'action': 'sacrificeStart',
       'args': {
         shipId: 2,
-        starId: 1,
+        systemId: 1,
         systems: [{
           id: 1,
           name: 'Andoria',

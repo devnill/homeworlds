@@ -1,5 +1,5 @@
 const {
-  isCurrentPlayer,
+  standardValidation,
   countPieces,
   actionSuccess,
   actionFailure
@@ -13,14 +13,9 @@ function chooseHomeworld(state, args) {
     yellow: [...state.bank.yellow]
   };
 
-  // check to see if its the players turn
-  if (!isCurrentPlayer(state, args)) {
-    return actionFailure(state, 'not your turn');
-  }
-
-  // check to see if the player has played yet
-  if (state.history.filter((actionObj) => actionObj.player === args.player && actionObj.action !== 'endTurn') > 1) {
-    return actionFailure(state, 'already player');
+  const validationError = standardValidation(state, args);
+  if (validationError) {
+    return actionFailure(state, validationError)
   }
 
   const requiredPieces = countPieces([...args.stars, ...args.ships]);

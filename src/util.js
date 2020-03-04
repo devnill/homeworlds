@@ -20,6 +20,9 @@ function countPieces(pieces) {
     yellow: [0, 0, 0]
   });
 }
+function countPiecesOfColor(pieces, color) {
+  return pieces.filter((piece) => piece.color === color).length;
+}
 function actionSuccess(state) {
   return {
     err: null,
@@ -32,10 +35,39 @@ function actionFailure(state, reason) {
     state
   };
 }
+function getUpdatedBank(state, delta) {
+  const updatedCounts = ['red', 'blue', 'green', 'yellow']
+    .map((color) => {
+      // for each color iterate over the bank sizes and add the delta
+      return {
+        [color]: state.bank[color].map((pieceCount, size) => {
+          return pieceCount + delta[color][size];
+        
+        })
+      };
+    });
+  return (Object.assign({}, ...updatedCounts));
+}
+
+function standardValidation(state, args) {
+  // check to see if its the players turn
+  if (!isCurrentPlayer(state, args)) {
+    return 'not your turn';
+  }
+
+  // check to see if the player has played yet
+  if (state.history.filter((actionObj) => actionObj.player === args.player && actionObj.action !== 'endTurn') > 1) {
+    return 'already player';
+  }
+  return null;
+}
 module.exports = {
   id,
   isCurrentPlayer,
   countPieces,
+  countPiecesOfColor,
   actionSuccess,
-  actionFailure
+  actionFailure,
+  standardValidation,
+  getUpdatedBank
 };

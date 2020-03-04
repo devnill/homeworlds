@@ -6,10 +6,11 @@ const game = require('../src/game.js');
 const actions = require('../src/actions/');
 const mocks = require('./mocks/');
 
+/*
 function universalValidators(action) {
-  // it('will update history');
-  // it('will fail if its not the current players turn');
-  // it('will fail if another (non-catastrophy or sacrifice[Start] ) turn action has already made');
+  it('will update history');
+  it('will fail if its not the current players turn');
+  it('will fail if another (non-catastrophy or sacrifice[Start] ) turn action has already made');
 }
 
 function standardActionValidators(action) {
@@ -17,10 +18,10 @@ function standardActionValidators(action) {
   it('can perform a colored action if player has access to the color');
   it('will fail to perform a colored action in invalid cases');
 }
+*/
 
 describe('actions', function () {
   describe('chooseHomeworld', function () {
-    // universalValidators('chooseHomeworld');
     it('can create a homeworld', function () {
       const mock = deepfreeze(mocks.chooseHomeworld.valid);
       const initialState = mock.state;
@@ -73,80 +74,83 @@ describe('actions', function () {
       expect(actionResponse.state.turn).to.not.exist;
     });
   });
-  describe.skip('concede', function () {
-    it('will fail if a concession has already been made', function () {
-
-    });
-    it('will otherwise work');
-  });
   describe('sacrificeStart', function () {
-    //universalValidators('sacrificeStart');
     it('will return the sacrificed ship to the bank', function () {
       const mock = deepfreeze(mocks.sacrificeStart.valid);
-      const result = actions.chooseHomeworld(mock.state, mock.action);
-      expect(result.state).to.deep.equal(mock.state);
+      const result = actions.sacrificeStart(mock.state, mock.action);
+      expect(result.state).to.deep.equal(mock.result);
     });
     it('will return an unoccupied star to the bank', function () {
       const mock = deepfreeze(mocks.sacrificeStart.starReturned);
-      const result = actions.chooseHomeworld(mock.state, mock.action);
-      expect(result.state).to.deep.equal(mock.state);
+      const result = actions.sacrificeStart(mock.state, mock.action);
+      expect(result.state).to.deep.equal(mock.result);
     });
     it('will update state to have sacrifice counters', function () {
       const mock = deepfreeze(mocks.sacrificeStart.valid);
-      const result = actions.chooseHomeworld(mock.state, mock.action);
-      expect(result.state).to.deep.equal(mock.state);
+      const result = actions.sacrificeStart(mock.state, mock.action);
+      expect(result.state).to.deep.equal(mock.result);
     });
   });
   describe('sacrifice', function () {
-    // universalValidators('sacrifice');
-    it('will decrement sacrifice counter', function () {
+    it.skip('will decrement sacrifice counter', function () {
       const mock = deepfreeze(mocks.sacrifice.valid);
-      const result = actions.chooseHomeworld(mock.state, mock.action);
-      expect(result.state).to.deep.equal(mock.state);
+      const result = actions.sacrifice(mock.state, mock.action);
+      expect(result.state).to.deep.equal(mock.result);
     });
     it('must contain a valid colored action');
     it('will fail if action is not valid');
   });
   describe('catastrophy', function () {
-    // universalValidators('catastrophy');
+
     it('will only allow sacrifce in overpopulated systems');
     it('will return pieces to bank', function () {
-      
+      const mock = deepfreeze(mocks.catastrophy.starIntact);
+      const result = actions.catastrophy(mock.state, mock.action);
+      assert.isNull(result.err);
+      expect(result.state).to.deep.equal(mock.result);
+
     });
     it('remove all pieces if the star is destroyed', function () {
-
-      const mock = deepfreeze(mocks.sacrificeStart.valid);
-      const result = actions.chooseHomeworld(mock.state, mock.action);
-      expect(result.state).to.deep.equal(mock.state);
+      const mock = deepfreeze(mocks.catastrophy.valid);
+      const result = actions.catastrophy(mock.state, mock.action);
+      expect(result.state).to.deep.equal(mock.result);
+    });
+  });
+  describe('build', function () {
+    it.skip('can only build a ship if a like ship color is controlled in system', function () {
+      const mock = deepfreeze(mocks.build.missingColorInSystem);
+      const result = actions.build(mock.state, mock.action);
+      expect(result.state).to.deep.equal(mock.result);
+    });
+    it.skip('takes a piece from the bank of the smallest size', function () {
+      const mock = deepfreeze(mocks.build.valid);
+      const result = actions.build(mock.state, mock.action);
+      expect(result.state).to.deep.equal(mock.result);
+    });
+    it.skip('will not allow building if the piece does not exist in the bank', function () {
+      const mock = deepfreeze(mocks.build.missingPieceInBank);
+      const result = actions.build(mock.state, mock.action);
+      expect(result.state).to.deep.equal(mock.result);
     });
   });
   describe('transform', function () {
-    universalValidators('transform');
-    standardActionValidators('transform');
     it('will return piece to bank');
     it('will take piece from bank');
     it('will not allow one size to transform to another');
   });
   describe('attack', function () {
-    universalValidators('attack');
-    standardActionValidators('attack');
     it('can only take equal or smaller ships');
     it('successfully changes ownership of a ship');
   });
   describe('move', function () {
-    universalValidators('move');
-    standardActionValidators('move');
     it('cannot move between systems sharing a common sized star');
     it('removes ship from first system');
     it('adds ship to destination system');
     it('takes a piece from the bank if the system is new');
     it('cannot move to a new system if the piece is not in the bank');
   });
-  describe('build', function () {
-    universalValidators('build');
-    standardActionValidators('build');
-    it('can only build a ship if a like ship color is controlled in system');
-    it('takes a piece from the bank of the smallest size');
-    it('will not allow building if the piece does not exist in the bank');
+  describe('concede', function () {
+    it('will fail if a concession has already been made');
+    it('will otherwise work');
   });
 });
