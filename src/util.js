@@ -1,3 +1,4 @@
+const _ = require('lodash');
 let counter = 1;
 function id() {
   return counter++;
@@ -29,6 +30,20 @@ function actionSuccess(state) {
     state
   };
 }
+
+function colorsAvailableToPlayer(system, player) {
+  return _.uniq([
+    ...system.ships
+      .filter((ship) => ship.owner === player)
+      .map((ship) => ship.color),
+    ...system.stars.map((star) => star.color)
+  ]);
+}
+
+function playerHasColorAbility(system, player, color) {
+  return colorsAvailableToPlayer(system, player).indexOf(color) !== -1;
+}
+
 function actionFailure(state, reason) {
   return {
     err: reason || true,
@@ -42,7 +57,7 @@ function getUpdatedBank(state, delta) {
       return {
         [color]: state.bank[color].map((pieceCount, size) => {
           return pieceCount + delta[color][size];
-        
+
         })
       };
     });
@@ -69,5 +84,7 @@ module.exports = {
   actionSuccess,
   actionFailure,
   standardValidation,
-  getUpdatedBank
+  getUpdatedBank,
+  playerHasColorAbility,
+  colorsAvailableToPlayer
 };
