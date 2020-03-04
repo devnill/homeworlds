@@ -20,8 +20,8 @@ jobs:
     - run: npm install
     - run: npm run build --if-present
     - run: npm run coverage
-    #- name: SonarCloud Scan
-    #  uses: SonarSource/sonarcloud-github-action@v1.1
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
       env:
         CI: true
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
