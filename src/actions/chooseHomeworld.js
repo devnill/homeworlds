@@ -15,7 +15,7 @@ function chooseHomeworld(state, args) {
 
   const validationError = standardValidation(state, args);
   if (validationError) {
-    return actionFailure(state, validationError)
+    return actionFailure(state, validationError);
   }
 
   const requiredPieces = countPieces([...args.stars, ...args.ships]);
