@@ -1,7 +1,8 @@
 const valid = {
   action: {
     systemId: 1,
-    color: 'blue'
+    color: 'blue',
+    player: 'player1'
   }
 };
 const missingColorInSystem = {

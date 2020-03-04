@@ -1,15 +1,8 @@
-const valid = {
+const blue = {
   action: {
+    systemId: 1,
     shipId: 3,
-    color: 'blue',
-    systems: [{
-      id: 1,
-      name: 'Andoria',
-      stars: [{ color: 'blue', size: 1 }],
-      ships: [
-        { id: 3, color: 'yellow', size: 1, owner: 'player1' }
-      ]
-    }]
+    color: 'blue', // transforms ship to blue system 1
   },
   state: {
     'bank': {
@@ -108,4 +101,32 @@ const valid = {
   }
 };
 
-module.exports = { valid };
+const green = {
+  action: {
+    systemId: 1,
+    color: 'yellow' //builds a yellow ship in system 1 
+  }
+};
+
+const red = {
+  action: {
+    player: 'player1',
+    systemId: 1,
+    shipId: 3,
+    color: 'red' //captures ship 3 in system 1 
+  }
+};
+
+const yellow = {
+  action: {
+    player: 'player1',
+    systemId: 1,
+    targetSystemId: 2,
+    shipId: 3,
+    color: 'yellow' //moves ship 3 from system 1 to system 2 
+  }
+};
+
+
+const valid = blue;
+module.exports = { valid, blue, yellow, red, green };
