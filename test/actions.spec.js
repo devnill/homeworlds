@@ -2,7 +2,7 @@ const { expect, assert } = require('chai');
 const deepfreeze = require('deepfreeze');
 const _ = require('lodash');
 
-const game = require('../src/game.js');
+const game = require('../src/util');
 const actions = require('../src/actions/');
 const mocks = require('./mocks/');
 
@@ -92,7 +92,7 @@ describe('actions', function () {
     });
   });
   describe('sacrifice', function () {
-    it.only('will decrement sacrifice counter', function () {
+    it('will decrement sacrifice counter', function () {
       const mock = deepfreeze(mocks.sacrifice.valid);
       const result = actions.sacrifice(mock.state, mock.action);
       expect(result.state).to.deep.equal(mock.result);
@@ -134,8 +134,11 @@ describe('actions', function () {
     });
   });
   describe('transform', function () {
-    it('will return piece to bank');
-    it('will take piece from bank');
+    it('will exchange ship for other color of same size', function () {
+      const mock = deepfreeze(mocks.transform.valid);
+      const result = actions.transform(mock.state, mock.action);
+      expect(result.state).to.deep.equal(mock.result);
+    });
     it('will not allow one size to transform to another');
   });
   describe('attack', function () {

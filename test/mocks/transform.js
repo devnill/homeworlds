@@ -8,7 +8,7 @@ const valid = {
   },
   state: {
     'bank': {
-      'red   ': [2, 3, 3],
+      'red': [2, 3, 3],
       'yellow': [3, 3, 3],
       'green': [0, 0, 0],
       'blue': [2, 3, 3]
@@ -26,7 +26,7 @@ const valid = {
   },
   result: {
     'bank': {
-      'red   ': [2, 3, 3],
+      'red': [2, 3, 3],
       'yellow': [2, 3, 3],
       'green': [0, 0, 0],
       'blue': [3, 3, 3]
@@ -59,15 +59,4 @@ const valid = {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-module.exports = valid;
+module.exports = { valid };

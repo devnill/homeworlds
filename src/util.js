@@ -76,8 +76,42 @@ function standardValidation(state, args) {
   }
   return null;
 }
+function getEmptyBank() {
+  return Object.assign({}, ...[
+    'red',
+    'yellow',
+    'green',
+    'blue'
+  ].map((color) => {
+    return { [color]: [0,0,0] };
+  }));
+}
+
+function createBank() {
+  return Object.assign({}, ...[
+    'red',
+    'yellow',
+    'green',
+    'blue'
+  ].map((color) => {
+    return { [color]: [3, 3, 3] };
+  }));
+}
+
+function initState() {
+  return {
+    bank: createBank(),
+    board: [],
+    players: ['player1', 'player2'],
+    activePlayer: 0,
+    history: []
+  };
+}
+
 module.exports = {
   id,
+  initState,
+  getEmptyBank,
   isCurrentPlayer,
   countPieces,
   countPiecesOfColor,

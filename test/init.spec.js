@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const game = require('../src/game.js');
+const game = require('../src/util');
 
 describe('init', function () {
   describe('game state', function () {
