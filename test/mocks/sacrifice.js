@@ -1,5 +1,6 @@
 const blue = {
   action: {
+    player: 'player1',
     systemId: 1,
     shipId: 3,
     color: 'blue', // transforms ship to blue system 1

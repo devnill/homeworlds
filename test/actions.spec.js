@@ -92,7 +92,7 @@ describe('actions', function () {
     });
   });
   describe('sacrifice', function () {
-    it.skip('will decrement sacrifice counter', function () {
+    it.only('will decrement sacrifice counter', function () {
       const mock = deepfreeze(mocks.sacrifice.valid);
       const result = actions.sacrifice(mock.state, mock.action);
       expect(result.state).to.deep.equal(mock.result);
