@@ -1,8 +1,9 @@
-function historyItem(action,args, systems=[]) {
+function historyItem(action, args, systems = [], isSacrifice) {
   return {
     action,
     args,
-    systems
+    systems,
+    isSacrifice
   };
 }
 module.exports = historyItem;

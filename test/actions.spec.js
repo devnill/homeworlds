@@ -142,8 +142,13 @@ describe('actions', function () {
     it('will not allow one size to transform to another');
   });
   describe('attack', function () {
-    it('can only take equal or smaller ships');
-    it('successfully changes ownership of a ship');
+    it('can only take equal or smaller ships', function () {
+      const mock = deepfreeze(mocks.attack.valid);
+      const result = actions.attack(mock.state, mock.action);
+      expect(result.state).to.deep.equal(mock.result);
+    });
+    it('cannot take larger ships');
+    it('cannot take ships in another system');
   });
   describe('move', function () {
     it('cannot move between systems sharing a common sized star');

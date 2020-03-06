@@ -37,17 +37,18 @@ function sacrifice(state, args) {
   }
   const { history } = result.state;
   const [previousActions, lastAction] = _.partition(history, (action) => action !== history[history.length - 1]);
-  const updatedAction = Object.assign({}, lastAction, {
-    turn: {
-      sacrifice: {
-        count: sacrificeState.count--,
-        color: sacrificeState.color--,
-      }
-    },
+  const updatedAction = Object.assign({}, lastAction[0], {
     isSacrifice: true
   });
 
-  const updatedState = Object.assign({}, result.state, { history: [...previousActions, updatedAction] });
+  const updatedState = Object.assign({}, result.state, {
+    history: [...previousActions, updatedAction], turn: {
+      sacrifice: {
+        count: sacrificeState.count - 1,
+        color: sacrificeState.color,
+      }
+    }
+  });
   return actionSuccess(updatedState);
 }
 

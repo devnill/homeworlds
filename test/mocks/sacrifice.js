@@ -32,17 +32,17 @@ const blue = {
       'action': 'sacrificeStart',
       'args': {
         shipId: 2,
-        systemId: 1,
-        systems: [{
-          id: 1,
-          name: 'Andoria',
-          stars: [{ color: 'blue', size: 1 }],
-          ships: [
-            { id: 2, color: 'blue', size: 1, owner: 'player1' },
-            { id: 3, color: 'yellow', size: 1, owner: 'player1' }
-          ]
-        }]
-      }
+        systemId: 1
+      },
+      systems: [{
+        id: 1,
+        name: 'Andoria',
+        stars: [{ color: 'blue', size: 1 }],
+        ships: [
+          { id: 2, color: 'blue', size: 1, owner: 'player1' },
+          { id: 3, color: 'yellow', size: 1, owner: 'player1' }
+        ]
+      }]
     }]
   },
   result: {
@@ -72,32 +72,35 @@ const blue = {
       'action': 'sacrificeStart',
       'args': {
         shipId: 2,
-        systemId: 1,
-        systems: [{
-          id: 1,
-          name: 'Andoria',
-          stars: [{ color: 'blue', size: 1 }],
-          ships: [
-            { id: 2, color: 'blue', size: 1, owner: 'player1' },
-            { id: 3, color: 'yellow', size: 1, owner: 'player1' }
-          ]
-        }]
-      }
+        systemId: 1
+      },
+      systems: [{
+        id: 1,
+        name: 'Andoria',
+        stars: [{ color: 'blue', size: 1 }],
+        ships: [
+          { id: 2, color: 'blue', size: 1, owner: 'player1' },
+          { id: 3, color: 'yellow', size: 1, owner: 'player1' }
+        ]
+      }]
     },
     {
-      action: 'sacrifice',
+      action: 'transform',
       args: {
         shipId: 3,
+        systemId: 1,
         color: 'blue',
-        systems: [{
-          id: 1,
-          name: 'Andoria',
-          stars: [{ color: 'blue', size: 1 }],
-          ships: [
-            { id: 3, color: 'yellow', size: 1, owner: 'player1' }
-          ]
-        }]
-      }
+        player: 'player1',
+      },
+      isSacrifice: true,
+      systems: [{
+        id: 1,
+        name: 'Andoria',
+        stars: [{ color: 'blue', size: 1 }],
+        ships: [
+          { id: 3, color: 'yellow', size: 1, owner: 'player1' }
+        ]
+      }]
     }]
   }
 };

@@ -4,6 +4,7 @@ const sacrificeStart = require('./sacrificeStart');
 const sacrifice = require('./sacrifice');
 const catastrophy = require('./catastrophy');
 const transform = require('./transform');
+const attack = require('./attack');
 
 module.exports = {
   chooseHomeworld,
@@ -11,5 +12,6 @@ module.exports = {
   sacrificeStart,
   sacrifice,
   catastrophy,
-  transform
+  transform,
+  attack
 };
