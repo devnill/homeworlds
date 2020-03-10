@@ -38,7 +38,7 @@ function sacrificeStart(state, args) {
     return actionSuccess(Object.assign({}, state, {
       board: otherSystems,
       bank: updatedBank,
-      history: updatedHistory,
+      //history: updatedHistory,
       turn: {
         sacrifice: {
           color: targetShip.color,
@@ -59,7 +59,7 @@ function sacrificeStart(state, args) {
     return actionSuccess(Object.assign({}, state, {
       board: [...otherSystems, updatedSystem],
       bank: updatedBank,
-      history: updatedHistory,
+      //history: updatedHistory,
       turn: {
         sacrifice: {
           color: targetShip.color,

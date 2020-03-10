@@ -35,15 +35,15 @@ function transform(state, args) {
   const transformedShip = Object.assign({}, targetShip, { color });
   const updatedSystem = Object.assign({}, targetSystem, {
     ships: [...otherShips, transformedShip],
-  })
+  });
   const updatedState = Object.assign({}, state, {
     bank: updatedBank,
     board: [...otherSystems, updatedSystem],
-    history: [...state.history, {
+    /*history: [...state.history, {
       action: 'transform',
       args,
       systems:[targetSystem]
-    }]
+    }]*/
   });
   
   return actionSuccess(updatedState);

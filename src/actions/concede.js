@@ -5,7 +5,7 @@ function concede(state, args) {
   }
   const updatedHistory = [...state.history, Object.assign({ action: 'endTurn', args })];
   const updatedState = { history: updatedHistory };
-  return actionSuccess(Object.assign({}, state, updatedState));
+  return actionSuccess(Object.assign({}, state/*, updatedState*/));
 }
 
 module.exports = concede;

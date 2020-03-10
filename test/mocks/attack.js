@@ -2,8 +2,7 @@ const valid = {
   action: {
     player: 'player1',
     systemId: 1,
-    shipId: 3,
-    color: 'red' //captures ship 3 in system 1 
+    shipId: 3 //captures ship 3 in system 1 
   }, 
   state: {
     'bank': {
@@ -18,7 +17,7 @@ const valid = {
       stars: [{ color: 'blue', size: 1 }],
       ships: [
         { id: 3, color: 'yellow', size: 1, owner: 'player2' },
-        { id: 3, color: 'red', size: 1, owner: 'player1' }
+        { id: 4, color: 'red', size: 1, owner: 'player1' }
       ]
     }],
     'players': ['player1', 'player2'],
@@ -38,14 +37,14 @@ const valid = {
       name: 'Andoria',
       stars: [{ color: 'blue', size: 1 }],
       ships: [
-        { id: 3, color: 'yellow', size: 1, owner: 'player1' },
-        { id: 3, color: 'red', size: 1, owner: 'player1' }
+        { id: 4, color: 'red', size: 1, owner: 'player1' },
+        { id: 3, color: 'yellow', size: 1, owner: 'player1' }
       ]
     }],
     'players': ['player1', 'player2'],
     'activePlayer': 0,
     'turn': null,
-    'history': [{
+    'history': [/*{
       'action': 'attack',
       'args':{
         player: 'player1',
@@ -62,7 +61,7 @@ const valid = {
           { id: 3, color: 'red', size: 1, owner: 'player1' }
         ]
       }]
-    }]
+    }*/]
   }
 };
 

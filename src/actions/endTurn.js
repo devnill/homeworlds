@@ -14,7 +14,7 @@ function endTurn(state, args) {
   const updatedHistory = [...state.history, Object.assign({ action: 'endTurn', args })];
   const updatedState = Object.assign({}, _.omit(state, ['turn']), {
     activePlayer: (state.activePlayer + 1) % state.players.length,
-    history: updatedHistory
+    //history: updatedHistory
   });
 
   

@@ -42,7 +42,8 @@ function sacrifice(state, args) {
   });
 
   const updatedState = Object.assign({}, result.state, {
-    history: [...previousActions, updatedAction], turn: {
+    //history: [...previousActions, updatedAction],
+    turn: {
       sacrifice: {
         count: sacrificeState.count - 1,
         color: sacrificeState.color,

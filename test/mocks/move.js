@@ -33,7 +33,7 @@ const valid = {
     'players': ['player1', 'player2'],
     'activePlayer': 0,
     'turn': null,
-    'history': [{
+    'history': [/*{
       action: 'move',
       args: {
         player: 'player1',
@@ -42,7 +42,7 @@ const valid = {
         shipId: 3
       },
       systems: []
-    }]
+    }*/]
   },
   results: {
     'bank': {
@@ -71,7 +71,7 @@ const valid = {
     'players': ['player1', 'player2'],
     'activePlayer': 0,
     'turn': null,
-    'history': [{
+    'history': [/*{
       action: 'move',
       args: {
         player: 'player1',
@@ -96,7 +96,7 @@ const valid = {
           { id: 3, color: 'red', size: 1, owner: 'player1' }
         ]
       }]
-    }]
+    }*/]
   }
 };
 

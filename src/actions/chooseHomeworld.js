@@ -50,7 +50,7 @@ function chooseHomeworld(state, args) {
   return actionSuccess(Object.assign({}, state, {
     board: updatedBoard,
     bank: updatedBank,
-    history: updatedHistory
+    //history: updatedHistory
   }));
 }
 

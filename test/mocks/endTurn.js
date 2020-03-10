@@ -30,12 +30,12 @@ const sacrificeInProgress = {
     'board': [],
     'players': ['player1', 'player2'],
     'activePlayer': 2,
-    'history': [{
+    'history': [/*{
       action: 'endTurn',
       args: {
         player: 'player1'
       }
-    }],
+    }*/],
     'turn': {
       sacrifice: {
         color: 'blue',

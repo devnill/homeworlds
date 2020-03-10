@@ -107,6 +107,33 @@ function initState() {
     history: []
   };
 }
+function findShip(ships, id) {
+  const [targetShips, otherShips] = _.partition(ships, (ship) => ship.id === id);
+  const targetShip = targetShips.length ? targetShips[0] : null;
+  return [targetShip, otherShips];
+}
+
+function findSystem(board, id) {
+  const [targetSystems, otherSystems] = _.partition(board, (system) => system.id === id);
+  const targetSystem = targetSystems.length ? targetSystems[0] : null;
+  return [targetSystem, otherSystems];
+}
+
+function largestShipInSystem(system, player=null) {
+  const { ships = [] } = system;
+  const shipsToSearch = player === null ? ships : ships.filter((ship) => ship.owner === player); 
+  let largest = 0;
+  for (let i = 0; i < shipsToSearch.length; i++) { 
+    if (shipsToSearch[i].size >= largest) { 
+      largest = shipsToSearch[i].size;
+    }
+    if (largest === 3) {
+      // we can bail early because nothing is bigger than 3
+      return largest;
+    }
+  }
+  return largest;
+}
 
 module.exports = {
   id,
@@ -120,5 +147,9 @@ module.exports = {
   standardValidation,
   getUpdatedBank,
   playerHasColorAbility,
-  colorsAvailableToPlayer
+  colorsAvailableToPlayer,
+  // these should be refactored
+  findSystem,
+  findShip,
+  largestShipInSystem
 };

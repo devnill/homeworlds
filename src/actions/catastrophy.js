@@ -42,7 +42,7 @@ function catastrophy(state, args) {
       return actionSuccess(Object.assign({}, state, {
         board: otherSystems,
         bank: updatedBank,
-        history: updatedHistory
+        //history: updatedHistory
       }));
     } else {
       const piecesToReturn = countPieces([...removedStars, ...removedShips]);
@@ -56,7 +56,7 @@ function catastrophy(state, args) {
       return actionSuccess(Object.assign({}, state, {
         board: updatedBoard,
         bank: updatedBank,
-        history: updatedHistory
+        // history: updatedHistory
       }));
       //system is not destroyed. handle it.
       //const piecesToReturn = countPieces([...targetSystem.stars, ...targetSystem.ships]);

@@ -47,7 +47,7 @@ const valid = {
         count: 3
       }
     },
-    'history': [{
+    'history': [/*{
       'action': 'sacrificeStart',
       'args': {
         'shipId': 2,
@@ -63,7 +63,7 @@ const valid = {
           { id: 3, color: 'red', size: 2, owner: 'player2' }
         ]
       }]
-    }]
+    }*/]
   }
 };
 
@@ -108,7 +108,7 @@ const starReturned = {
         count: 1
       }
     },
-    'history': [{
+    'history': [/*{
       'action': 'sacrificeStart',
       'args': {
         player: 'player1',
@@ -123,7 +123,7 @@ const starReturned = {
           { id: 2, color: 'blue', size: 1, owner: 'player1' }
         ]
       }]
-    }]
+    }*/]
   }
 };
 module.exports = { valid, starReturned };

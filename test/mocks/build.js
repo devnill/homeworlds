@@ -73,7 +73,7 @@ const missingPieceInBank = {
     }],
     'players': ['player1', 'player2'],
     'activePlayer': 1,
-    'history': [{
+    'history': [/*{
       action: 'build',
       args: {
         systemId: 1,
@@ -82,7 +82,7 @@ const missingPieceInBank = {
     }, {
       player: 'player1',
       action: 'endTurn'
-    }]
+    }*/]
   },
   result: {
     'bank': {
@@ -101,7 +101,7 @@ const missingPieceInBank = {
     }],
     'players': ['player1', 'player2'],
     'activePlayer': 1,
-    'history': [{
+    'history': [/*{
       action: 'build',
       args: {
         systemId: 1,
@@ -110,7 +110,7 @@ const missingPieceInBank = {
     }, {
       player: 'player1',
       action: 'endTurn'
-    }]
+    }*/]
   }
 };
 

@@ -36,7 +36,7 @@ const valid = {
     'board': [],
     'players': ['player1', 'player2'],
     'activePlayer': 0,
-    'history': [{
+    'history': [/*{
       'action': 'catastrophy',
       'args': {
         'color': 'blue',
@@ -54,7 +54,7 @@ const valid = {
           { id: 5, color: 'yellow', size: 1, owner: 'player2' }
         ]
       }]
-    }]
+    }*/]
   }
 };
 
@@ -154,7 +154,7 @@ const starIntact = {
     }],
     'players': ['player1', 'player2'],
     'activePlayer': 0,
-    'history': [{
+    'history': [/*{
       'action': 'catastrophy',
       'args': {
         'color': 'blue',
@@ -173,7 +173,8 @@ const starIntact = {
           { id: 6, color: 'red', size: 1, owner: 'player2' }
         ]
       }]
-    }]
+    }*/
+    ]
   }
 };
 

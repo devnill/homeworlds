@@ -39,7 +39,7 @@ const valid = {
     }],
     'players': ['player1', 'player2'],
     'activePlayer': 0,
-    'history': [{
+    'history': [/*{
       action: 'transform',
       args: {
         player: 'player1',
@@ -53,7 +53,7 @@ const valid = {
         ships: [{ id: 3, size: 1, color: 'blue', owner: 'player1' }],
         stars: [{ size: 1, color: 'red' }]
       }]
-    }],
+    }*/],
     'turn': null
   }
 };

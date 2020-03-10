@@ -61,7 +61,7 @@ const valid = {
     ],
     'activePlayer': 0,
     'history': [
-      {
+      /*{
         'action': 'chooseHomeworld',
         'args': {
           'player': 'player1',
@@ -82,7 +82,7 @@ const valid = {
             }
           ]
         }
-      }
+      }*/
     ]
   }
 };
