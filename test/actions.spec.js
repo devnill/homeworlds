@@ -151,9 +151,12 @@ describe('actions', function () {
     it('cannot take ships in another system');
   });
   describe('move', function () {
-    it('cannot move between systems sharing a common sized star');
-    it('removes ship from first system');
-    it('adds ship to destination system');
+    it('cannot move between systems sharing a common sized star', function () {
+      const mock = deepfreeze(mocks.move.valid);
+      const result = actions.move(mock.state, mock.action);
+      expect(result.state.board).to.deep.equal(mock.result.board);
+    });
+    it('removes ship from first system and adds to the destination', );
     it('takes a piece from the bank if the system is new');
     it('cannot move to a new system if the piece is not in the bank');
   });

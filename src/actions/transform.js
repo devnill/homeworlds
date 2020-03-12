@@ -45,7 +45,6 @@ function transform(state, args) {
       systems:[targetSystem]
     }]*/
   });
-  
   return actionSuccess(updatedState);
 }
 module.exports = transform;
