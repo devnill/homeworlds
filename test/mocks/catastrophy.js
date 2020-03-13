@@ -1,8 +1,8 @@
 const valid = {
   action: {
-    'player': 'player1',
-    'color': 'blue',
-    'systemId': 1
+    player: 'player1',
+    color: 'blue',
+    system: { id: 1 }
   },
   state: {
     'bank': {
@@ -40,7 +40,7 @@ const valid = {
       'action': 'catastrophy',
       'args': {
         'color': 'blue',
-        'systemId': 1,
+        'system': {id: 1},
         'player': 'player1'
       },
       'systems': [{
@@ -61,8 +61,8 @@ const valid = {
 const invalid = {
   action: {
     player: 'player1',
-    'color': 'blue',
-    'systemId': 1
+    color: 'blue',
+    system: { id: 1 }
   },
   state: {
     'bank': {
@@ -112,7 +112,7 @@ const starIntact = {
   action: {
     player: 'player1',
     'color': 'blue',
-    'systemId': 1
+    system: { id: 1 }
   },
   state: {
     'bank': {
@@ -158,7 +158,7 @@ const starIntact = {
       'action': 'catastrophy',
       'args': {
         'color': 'blue',
-        'systemId': 1,
+        'systemd': {id: 1},
         'player': 'player1'
       },
       'systems': [{

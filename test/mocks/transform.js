@@ -2,8 +2,8 @@
 const valid = {
   action: {
     player: 'player1',
-    systemId: 1,
-    shipId: 3,
+    system: {id: 1},
+    ship: {id: 3},
     color: 'yellow' //transforms ship 3 to yellow 
   },
   state: {
@@ -43,8 +43,8 @@ const valid = {
       action: 'transform',
       args: {
         player: 'player1',
-        systemId: 1,
-        shipId: 3,
+        system: {id: 1},
+        ship: {id: 3},
         color: 'yellow'
       },
       systems: [{

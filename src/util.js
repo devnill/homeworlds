@@ -107,14 +107,14 @@ function initState() {
     history: []
   };
 }
-function findShip(ships, id) {
-  const [targetShips, otherShips] = _.partition(ships, (ship) => ship.id === id);
+function findShip(ships, ship) {
+  const [targetShips, otherShips] = _.partition(ships, (s) => s.id === ship.id);
   const targetShip = targetShips.length ? targetShips[0] : null;
   return [targetShip, otherShips];
 }
 
-function findSystem(board, id) {
-  const [targetSystems, otherSystems] = _.partition(board, (system) => system.id === id);
+function findSystem(board, system) {
+  const [targetSystems, otherSystems] = _.partition(board, (s) => s.id === system.id);
   const targetSystem = targetSystems.length ? targetSystems[0] : null;
   return [targetSystem, otherSystems];
 }

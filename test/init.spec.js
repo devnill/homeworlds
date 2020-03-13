@@ -11,4 +11,4 @@ describe('init', function () {
       expect(state.activePlayer).to.equal(0);
     });
   });
-});
+}); 

@@ -1,36 +1,37 @@
 
 //{
 // player: 'player1',
-// systemId: 2,
-// targetSystem: {},
-
-// shipId: 3
+// from: System
+// to: System,
+// ship: Ship
 //}
-const { findSystem, findShip, actionFailure, actionSuccess } = require('../util');
+const { findSystem, findShip, actionFailure, actionSuccess, getStarFromBank } = require('../util');
 const { error } = require('../strings');
 function move(state, args) {
   // validate if move can be made
   const { board, bank } = state;
-  const { systemId, targetSystemId, shipId } = args;
-  const [startingSystem, otherSystems] = findSystem(board, systemId);
-  let [targetSystem, remainingSystems] = findSystem(otherSystems, targetSystemId);
+  const { from, to, ship } = args;
+  const [startSystem, otherSystems] = findSystem(board, from);
   
-  targetSystem = targetSystem || getStarFromBank();
-
-  if (!currentSystem) {
+  // validate starting system exists 
+  // todo move validation
+  if (!startSystem) {
     return actionFailure(state, error.invalidSystem);
   }
 
-  const [targetShip, otherShips] = findShip(startingSystem.ships, shipId);
-  if (!currentShip) {
+  let [endSystem, remainingSystems] = findSystem(otherSystems, to);  
+  endSystem = endSystem || getStarFromBank();
+
+  const [targetShip, otherShips] = findShip(startSystem.ships, ship);
+  if (!targetShip) {
     return actionFailure(state, error.invalidShip);
   }
-  const currentStarSizes = startingSystem.stars.map((star) => star.size);
-  const targetStarSizes = targetSystem.stars.map((star) => star.size);
+  const startStarSizes = startSystem.stars.map((star) => star.size);
+  const endStarSizes = endSystem.stars.map((star) => star.size);
   
   // cast star object to bool if existant.
-  const starsHaveCommonSize = !!currentStarSizes.find((star) => {
-    return targetStarSizes.find((target) => target.size === star.size);
+  const starsHaveCommonSize = !!startStarSizes.find((star) => {
+    return endStarSizes.find((target) => target.size === star.size);
   });
 
   if (starsHaveCommonSize) {
@@ -38,20 +39,18 @@ function move(state, args) {
   }
 
 
-  const updatedBank = { ...bank };
-  
   // check to see if starting system is still occupied
   if (otherShips.length) {
     const updatedBoard = [
       ...remainingSystems,
       {
-        ...startingSystem,
+        ...startSystem,
         ships: [...otherShips]
       },
       {
-        ...targetSystem,
+        ...endSystem,
         ships: [
-          ...targetSystem.ships,
+          ...endSystem.ships,
           targetShip
         ]
       }

@@ -1,8 +1,8 @@
 const valid = {
   action: {
     player: 'player1',
-    systemId: 1,
-    shipId: 3 //captures ship 3 in system 1 
+    system: {id: 1},
+    ship: {id: 3} //captures ship 3 in system 1 
   }, 
   state: {
     'bank': {
@@ -48,8 +48,8 @@ const valid = {
       'action': 'attack',
       'args':{
         player: 'player1',
-        systemId: 1,
-        shipId: 3,
+        system: {id: 1},
+        ship: {id: 3},
         color: 'red'
       },
       systems: [{

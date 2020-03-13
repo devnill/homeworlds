@@ -150,7 +150,7 @@ describe('actions', function () {
     it('cannot take larger ships');
     it('cannot take ships in another system');
   });
-  describe('move', function () {
+  describe.skip('move', function () {
     it('cannot move between systems sharing a common sized star', function () {
       const mock = deepfreeze(mocks.move.valid);
       const result = actions.move(mock.state, mock.action);

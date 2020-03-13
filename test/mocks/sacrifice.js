@@ -1,8 +1,8 @@
 const blue = {
   action: {
     player: 'player1',
-    systemId: 1,
-    shipId: 3,
+    system: { id: 1 },
+    ship: { id: 3 },
     color: 'blue', // transforms ship to blue system 1
   },
   state: {
@@ -32,8 +32,8 @@ const blue = {
       {
       'action': 'sacrificeStart',
       'args': {
-        shipId: 2,
-        systemId: 1
+        ship: {id:2},
+        system: {id: 1}
       },
       systems: [{
         id: 1,
@@ -71,8 +71,8 @@ const blue = {
     'history': [/*{
       'action': 'sacrificeStart',
       'args': {
-        shipId: 2,
-        systemId: 1
+        ship: {id: 2},
+        system: {id: 1}
       },
       systems: [{
         id: 1,
@@ -87,8 +87,8 @@ const blue = {
   {
     action: 'transform',
     args: {
-      shipId: 3,
-      systemId: 1,
+      ship: {id: 3},
+      system: {id: 1},
       color: 'blue',
       player: 'player1',
     },
@@ -107,7 +107,7 @@ const blue = {
 
 const green = {
   action: {
-    systemId: 1,
+    system: { id: 1 },
     color: 'yellow' //builds a yellow ship in system 1 
   }
 };
@@ -115,8 +115,8 @@ const green = {
 const red = {
   action: {
     player: 'player1',
-    systemId: 1,
-    shipId: 3,
+    system: { id: 1 },
+    ship: { id: 3 },
     color: 'red' //captures ship 3 in system 1 
   }
 };
@@ -124,9 +124,9 @@ const red = {
 const yellow = {
   action: {
     player: 'player1',
-    systemId: 1,
-    targetSystemId: 2,
-    shipId: 3,
+    from: { id: 1 },
+    to: { id: 2 },
+    ship: { id: 3 },
     color: 'yellow' //moves ship 3 from system 1 to system 2 
   }
 };

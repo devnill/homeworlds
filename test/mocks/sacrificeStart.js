@@ -1,7 +1,7 @@
 const valid = {
   action: {
-    shipId: 2,
-    systemId: 1,
+    ship: { id: 2 },
+    system: { id: 1 },
     player: 'player1'
   },
   state: {
@@ -50,8 +50,8 @@ const valid = {
     'history': [/*{
       'action': 'sacrificeStart',
       'args': {
-        'shipId': 2,
-        'systemId': 1,
+        'ship': {id: 2},
+        'system': {id: 1},
         'player': 'player1',
       },
       'systems': [{
@@ -69,8 +69,8 @@ const valid = {
 
 const starReturned = {
   action: {
-    shipId: 2,
-    systemId: 1,
+    ship: {id: 2},
+    system: {id: 1},
     player: 'player1'
   },
   state: {
@@ -112,8 +112,8 @@ const starReturned = {
       'action': 'sacrificeStart',
       'args': {
         player: 'player1',
-        shipId: 2,
-        systemId: 1
+        ship: {id: 2},
+        system: {id: 1}
       },
       systems: [{
         id: 1,

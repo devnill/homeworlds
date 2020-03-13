@@ -1,10 +1,9 @@
 const valid = {
   action: {
     player: 'player1',
-    systemId: 2,
-    targetSystemId: 1,
-    shipId: 3
-    //moves ship 3 from system 1 to system 2
+    from: { id: 2 },
+    to: { id: 1 },
+    ship: { id: 3 } //moves ship 3 from system 1 to system 2
   },
   state: {
     'bank': {
@@ -37,9 +36,9 @@ const valid = {
       action: 'move',
       args: {
         player: 'player1',
-        systemId: 2,
-        targetSystemId: 1,
-        shipId: 3
+        from: {id: 2},
+        to: {id: 1},
+        ship: {id: 3}
       },
       systems: []
     }*/]
@@ -75,9 +74,9 @@ const valid = {
       action: 'move',
       args: {
         player: 'player1',
-        systemId: 2,
-        targetSystemId: 1,
-        shipId: 3
+        from: {id: 2},
+        to: {id: 1},
+        ship: {id: 3}
       },
       systems: [{
         id: 1,

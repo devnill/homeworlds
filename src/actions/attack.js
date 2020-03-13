@@ -5,18 +5,19 @@ const {
   findShip,
   actionFailure,
   actionSuccess
-} = require('../util'); 
+} = require('../util');
 
 const { error } = require('../strings.js');
 
-function attack(state, args) { 
-  const { systemId, shipId, player, color } = args;
-  const [targetSystem, otherSystems] = findSystem(state.board, systemId);
-  if (targetSystem === null) { 
+function attack(state, args) {
+  const { board } = state;
+  const { system, ship, player, color } = args;
+  const [targetSystem, otherSystems] = findSystem(board, system);
+  if (targetSystem === null) {
     actionFailure(state, error.invalidSystem);
   }
-  const [targetShip, otherShips] = findShip(targetSystem.ships, shipId);
-  if (!targetShip) { 
+  const [targetShip, otherShips] = findShip(targetSystem.ships, ship);
+  if (!targetShip) {
     return actionFailure(state, error.invalidShip);
   }
   if (playerHasColorAbility(targetSystem, player, color)) {
@@ -27,8 +28,8 @@ function attack(state, args) {
   }
   const updatedShip = { ...targetShip, owner: player };
   const updatedSystem = {
-    ...targetSystem, 
-    ships:[...otherShips, updatedShip]
+    ...targetSystem,
+    ships: [...otherShips, updatedShip]
   };
   //todo update history
   const updatedState = { ...state, board: [...otherSystems, updatedSystem], history: [/*'todo'*/] };

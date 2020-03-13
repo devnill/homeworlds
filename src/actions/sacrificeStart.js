@@ -1,39 +1,38 @@
 const {
   standardValidation,
   countPieces,
-  //  countPiecesOfColor,
+  findSystem,
+  findShip,
   getUpdatedBank,
   actionSuccess,
   actionFailure
 } = require('../util.js');
-const _ = require('lodash');
+
 const { error } = require('../strings.js');
 
 function sacrificeStart(state, args) {
-
+  // todo move validation
   const validationError = standardValidation(state, args);
   if (validationError) {
     return actionFailure(state, validationError);
   }
-
-  const { shipId, systemId } = args;
-  const [otherSystems, targetSystems] = _.partition(state.board, (system) => system.id !== systemId);
-  if (targetSystems.length !== 1) {
+  const { board } = state;
+  const { ship, system } = args;
+  const [targetSystem, otherSystems] = findSystem(board, system);
+  if (!targetSystem) {
     return actionFailure(state, error.invalidSystem);
   }
-
-  const targetSystem = targetSystems[0];
-  const targetShip = targetSystem.ships.find((ship) => ship.id === shipId);
+  const [targetShip, otherShips] = findShip(targetSystem.ships, ship);
   if (!targetShip) {
     return actionFailure(state, error.invalidShip);
   }
-  if (targetSystem.ships.length === 1 && typeof targetSystem.homeworldFor != 'number') {
-    // kill the star too
-
+  // empty systems should be immediately returned to the bank unless it is a homeworld.
+  if (!otherShips.length && typeof targetSystem.homeworldFor != 'number') {
+    // this is an empty, non-homeworld system
+    // todo create util.returnToBank?
     const piecesToReturn = countPieces([...targetSystem.stars, ...targetSystem.ships]);
     const updatedBank = getUpdatedBank(state, piecesToReturn);
-
-    const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'sacrificeStart' }];
+    // const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'sacrificeStart' }];
     // create new state;
     return actionSuccess(Object.assign({}, state, {
       board: otherSystems,
@@ -52,9 +51,9 @@ function sacrificeStart(state, args) {
     const piecesToReturn = countPieces([targetShip]);
     const updatedBank = getUpdatedBank(state, piecesToReturn);
     const updatedSystem = Object.assign({},targetSystem, {
-      ships: targetSystem.ships.filter((ship) => ship.id !== shipId)
+      ships: targetSystem.ships.filter((targetShip) => targetShip.id !== ship.id)
     });
-    const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'sacrificeStart' }];
+    // const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'sacrificeStart' }];
     // create new state;
     return actionSuccess(Object.assign({}, state, {
       board: [...otherSystems, updatedSystem],

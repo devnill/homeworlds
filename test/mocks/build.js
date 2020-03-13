@@ -1,6 +1,6 @@
 const valid = {
   action: {
-    systemId: 1,
+    system: {id: 1},
     color: 'blue',
     player: 'player1'
   }
@@ -8,7 +8,7 @@ const valid = {
 const missingColorInSystem = {
   action: {
     player: 'playerOne',
-    systemId: 1,
+    system: {id: 1},
     color: 'blue'
   }, 
   state: {
@@ -53,7 +53,7 @@ const missingColorInSystem = {
 const missingPieceInBank = {
   action: {
     player: 'player1',
-    systemId: 1,
+    system: {id: 1},
     color: 'blue'
   },
   state: {
@@ -76,7 +76,7 @@ const missingPieceInBank = {
     'history': [/*{
       action: 'build',
       args: {
-        systemId: 1,
+        system: {id: 1},
         color: 'blue'
       }
     }, {
@@ -104,7 +104,7 @@ const missingPieceInBank = {
     'history': [/*{
       action: 'build',
       args: {
-        systemId: 1,
+        system: {id: 1},
         color: 'blue'
       }
     }, {

@@ -1,7 +1,9 @@
 const {
   getUpdatedBank,
+  findSystem,
+  findShip,
   actionSuccess,
-  actionFailure, 
+  actionFailure,
   getEmptyBank
 } = require('../util.js');
 const _ = require('lodash');
@@ -9,21 +11,20 @@ const { error } = require('../strings.js');
 
 
 function transform(state, args) {
+  const { board } = state;
+  const { ship, system, color, player } = args;
 
-  const { shipId, systemId, color, player } = args;
-
-  const [targetSystems, otherSystems] = _.partition(state.board, (system)=>system.id === systemId);
-  if (!targetSystems.length) {
+  const [targetSystem, otherSystems] = findSystem(board, system);
+  if (!targetSystem) {
     return actionFailure(state, error.invalidSystem);
   }
-  const targetSystem = targetSystems[0];
-  const [targetShips, otherShips] = _.partition(targetSystem.ships, (ship) => (ship.id === shipId && ship.owner === player));
-  if (!targetShips.length) {
+  
+  const [targetShip, otherShips] = findShip(targetSystem.ships, ship);
+  if (!targetShip) {
     return actionFailure(state, error.invalidShip);
   }
-  const targetShip = targetShips[0];
-
-  if (state.bank[color][targetShip.size - 1]<1) {
+  
+  if (state.bank[color][targetShip.size - 1] < 1) {
     return actionFailure(state, error.insufficentPieces);
   }
 
