@@ -11,7 +11,8 @@ const valid = {
     }],
     ships: [{
       size: 3,
-      color: 'green'
+      color: 'green',
+      owner: 'player1'
     }]
   },
   state: {
@@ -36,6 +37,7 @@ const valid = {
     'board': [
       {
         'name': 'player1',
+        'isHomeworld': true,
         'stars': [
           {
             'size': 3,

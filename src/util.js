@@ -108,9 +108,11 @@ function createBank() {
 function validateBank(bank){
   const invalidBankSection = ['green', 'red', 'yellow', 'blue']
     .find((color)=>{
-      return bank[color].find((size)=>{
-        return bank[color][size]<0;
+      const colorhasInvalidCategory = bank[color].find((size)=>{
+        const categoryInvalid = size < 0;
+        return categoryInvalid;
       });
+      return colorhasInvalidCategory !== undefined;
     });
   return !!invalidBankSection;
 }

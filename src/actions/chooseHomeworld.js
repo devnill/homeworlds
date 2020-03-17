@@ -2,10 +2,30 @@ const {
   standardValidation,
   countPieces,
   actionSuccess,
-  actionFailure
+  actionFailure,
+  createSystem
 } = require('../util.js');
+const { error } = require('../strings.js');
 
 function chooseHomeworld(state, args) {
+  const {bank} = state;
+  const {ships, stars, player} = args;
+  const [homeworld, updatedBank] = createSystem(bank, {
+    name: player,
+    stars,
+    ships,
+    isHomeworld: true
+  });
+  
+  if(homeworld === null){
+    return actionFailure(state, error.bankInsufficent);
+  }
+  return actionSuccess({
+    ...state,
+    bank: updatedBank,
+    board: [...state.board, homeworld]
+  });
+  /*
   const updatedBank = {
     red: [...state.bank.red],
     blue: [...state.bank.blue],
@@ -52,6 +72,7 @@ function chooseHomeworld(state, args) {
     bank: updatedBank,
     //history: updatedHistory
   }));
+  */
 }
 
 module.exports = chooseHomeworld;

@@ -18,7 +18,8 @@ module.exports = function chooseHomeworldSpecs() {
     expect(bank.yellow[1]).to.equal(initialState.bank.yellow[1] - 1);
     expect(bank.green[2]).to.equal(initialState.bank.yellow[1] - 1);
   });
-  it('will fail if its not the current players turn', function () {
+  // TODO: move to validator
+  it.skip('will fail if its not the current players turn', function () {
     const mock = _.cloneDeep(mocks.valid);
     mock.state.activePlayer = 1;
     deepfreeze(mock);
@@ -27,6 +28,7 @@ module.exports = function chooseHomeworldSpecs() {
     expect(actionResponse.err).to.equal('not your turn');
     expect(actionResponse.state).to.deep.equal(mock.state);
   });
+
   it('will fail if there are not enough pieces in the bank', function () {
     const mock = deepfreeze(mocks.insufficentPieces);
     const initialState = mock.state;
