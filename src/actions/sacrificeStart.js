@@ -3,7 +3,7 @@ const {
   countPieces,
   findSystem,
   findShip,
-  getUpdatedBank,
+  returnToBank,
   actionSuccess,
   actionFailure
 } = require('../util.js');
@@ -16,7 +16,7 @@ function sacrificeStart(state, args) {
   if (validationError) {
     return actionFailure(state, validationError);
   }
-  const { board } = state;
+  const { board, bank } = state;
   const { ship, system } = args;
   const [targetSystem, otherSystems] = findSystem(board, system);
   if (!targetSystem) {
@@ -31,7 +31,7 @@ function sacrificeStart(state, args) {
     // this is an empty, non-homeworld system
     // todo create util.returnToBank?
     const piecesToReturn = countPieces([...targetSystem.stars, ...targetSystem.ships]);
-    const updatedBank = getUpdatedBank(state, piecesToReturn);
+    const updatedBank = returnToBank(bank, piecesToReturn);
     // const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'sacrificeStart' }];
     // create new state;
     return actionSuccess(Object.assign({}, state, {
@@ -49,7 +49,7 @@ function sacrificeStart(state, args) {
   } else {
     // just the ship
     const piecesToReturn = countPieces([targetShip]);
-    const updatedBank = getUpdatedBank(state, piecesToReturn);
+    const updatedBank = returnToBank(bank, piecesToReturn);
     const updatedSystem = Object.assign({},targetSystem, {
       ships: targetSystem.ships.filter((targetShip) => targetShip.id !== ship.id)
     });

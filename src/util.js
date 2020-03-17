@@ -14,19 +14,23 @@ function countPieces(pieces) {
     const { color } = piece;
     requiredPieces[color][size]++;
     return requiredPieces;
-  }, {
-    red: [0, 0, 0],
-    blue: [0, 0, 0],
-    green: [0, 0, 0],
-    yellow: [0, 0, 0]
-  });
+  }, getEmptyBank());
 }
+
 function countPiecesOfColor(pieces, color) {
   return pieces.filter((piece) => piece.color === color).length;
 }
+
 function actionSuccess(state) {
   return {
     err: null,
+    state
+  };
+}
+
+function actionFailure(state, reason) {
+  return {
+    err: reason || true,
     state
   };
 }
@@ -44,25 +48,27 @@ function playerHasColorAbility(system, player, color) {
   return colorsAvailableToPlayer(system, player).indexOf(color) !== -1;
 }
 
-function actionFailure(state, reason) {
-  return {
-    err: reason || true,
-    state
-  };
-}
-function getUpdatedBank(state, delta) {
+
+function getUpdatedBank(bank, delta, operator = 1) {
   const updatedCounts = ['red', 'blue', 'green', 'yellow']
     .map((color) => {
       // for each color iterate over the bank sizes and add the delta
       return {
-        [color]: state.bank[color].map((pieceCount, size) => {
-          return pieceCount + delta[color][size];
-
+        [color]: bank[color].map((pieceCount, size) => {
+          return pieceCount + (delta[color][size] * operator);
         })
       };
     });
   return (Object.assign({}, ...updatedCounts));
 }
+
+function returnToBank(bank, delta) {
+  return getUpdatedBank(bank, delta, 1);
+}
+
+function takeFromBank(bank, delta){
+  return getUpdatedBank(bank, delta, -1);
+};
 
 function standardValidation(state, args) {
   // check to see if its the players turn
@@ -76,6 +82,7 @@ function standardValidation(state, args) {
   }
   return null;
 }
+
 function getEmptyBank() {
   return Object.assign({}, ...[
     'red',
@@ -98,6 +105,16 @@ function createBank() {
   }));
 }
 
+function validateBank(bank){
+  const invalidBankSection = ['green', 'red', 'yellow', 'blue']
+    .find((color)=>{
+      return bank[color].find((size)=>{
+        return bank[color][size]<0;
+      });
+    });
+  return !!invalidBankSection;
+}
+
 function initState() {
   return {
     bank: createBank(),
@@ -107,6 +124,7 @@ function initState() {
     history: []
   };
 }
+
 function findShip(ships, ship) {
   const [targetShips, otherShips] = _.partition(ships, (s) => s.id === ship.id);
   const targetShip = targetShips.length ? targetShips[0] : null;
@@ -135,6 +153,28 @@ function largestShipInSystem(system, player=null) {
   return largest;
 }
 
+function getStarFromBank (bank, star){
+
+}
+
+function createSystem (bank, system){
+  const {ships, stars} = system;
+  const requiredPieces = countPieces([...ships, ...stars]);
+  const updatedBank = takeFromBank(bank, requiredPieces);
+  const bankInvalid = validateBank(updatedBank);
+  if(bankInvalid){
+    return [null, bank];
+  }
+  return [{...system}, updatedBank];
+  
+}
+
+function returnSystemToBank(bank, system){
+  const piecesToReturn = countPieces([...system.ships, system.stars]);
+  const updatedBank = returnToBank(bank, piecesToReturn);
+  return updatedBank;
+}
+
 module.exports = {
   id,
   initState,
@@ -145,11 +185,16 @@ module.exports = {
   actionSuccess,
   actionFailure,
   standardValidation,
+  returnToBank,
+  takeFromBank,
   getUpdatedBank,
   playerHasColorAbility,
   colorsAvailableToPlayer,
   // these should be refactored
   findSystem,
   findShip,
-  largestShipInSystem
+  largestShipInSystem,
+  getStarFromBank,
+  createSystem,
+  returnSystemToBank
 };

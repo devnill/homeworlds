@@ -2,7 +2,7 @@ const {
   standardValidation,
   countPieces,
   countPiecesOfColor,
-  getUpdatedBank,
+  returnToBank,
   findSystem,
   findShip,
   actionSuccess,
@@ -18,7 +18,7 @@ function catastrophy(state, args) {
     return actionFailure(state, validationError);
   }
 
-  const { board } = state;
+  const { board, bank } = state;
   const { system, color } = args;
   const [targetSystem, otherSystems] = findSystem(board, system);
 
@@ -40,7 +40,7 @@ function catastrophy(state, args) {
     if (remainingStars.length === 0 || remainingShips.length === 0) {
       // remove all pieces and return to bank
       const piecesToReturn = countPieces([...targetSystem.stars, ...targetSystem.ships]);
-      const updatedBank = getUpdatedBank(state, piecesToReturn);
+      const updatedBank = returnToBank(bank, piecesToReturn);
       // const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'catastrophy' }];
       // create new state;
       return actionSuccess(Object.assign({}, state, {
@@ -50,13 +50,13 @@ function catastrophy(state, args) {
       }));
     } else {
       const piecesToReturn = countPieces([...removedStars, ...removedShips]);
-      const updatedBank = getUpdatedBank(state, piecesToReturn);
+      const updatedBank = returnToBank(bank, piecesToReturn);
       const updatedSystem = Object.assign({}, targetSystem, {
         stars: remainingStars,
         ships: remainingShips
       });
       const updatedBoard = [...otherSystems, updatedSystem];
-      const updatedHistory = [...state.history, { args, action: 'catastrophy', systems: [targetSystem] }];
+      // const updatedHistory = [...state.history, { args, action: 'catastrophy', systems: [targetSystem] }];
       return actionSuccess(Object.assign({}, state, {
         board: updatedBoard,
         bank: updatedBank,
@@ -64,7 +64,7 @@ function catastrophy(state, args) {
       }));
       //system is not destroyed. handle it.
       //const piecesToReturn = countPieces([...targetSystem.stars, ...targetSystem.ships]);
-      //updatedBank = getUpdatedBank(state, piecesToReturn);
+      //updatedBank = returnToBank(bank, piecesToReturn);
       //updatedBoard = state.board.filter((targetSystem) => targetSystem.id !== system.id)
 
     }

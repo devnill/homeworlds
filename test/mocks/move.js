@@ -43,7 +43,7 @@ const valid = {
       systems: []
     }*/]
   },
-  results: {
+  result: {
     'bank': {
       'red': [3, 3, 3],
       'yellow': [2, 3, 3],

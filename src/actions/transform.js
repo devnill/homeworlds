@@ -1,5 +1,5 @@
 const {
-  getUpdatedBank,
+  returnToBank,
   findSystem,
   findShip,
   actionSuccess,
@@ -11,7 +11,7 @@ const { error } = require('../strings.js');
 
 
 function transform(state, args) {
-  const { board } = state;
+  const { board, bank } = state;
   const { ship, system, color, player } = args;
 
   const [targetSystem, otherSystems] = findSystem(board, system);
@@ -31,7 +31,7 @@ function transform(state, args) {
   const bankDelta = getEmptyBank();
   bankDelta[targetShip.color][targetShip.size - 1]++;
   bankDelta[color][targetShip.size - 1]--;
-  const updatedBank = getUpdatedBank(state, bankDelta);
+  const updatedBank = returnToBank(bank, bankDelta);
 
   const transformedShip = Object.assign({}, targetShip, { color });
   const updatedSystem = Object.assign({}, targetSystem, {

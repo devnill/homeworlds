@@ -5,8 +5,16 @@
 // to: System,
 // ship: Ship
 //}
-const { findSystem, findShip, actionFailure, actionSuccess, getStarFromBank } = require('../util');
+const { 
+  findSystem, 
+  findShip, 
+  actionFailure, 
+  actionSuccess,
+  returnSystemToBank,
+  createSystem
+ } = require('../util');
 const { error } = require('../strings');
+
 function move(state, args) {
   // validate if move can be made
   const { board, bank } = state;
@@ -18,20 +26,32 @@ function move(state, args) {
   if (!startSystem) {
     return actionFailure(state, error.invalidSystem);
   }
-
-  let [endSystem, remainingSystems] = findSystem(otherSystems, to);  
-  endSystem = endSystem || getStarFromBank();
-
+  
+  // find the ship we are trying to move
   const [targetShip, otherShips] = findShip(startSystem.ships, ship);
+  
+  // fail if target ship is not in the starting system
   if (!targetShip) {
     return actionFailure(state, error.invalidShip);
   }
+
+  // see if we can find the destination system
+  let [endSystem, remainingSystems] = findSystem(otherSystems, to);  
+  
+  // if not, attempt to create one
+  endSystem = endSystem || createSystem(bank, to);
+
+  // get a system from the bank if needed
+  if(!endSystem){
+    return actionFailure(state, error.invalidSystem);
+  }
+
   const startStarSizes = startSystem.stars.map((star) => star.size);
   const endStarSizes = endSystem.stars.map((star) => star.size);
   
   // cast star object to bool if existant.
-  const starsHaveCommonSize = !!startStarSizes.find((star) => {
-    return endStarSizes.find((target) => target.size === star.size);
+  const starsHaveCommonSize = !!startStarSizes.find((startStarSize) => {
+    return endStarSizes.find((targetSize) => targetSize === startStarSize);
   });
 
   if (starsHaveCommonSize) {
@@ -44,9 +64,27 @@ function move(state, args) {
     const updatedBoard = [
       ...remainingSystems,
       {
+        ...endSystem,
+        ships: [
+          ...endSystem.ships,
+          targetShip
+        ]
+      },
+      {
         ...startSystem,
         ships: [...otherShips]
-      },
+      }
+    ];
+    return actionSuccess({ ...state, board: updatedBoard });
+  } else {
+    // otherwise, return system to bank
+    const updatedBank = returnSystemToBank(bank, {
+      ...startSystem,
+      ships: []
+    });
+
+    const updatedBoard = [
+      ...remainingSystems,
       {
         ...endSystem,
         ships: [
@@ -55,32 +93,9 @@ function move(state, args) {
         ]
       }
     ];
-    const updatedState = { ...state, board: updatedBoard };
-  }
-  // otherwise, return system to bank
-  const updatedBank = returnSystemToBank(bank, {
-    ...startingSystem,
-    ships: []
-  });
-  const updatedSystems = [
-    ...remainingSystems,
-    {
-      ...startingSystem,
-      ships: [...otherShips]
-    },
-    {
-      ...targetSystem,
-      ships: [
-        ...targetSystem.ships,
-        targetShip
-      ]
-    }
-  ];
-    
-  // pull out relevant systems from board object
-  // remove ship from first system and add to targed
-  // remove target system if empty and not homeworld
 
+    return actionSuccess({ ...state, bank: updatedBank, board: updatedBoard });
+  }
 }
 
 module.exports = move;
