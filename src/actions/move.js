@@ -6,10 +6,10 @@
 // ship: Ship
 //}
 
-const { 
-  findSystem, 
-  findShip, 
-  actionFailure, 
+const {
+  findSystem,
+  findShip,
+  actionFailure,
   actionSuccess,
   returnSystemToBank,
   createSystem
@@ -21,35 +21,40 @@ function move(state, args) {
   const { board, bank } = state;
   const { from, to, ship } = args;
   const [startSystem, otherSystems] = findSystem(board, from);
-  
-  // validate starting system exists 
+  let updatedBank = bank;
+
+  // validate starting system exists
   // todo move validation
   if (!startSystem) {
     return actionFailure(state, error.invalidSystem);
   }
-  
+
   // find the ship we are trying to move
   const [targetShip, otherShips] = findShip(startSystem.ships, ship);
-  
+
   // fail if target ship is not in the starting system
   if (!targetShip) {
     return actionFailure(state, error.invalidShip);
   }
 
   // see if we can find the destination system
-  let [endSystem, remainingSystems] = findSystem(otherSystems, to);  
-  
-  // if not, attempt to create one
-  endSystem = endSystem || createSystem(bank, to);
+  let [endSystem, remainingSystems] = findSystem(otherSystems, to);
 
-  // get a system from the bank if needed
+  // if not, attempt to create one
   if(!endSystem){
-    return actionFailure(state, error.invalidSystem);
+    let [newSystem, newBank] = createSystem(bank, to)
+
+    if(!newSystem) {
+      return actionFailure(state, error.invalidSystem);
+    } else {
+      endSystem = newSystem;
+      updatedBank = newBank;
+    }
   }
 
   const startStarSizes = startSystem.stars.map((star) => star.size);
   const endStarSizes = endSystem.stars.map((star) => star.size);
-  
+
   // cast star object to bool if existant.
   const starsHaveCommonSize = !!startStarSizes.find((startStarSize) => {
     return endStarSizes.find((targetSize) => targetSize === startStarSize);
@@ -76,10 +81,10 @@ function move(state, args) {
         ships: [...otherShips]
       }
     ];
-    return actionSuccess({ ...state, board: updatedBoard });
+    return actionSuccess({ ...state, bank: updatedBank, board: updatedBoard });
   } else {
     // otherwise, return system to bank
-    const updatedBank = returnSystemToBank(bank, {
+    updatedBank = returnSystemToBank(updatedBank, {
       ...startSystem,
       ships: []
     });
