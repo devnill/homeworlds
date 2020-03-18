@@ -1,6 +1,8 @@
-const rfc6902 = require('rfc6902');
+const createPatch = require('json-patch-gen');
+const applyPatch = require('jsonpatch').apply_patch;
 const _ = require('lodash');
 let counter = 1;
+
 function id() {
   return counter++;
 }
@@ -67,7 +69,7 @@ function returnToBank(bank, delta) {
   return getUpdatedBank(bank, delta, 1);
 }
 
-function takeFromBank(bank, delta){
+function takeFromBank(bank, delta) {
   return getUpdatedBank(bank, delta, -1);
 };
 
@@ -91,7 +93,7 @@ function getEmptyBank() {
     'green',
     'blue'
   ].map((color) => {
-    return { [color]: [0,0,0] };
+    return { [color]: [0, 0, 0] };
   }));
 }
 
@@ -106,10 +108,10 @@ function createBank() {
   }));
 }
 
-function validateBank(bank){
+function validateBank(bank) {
   const invalidBankSection = ['green', 'red', 'yellow', 'blue']
-    .find((color)=>{
-      const colorhasInvalidCategory = bank[color].find((size)=>{
+    .find((color) => {
+      const colorhasInvalidCategory = bank[color].find((size) => {
         const categoryInvalid = size < 0;
         return categoryInvalid;
       });
@@ -140,12 +142,12 @@ function findSystem(board, system) {
   return [targetSystem, otherSystems];
 }
 
-function largestShipInSystem(system, player=null) {
+function largestShipInSystem(system, player = null) {
   const { ships = [] } = system;
-  const shipsToSearch = player === null ? ships : ships.filter((ship) => ship.owner === player); 
+  const shipsToSearch = player === null ? ships : ships.filter((ship) => ship.owner === player);
   let largest = 0;
-  for (let i = 0; i < shipsToSearch.length; i++) { 
-    if (shipsToSearch[i].size >= largest) { 
+  for (let i = 0; i < shipsToSearch.length; i++) {
+    if (shipsToSearch[i].size >= largest) {
       largest = shipsToSearch[i].size;
     }
     if (largest === 3) {
@@ -156,19 +158,19 @@ function largestShipInSystem(system, player=null) {
   return largest;
 }
 
-function createSystem (bank, system){
-  const {ships, stars} = system;
+function createSystem(bank, system) {
+  const { ships, stars } = system;
   const requiredPieces = countPieces([...ships, ...stars]);
   const updatedBank = takeFromBank(bank, requiredPieces);
   const bankInvalid = validateBank(updatedBank);
-  if(bankInvalid){
+  if (bankInvalid) {
     return [null, bank];
   }
-  return [{...system}, updatedBank];
-  
+  return [{ ...system }, updatedBank];
+
 }
 
-function returnSystemToBank(bank, system){
+function returnSystemToBank(bank, system) {
   const piecesToReturn = countPieces([...system.ships, system.stars]);
   const updatedBank = returnToBank(bank, piecesToReturn);
   return updatedBank;
@@ -178,10 +180,23 @@ function isPlayersTurn({ players, activePlayer }, { player }) {
   return player === players[activePlayer];
 }
 
-function createHistory(initialState, updatedState, action){
-  
-  return rfc6902.createPatch(_.omit(updatedState, ['history']), _.omit(initialState, ['history']));
-  
+function getHistoryItem(initialState, updatedState, action, args) {
+  const patch = createPatch(updatedState, initialState);
+  return {
+    action,
+    args,
+    patch
+  };
+}
+
+function getPreviousState(state) {
+  const lastAction = state.history[state.history.length - 1];
+  const previousHistory = state.history.slice(0, -1);
+  const previousState = applyPatch(state, lastAction.patch);
+  return {
+    ...previousState,
+    history: previousHistory,
+  };
 }
 
 module.exports = {
@@ -205,5 +220,7 @@ module.exports = {
   largestShipInSystem,
   createSystem,
   returnSystemToBank,
-  isPlayersTurn
+  isPlayersTurn,
+  getHistoryItem,
+  getPreviousState
 };

@@ -14,8 +14,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jsondiffpatch": "^0.4.1",
-    "rfc6902": "^3.0.4"
+    "json-patch-gen": "^1.0.2",
+    "jsonpatch": "^3.0.1",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "chai": "^4.2.0",
