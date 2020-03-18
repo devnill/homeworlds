@@ -29,7 +29,7 @@ module.exports = function moveSpecs() {
       expect(result.state.board).to.deep.equal(mock.result.board);
   });
 
-  it.skip('cannot move to a new system if the piece is not in the bank', function() {
+  it('cannot move to a new system if the piece is not in the bank', function() {
       const mock = deepfreeze(mocks.invalidSystem);
       const result = move(mock.state, mock.action);
       assert.isNotNull(result.err);

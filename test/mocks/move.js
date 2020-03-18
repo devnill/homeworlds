@@ -287,16 +287,24 @@ const newSystem = {
 const invalidSystem = {
   action: {
     player: 'player1',
-    from: { id: 2 },
-    to: { id: 1 },
-    ship: { id: 3 } //moves ship 3 from system 1 to system 2
+    from: {
+      id: 2,
+      ships: [{id: 3 }],
+    },
+    to: {
+      id: 6,
+      name: 'Newberg',
+      stars: [{id: 7, color: 'blue', size: 3}],
+      ships: [],
+    },
+    ship: { id: 3 }
   },
   state: {
     'bank': {
-      'red': [3, 3, 3],
+      'red': [2, 2, 3],
       'yellow': [2, 3, 3],
       'green': [3, 3, 3],
-      'blue': [2, 3, 3]
+      'blue': [3, 2, 0]
     },
     'board': [{
       id: 1,
@@ -309,7 +317,7 @@ const invalidSystem = {
     {
       id: 2,
       name: 'Sol',
-      stars: [{ color: 'yellow', size: 2 }],
+      stars: [{ color: 'red', size: 2 }],
       ships: [
         { id: 4, color: 'yellow', size: 1, owner: 'player2' },
         { id: 3, color: 'red', size: 1, owner: 'player1' }
@@ -331,10 +339,10 @@ const invalidSystem = {
   },
   result: {
     'bank': {
-      'red': [3, 3, 3],
+      'red': [2, 2, 3],
       'yellow': [2, 3, 3],
       'green': [3, 3, 3],
-      'blue': [2, 3, 3]
+      'blue': [3, 2, 0]
     },
     'board': [{
       id: 1,
@@ -347,7 +355,7 @@ const invalidSystem = {
     {
       id: 2,
       name: 'Sol',
-      stars: [{ color: 'yellow', size: 2 }],
+      stars: [{ color: 'red', size: 2 }],
       ships: [
         { id: 4, color: 'yellow', size: 1, owner: 'player2' },
         { id: 3, color: 'red', size: 1, owner: 'player1' }
