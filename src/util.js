@@ -1,3 +1,4 @@
+const rfc6902 = require('rfc6902');
 const _ = require('lodash');
 let counter = 1;
 function id() {
@@ -155,10 +156,6 @@ function largestShipInSystem(system, player=null) {
   return largest;
 }
 
-function getStarFromBank (bank, star){
-
-}
-
 function createSystem (bank, system){
   const {ships, stars} = system;
   const requiredPieces = countPieces([...ships, ...stars]);
@@ -175,6 +172,16 @@ function returnSystemToBank(bank, system){
   const piecesToReturn = countPieces([...system.ships, system.stars]);
   const updatedBank = returnToBank(bank, piecesToReturn);
   return updatedBank;
+}
+
+function isPlayersTurn({ players, activePlayer }, { player }) {
+  return player === players[activePlayer];
+}
+
+function createHistory(initialState, updatedState, action){
+  
+  return rfc6902.createPatch(_.omit(updatedState, ['history']), _.omit(initialState, ['history']));
+  
 }
 
 module.exports = {
@@ -196,7 +203,7 @@ module.exports = {
   findSystem,
   findShip,
   largestShipInSystem,
-  getStarFromBank,
   createSystem,
-  returnSystemToBank
+  returnSystemToBank,
+  isPlayersTurn
 };

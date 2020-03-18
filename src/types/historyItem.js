@@ -1,8 +1,8 @@
-function historyItem(action, args, systems = [], isSacrifice) {
+function historyItem(action, args, delta, isSacrifice) {
   return {
     action,
     args,
-    systems,
+    delta,
     isSacrifice
   };
 }
