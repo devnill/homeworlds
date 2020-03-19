@@ -1,6 +1,6 @@
 const { expect, assert } = require('chai');
 const deepfreeze = require('deepfreeze');
-const { createSystem, getHistoryItem, getPreviousState } = require('../src/util');
+const { createSystem, getHistoryItem, getPreviousState } = require('../src/util/');
 const { systemLost } = require('./mocks/move');
 const historyMock = require('./mocks/history');
 

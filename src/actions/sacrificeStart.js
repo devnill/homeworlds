@@ -6,9 +6,9 @@ const {
   returnToBank,
   actionSuccess,
   actionFailure
-} = require('../util.js');
+} = require('../util/');
 
-const { error } = require('../strings.js');
+const { error } = require('../strings');
 
 function sacrificeStart(state, args) {
   // todo move validation

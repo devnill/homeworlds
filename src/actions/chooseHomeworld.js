@@ -1,11 +1,14 @@
 const {
-  standardValidation,
-  countPieces,
+  action, bank
+} = require('../util/');
+
+const {
   actionSuccess,
-  actionFailure,
-  createSystem
-} = require('../util.js');
-const { error } = require('../strings.js');
+  actionFailure
+} = action;
+
+const {createSystem} = bank;
+const { error } = require('../strings');
 
 function chooseHomeworld(state, args) {
   const {bank} = state;

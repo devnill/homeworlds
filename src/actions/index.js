@@ -1,14 +1,14 @@
 
-const build = require('./build.js');
-const move = require('./move.js');
-const attack = require('./attack.js');
-const transform = require('./transform.js');
-const catastrophy = require('./catastrophy.js');
-const sacrificeStart = require('./sacrificeStart.js');
-const sacrifice = require('./sacrifice.js');
-const concede = require('./concede.js');
-const endTurn = require('./endTurn.js');
-const chooseHomeworld = require('./chooseHomeworld.js');
+const build = require('./build');
+const move = require('./move');
+const attack = require('./attack');
+const transform = require('./transform');
+const catastrophy = require('./catastrophy');
+const sacrificeStart = require('./sacrificeStart');
+const sacrifice = require('./sacrifice');
+const concede = require('./concede');
+const endTurn = require('./endTurn');
+const chooseHomeworld = require('./chooseHomeworld');
 
 
 module.exports = {

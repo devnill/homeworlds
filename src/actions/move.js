@@ -13,7 +13,7 @@ const {
   actionSuccess,
   returnSystemToBank,
   createSystem
- } = require('../util');
+} = require('../util/');
 const { error } = require('../strings');
 
 function move(state, args) {

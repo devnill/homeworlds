@@ -2,7 +2,7 @@ const mocks = require('../mocks/').endTurn;
 const {endTurn} = require('../../src/actions');
 const _ = require('lodash');
 const { expect, assert } = require('chai');
-const game = require('../../src/util');
+const game = require('../../src/util/');
 
 const deepfreeze = require('deepfreeze');
 

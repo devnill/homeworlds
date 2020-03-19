@@ -4,12 +4,11 @@ const {
   countPiecesOfColor,
   returnToBank,
   findSystem,
-  findShip,
   actionSuccess,
   actionFailure
-} = require('../util.js');
+} = require('../util/');
 const _ = require('lodash');
-const { error } = require('../strings.js');
+const { error } = require('../strings');
 
 
 function catastrophy(state, args) {

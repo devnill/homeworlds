@@ -5,9 +5,9 @@ const {
   findShip,
   actionFailure,
   actionSuccess
-} = require('../util');
+} = require('../util/');
 
-const { error } = require('../strings.js');
+const { error } = require('../strings');
 
 function attack(state, args) {
   const { board } = state;

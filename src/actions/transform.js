@@ -5,9 +5,9 @@ const {
   actionSuccess,
   actionFailure,
   getEmptyBank
-} = require('../util.js');
+} = require('../util/');
 const _ = require('lodash');
-const { error } = require('../strings.js');
+const { error } = require('../strings');
 
 
 function transform(state, args) {

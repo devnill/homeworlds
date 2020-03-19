@@ -2,16 +2,16 @@ const {
   standardValidation,
   actionSuccess,
   actionFailure
-} = require('../util.js');
+} = require('../util');
 
 const colorActions = {
-  red: require('./attack.js'),
-  blue: require('./transform.js'),
-  green: require('./build.js'),
-  yellow: require('./move.js')
+  red: require('./attack'),
+  blue: require('./transform'),
+  green: require('./build'),
+  yellow: require('./move')
 };
 
-const { error } = require('../strings.js');
+const { error } = require('../strings');
 const _ = require('lodash');
 
 function sacrifice(state, args) {
