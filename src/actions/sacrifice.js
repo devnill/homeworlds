@@ -1,17 +1,23 @@
+//todo this should be outside actions
+const { standardValidation } = require('../validators');
+
 const {
-  standardValidation,
+  action
+} = require('../util');
+
+const {
   actionSuccess,
   actionFailure
-} = require('../util.js');
+} = action;
 
 const colorActions = {
-  red: require('./attack.js'),
-  blue: require('./transform.js'),
-  green: require('./build.js'),
-  yellow: require('./move.js')
+  red: require('./attack'),
+  blue: require('./transform'),
+  green: require('./build'),
+  yellow: require('./move')
 };
 
-const { error } = require('../strings.js');
+const { error } = require('../strings');
 const _ = require('lodash');
 
 function sacrifice(state, args) {

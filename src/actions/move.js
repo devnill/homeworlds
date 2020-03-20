@@ -7,13 +7,25 @@
 //}
 
 const {
-  findSystem,
-  findShip,
-  actionFailure,
-  actionSuccess,
-  returnSystemToBank,
+  find,
+  bank,
+  action
+} = require('../util/');
+
+const {
+  returnPiecesToBank,
   createSystem
- } = require('../util');
+} = bank;
+
+const {
+  actionFailure,
+  actionSuccess
+} = action;
+
+const { findSystem,
+  findShip,
+} = find;
+
 const { error } = require('../strings');
 
 function move(state, args) {
@@ -84,10 +96,7 @@ function move(state, args) {
     return actionSuccess({ ...state, bank: updatedBank, board: updatedBoard });
   } else {
     // otherwise, return system to bank
-    updatedBank = returnSystemToBank(updatedBank, {
-      ...startSystem,
-      ships: []
-    });
+    const updatedBank = returnPiecesToBank(bank, startSystem.stars);
 
     const updatedBoard = [
       ...remainingSystems,

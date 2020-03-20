@@ -1,13 +1,26 @@
 const {
+  bank,
+  find,
+  action
+} = require('../util/');
+
+const {
   returnToBank,
-  findSystem,
-  findShip,
-  actionSuccess,
-  actionFailure,
   getEmptyBank
-} = require('../util.js');
+} = bank;
+
+const {
+  findSystem,
+  findShip
+} = find;
+
+const {
+  actionSuccess,
+  actionFailure
+} = action;
+
 const _ = require('lodash');
-const { error } = require('../strings.js');
+const { error } = require('../strings');
 
 
 function transform(state, args) {
@@ -18,12 +31,12 @@ function transform(state, args) {
   if (!targetSystem) {
     return actionFailure(state, error.invalidSystem);
   }
-  
+
   const [targetShip, otherShips] = findShip(targetSystem.ships, ship);
   if (!targetShip) {
     return actionFailure(state, error.invalidShip);
   }
-  
+
   if (state.bank[color][targetShip.size - 1] < 1) {
     return actionFailure(state, error.insufficentPieces);
   }

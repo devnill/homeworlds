@@ -1,13 +1,25 @@
 const {
-  playerHasColorAbility,
-  findSystem,
-  largestShipInSystem,
-  findShip,
+  player,
+  action,
+  find
+} = require('../util/');
+
+const {
   actionFailure,
   actionSuccess
-} = require('../util');
+} = action;
 
-const { error } = require('../strings.js');
+const {
+  playerHasColorAbility,
+} = player;
+
+const {
+  findSystem,
+  largestShipInSystem,
+  findShip
+} = find;
+
+const { error } = require('../strings');
 
 function attack(state, args) {
   const { board } = state;

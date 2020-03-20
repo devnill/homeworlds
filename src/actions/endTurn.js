@@ -1,9 +1,16 @@
 const _ = require('lodash');
 const {
-  isCurrentPlayer,
+action
+} = require('../util/');
+
+
+const {
   actionSuccess,
   actionFailure
-} = require('../util.js');
+} = action;
+
+//todo move out of actions
+const {isCurrentPlayer} = require('../validators/');
 
 function endTurn(state, args) {
   // check to see if its the players turn

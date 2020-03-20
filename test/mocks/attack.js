@@ -1,3 +1,4 @@
+
 const valid = {
   action: {
     player: 'player1',
