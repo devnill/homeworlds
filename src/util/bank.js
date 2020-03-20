@@ -52,7 +52,8 @@ function getUpdatedBank(bank, delta, operator = 1) {
     const color = colors[i];
     for (let size = 0; size < 3; size++) {
       updatedBank[color][size] = bank[color][size] + (delta[color][size] * operator);
-      if(updatedBank[color][size]<0){
+
+      if (updatedBank[color][size] < 0) {
         return null;
       }
     }
@@ -70,25 +71,16 @@ function takeFromBank(bank, delta) {
 }
 
 function getEmptyBank() {
-  return Object.assign({}, ...[
-    'red',
-    'yellow',
-    'green',
-    'blue'
-  ].map((color) => {
-    return { [color]: [0, 0, 0] };
-  }));
+  return createBank(3);
 }
 
-function createBank() {
-  return Object.assign({}, ...[
-    'red',
-    'yellow',
-    'green',
-    'blue'
-  ].map((color) => {
-    return { [color]: [3, 3, 3] };
-  }));
+function createBank(size = 3) {
+  return {
+    'red': [size, size, size],
+    'yellow': [size, size, size],
+    'green': [size, size, size],
+    'blue': [size, size, size]
+  };
 }
 
 
