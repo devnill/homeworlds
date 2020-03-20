@@ -36,16 +36,6 @@ function returnPiecesToBank(bank, pieces) {
 ///////////////////////////////////////
 
 function getUpdatedBank(bank, delta, operator = 1) {
-  //const updatedCounts = ['red', 'blue', 'green', 'yellow']
-  //  .map((color) => {
-  //    // for each color iterate over the bank sizes and add the delta
-  //    return {
-  //      [color]: bank[color].map((pieceCount, size) => {
-  //        return pieceCount + (delta[color][size] * operator);
-  //      })
-  //    };
-  //  });
-  //  
   const updatedBank = getEmptyBank();
   const colors = ['red', 'blue', 'green', 'yellow'];
   for (let i = 0; i < colors.length; i++) {
@@ -59,7 +49,6 @@ function getUpdatedBank(bank, delta, operator = 1) {
     }
   }
   return updatedBank;
-  //return (Object.assign({}, ...updatedCounts));
 }
 
 function returnToBank(bank, delta) {
