@@ -19,12 +19,6 @@ function createSystem(bank, system) {
 
 }
 
-function returnSystemToBank(bank, system) {
-  const piecesToReturn = countPieces([...system.ships, system.stars]);
-  const updatedBank = returnToBank(bank, piecesToReturn);
-  return updatedBank;
-}
-
 
 
 function returnPiecesToBank(bank, pieces) {
@@ -80,8 +74,7 @@ const bank = {
   takeFromBank,
   getEmptyBank,
   createBank,
-  createSystem,
-  returnSystemToBank
+  createSystem
 };
 
 module.exports = bank;
