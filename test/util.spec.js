@@ -4,7 +4,7 @@ const { bank, history } = require('../src/util/');
 const { systemLost } = require('./mocks/move');
 const historyMock = require('./mocks/history');
 
-const { getHistoryItem, getPreviousState } = history;
+const { add, revert } = history;
 const { createSystem } = bank;
 
 describe('Utility Methods', function () {
@@ -63,21 +63,21 @@ describe('Utility Methods', function () {
   describe('history',
     function () {
 
-      describe('getHistoryItem', function () {
+      describe('add', function () {
         it('can create a history item', function () {
           const updatedState = deepfreeze(systemLost.result);
           const state = deepfreeze(systemLost.state);
           const action = 'move';
           const args = deepfreeze(systemLost.action);
-          const historyItem = getHistoryItem(state, updatedState, action, args);
-          expect(historyItem).to.deep.equal(historyMock);
+          const testState = add(state, updatedState, action, args);
+          expect(testState.history).to.deep.equal(historyMock);
         });
       });
-      describe('getPreviousState', function () {
+      describe('revert', function () {
         it('can restore a previous state', function () {
           const expectedResult = systemLost.state;
           const state = deepfreeze(systemLost.result);
-          const previousState = getPreviousState({ ...state, history: [historyMock] });
+          const previousState = revert({ ...state, history: historyMock });
           expect(previousState).to.deep.equal(expectedResult);
 
         });

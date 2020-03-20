@@ -1,4 +1,4 @@
-const historyMock = {
+const historyMock = [{
   'action': 'move',
   'args': {
     'player': 'player1',
@@ -65,5 +65,5 @@ const historyMock = {
       }
     }
   ]
-};
+}];
 module.exports = historyMock;

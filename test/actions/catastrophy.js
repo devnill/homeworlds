@@ -10,12 +10,14 @@ module.exports = function catastrophySpecs() {
     const mock = deepfreeze(mocks.starIntact);
     const result = catastrophy(mock.state, mock.action);
     assert.isNull(result.err);
-    expect(result.state).to.deep.equal(mock.result);
+    expect(result.state.board).to.deep.equal(mock.result.board);
+    expect(result.state.bank).to.deep.equal(mock.result.bank);
 
   });
   it('remove all pieces if the star is destroyed', function () {
     const mock = deepfreeze(mocks.valid);
     const result = catastrophy(mock.state, mock.action);
-    expect(result.state).to.deep.equal(mock.result);
+    expect(result.state.board).to.deep.equal(mock.result.board);
+    expect(result.state.bank).to.deep.equal(mock.result.bank);
   });
 };

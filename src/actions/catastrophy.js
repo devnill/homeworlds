@@ -4,7 +4,8 @@ const { standardValidation } = require('../validators/');
 const {
   find,
   action,
-  bank
+  bank,
+  history
 } = require('../util/');
 
 const {
@@ -55,11 +56,11 @@ function catastrophy(state, args) {
       const updatedBank = returnPiecesToBank(bank, [...targetSystem.stars, ...targetSystem.ships]);
       // const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'catastrophy' }];
       // create new state;
-      return actionSuccess(Object.assign({}, state, {
+      const updatedState = history.add(state, Object.assign({}, state, {
         board: otherSystems,
-        bank: updatedBank,
-        //history: updatedHistory
-      }));
+        bank: updatedBank
+      }), 'catastrophy', args);
+      return actionSuccess(updatedState);
     } else {
       const updatedBank = returnPiecesToBank(bank, [...removedStars, ...removedShips]);
       const updatedSystem = Object.assign({}, targetSystem, {
@@ -68,11 +69,13 @@ function catastrophy(state, args) {
       });
       const updatedBoard = [...otherSystems, updatedSystem];
       // const updatedHistory = [...state.history, { args, action: 'catastrophy', systems: [targetSystem] }];
-      return actionSuccess(Object.assign({}, state, {
+
+      const updatedState = history.add(state, Object.assign({}, state, {
         board: updatedBoard,
         bank: updatedBank,
-        // history: updatedHistory
-      }));
+      }), 'catastrophy', args);
+
+      return actionSuccess(updatedState);
       //system is not destroyed. handle it.
       //const piecesToReturn = countPieces([...targetSystem.stars, ...targetSystem.ships]);
       //updatedBank = returnToBank(bank, piecesToReturn);
