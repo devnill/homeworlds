@@ -9,9 +9,9 @@ function concede(state, args) {
     return actionFailure(state, 'not your turn');
   }
 
-  return actionSuccess({
-    ...state
-  });
+  const updatedState = history.add(state, state, 'concede', args);
+  
+  return actionSuccess(updatedState);
 }
 
 module.exports = concede;

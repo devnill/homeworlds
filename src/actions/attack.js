@@ -1,7 +1,8 @@
 const {
   player,
   action,
-  find
+  find,
+  history
 } = require('../util/');
 
 const {
@@ -44,7 +45,12 @@ function attack(state, args) {
     ships: [...otherShips, updatedShip]
   };
   //todo update history
-  const updatedState = { ...state, board: [...otherSystems, updatedSystem], history: [/*'todo'*/] };
+
+   
+  const updatedState = history.add(state, { 
+    ...state, 
+    board: [...otherSystems, updatedSystem]
+  },'attack', args);
   return actionSuccess(updatedState);
 }
 

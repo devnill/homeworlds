@@ -1,7 +1,8 @@
 const {
   find,
   action,
-  bank
+  bank,
+  history
 } = require('../util/');
 
 //todo this should be outside actions
@@ -44,7 +45,7 @@ function sacrificeStart(state, args) {
     const updatedBank = returnPiecesToBank(bank, [...targetSystem.stars, ...targetSystem.ships]);
     // const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'sacrificeStart' }];
     // create new state;
-    return actionSuccess(Object.assign({}, state, {
+    const updatedState = history.add(state, Object.assign({}, state, {
       board: otherSystems,
       bank: updatedBank,
       //history: updatedHistory,
@@ -54,7 +55,9 @@ function sacrificeStart(state, args) {
           count: targetShip.size
         }
       }
-    }));
+    }), 'sacrificeStart', args);
+
+    return actionSuccess(updatedState);
 
   } else {
     // just the ship
@@ -64,7 +67,7 @@ function sacrificeStart(state, args) {
     });
     // const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'sacrificeStart' }];
     // create new state;
-    return actionSuccess(Object.assign({}, state, {
+    const updatedState = history.add(state, Object.assign({}, state, {
       board: [...otherSystems, updatedSystem],
       bank: updatedBank,
       //history: updatedHistory,
@@ -74,7 +77,9 @@ function sacrificeStart(state, args) {
           count: targetShip.size
         }
       }
-    }));
+    }), 'sacrificeStart', args);
+    
+    return actionSuccess(updatedState);
   }
 
 }

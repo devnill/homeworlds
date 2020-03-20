@@ -1,6 +1,7 @@
 const {
   action,
-  bank
+  bank,
+  history
 } = require('../util/');
 
 const {
@@ -24,11 +25,15 @@ function chooseHomeworld(state, args) {
   if(homeworld === null){
     return actionFailure(state, error.bankInsufficent);
   }
-  return actionSuccess({
+  
+  
+  const updatedState = history.add(state, {
     ...state,
     bank: updatedBank,
     board: [...state.board, homeworld]
-  });
+  }, 'chooseHomeworld', args);
+
+  return actionSuccess(updatedState);
 }
 
 module.exports = chooseHomeworld;

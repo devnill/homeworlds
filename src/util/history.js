@@ -4,11 +4,14 @@ const _ = require('lodash');
 
 function add(initialState, updatedState, action, args) {
   const patch = createPatch(_.omit(updatedState, ['history']), _.omit(initialState,'history'));
-  return [...initialState.history, {
-    action,
-    args,
-    patch
-  }];
+  return {
+    ...updatedState,
+    history: [...initialState.history, {
+      action,
+      args,
+      patch
+    }]
+  };
 }
 
 function revert(state) {

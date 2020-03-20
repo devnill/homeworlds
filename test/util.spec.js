@@ -69,8 +69,8 @@ describe('Utility Methods', function () {
           const state = deepfreeze(systemLost.state);
           const action = 'move';
           const args = deepfreeze(systemLost.action);
-          const history = add(state, updatedState, action, args);
-          expect(history).to.deep.equal(historyMock);
+          const testState = add(state, updatedState, action, args);
+          expect(testState.history).to.deep.equal(historyMock);
         });
       });
       describe('revert', function () {

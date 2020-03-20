@@ -9,7 +9,8 @@
 const {
   find,
   bank,
-  action
+  action,
+  history
 } = require('../util/');
 
 const {
@@ -93,7 +94,9 @@ function move(state, args) {
         ships: [...otherShips]
       }
     ];
-    return actionSuccess({ ...state, bank: updatedBank, board: updatedBoard });
+
+    const updatedState = history.add(state, { ...state, bank: updatedBank, board: updatedBoard }, 'move', args);
+    return actionSuccess(updatedState);
   } else {
     // otherwise, return system to bank
     const updatedBank = returnPiecesToBank(bank, startSystem.stars);
@@ -109,6 +112,7 @@ function move(state, args) {
       }
     ];
 
+    const updatedState = history.add(state, updatedState, 'move', args);
     return actionSuccess({ ...state, bank: updatedBank, board: updatedBoard });
   }
 }

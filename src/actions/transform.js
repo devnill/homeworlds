@@ -1,7 +1,8 @@
 const {
   bank,
   find,
-  action
+  action,
+  history
 } = require('../util/');
 
 const {
@@ -50,15 +51,11 @@ function transform(state, args) {
   const updatedSystem = Object.assign({}, targetSystem, {
     ships: [...otherShips, transformedShip],
   });
-  const updatedState = Object.assign({}, state, {
+  
+  const updatedState = history.add(state, Object.assign({}, state, {
     bank: updatedBank,
-    board: [...otherSystems, updatedSystem],
-    /*history: [...state.history, {
-      action: 'transform',
-      args,
-      systems:[targetSystem]
-    }]*/
-  });
+    board: [...otherSystems, updatedSystem]
+  }), '', args);
   return actionSuccess(updatedState);
 }
 module.exports = transform;

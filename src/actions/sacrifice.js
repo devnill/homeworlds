@@ -2,7 +2,8 @@
 const { standardValidation } = require('../validators');
 
 const {
-  action
+  action,
+  history
 } = require('../util');
 
 const {
@@ -41,13 +42,10 @@ function sacrifice(state, args) {
   if (result.err) {
     return actionFailure(state, result.err);
   }
-  const { history } = result.state;
-  const [previousActions, lastAction] = _.partition(history, (action) => action !== history[history.length - 1]);
-  const updatedAction = Object.assign({}, lastAction[0], {
-    isSacrifice: true
-  });
+ 
 
-  const updatedState = Object.assign({}, result.state, {
+
+  const updatedState = history.add(state, Object.assign({}, result.state, {
     //history: [...previousActions, updatedAction],
     turn: {
       sacrifice: {
@@ -55,7 +53,7 @@ function sacrifice(state, args) {
         color: sacrificeState.color,
       }
     }
-  });
+  }), 'sacrifice', args);
   return actionSuccess(updatedState);
 }
 
