@@ -1,3 +1,5 @@
+const { v4: uuid } = require('uuid');
+
 function historyItem({ action, args, delta, isSacrifice }) {
   return {
     action,
@@ -9,7 +11,7 @@ function historyItem({ action, args, delta, isSacrifice }) {
 function system({ name, ships, stars }) {
   return {
     name,
-    id: id(),
+    id: uuid(),
     ships,
     stars
   };
@@ -24,7 +26,7 @@ function star({ color, size, ships, isHomeworldFor = null }) {
 }
 function ship({ color, size, owner }) {
   return {
-    id: id(),
+    id: uuid(),
     color,
     size,
     owner
