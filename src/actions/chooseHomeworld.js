@@ -1,5 +1,6 @@
 const {
-  action, bank
+  action,
+  bank
 } = require('../util/');
 
 const {

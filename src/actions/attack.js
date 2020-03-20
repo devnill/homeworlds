@@ -1,11 +1,23 @@
 const {
-  playerHasColorAbility,
-  findSystem,
-  largestShipInSystem,
-  findShip,
+  player,
+  action,
+  find
+} = require('../util/');
+
+const {
   actionFailure,
   actionSuccess
-} = require('../util/');
+} = action;
+
+const {
+  playerHasColorAbility,
+} = player;
+
+const {
+  findSystem,
+  largestShipInSystem,
+  findShip
+} = find;
 
 const { error } = require('../strings');
 

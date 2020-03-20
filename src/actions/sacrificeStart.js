@@ -1,12 +1,23 @@
 const {
-  standardValidation,
-  countPieces,
-  findSystem,
-  findShip,
-  returnToBank,
-  actionSuccess,
-  actionFailure
+  find,
+  action,
+  bank
 } = require('../util/');
+
+//todo this should be outside actions
+const {  standardValidation }= require('../validators'); 
+
+const {  actionSuccess,
+  actionFailure
+} = action;
+
+const {
+  returnPiecesToBank,
+} = bank;
+
+const {  findSystem,
+  findShip,
+} = find;
 
 const { error } = require('../strings');
 
@@ -29,9 +40,8 @@ function sacrificeStart(state, args) {
   // empty systems should be immediately returned to the bank unless it is a homeworld.
   if (!otherShips.length && typeof targetSystem.homeworldFor != 'number') {
     // this is an empty, non-homeworld system
-    // todo create util.returnToBank?
-    const piecesToReturn = countPieces([...targetSystem.stars, ...targetSystem.ships]);
-    const updatedBank = returnToBank(bank, piecesToReturn);
+    
+    const updatedBank = returnPiecesToBank(bank, [...targetSystem.stars, ...targetSystem.ships]);
     // const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'sacrificeStart' }];
     // create new state;
     return actionSuccess(Object.assign({}, state, {
@@ -48,8 +58,7 @@ function sacrificeStart(state, args) {
 
   } else {
     // just the ship
-    const piecesToReturn = countPieces([targetShip]);
-    const updatedBank = returnToBank(bank, piecesToReturn);
+    const updatedBank = returnPiecesToBank(bank, [targetShip]);
     const updatedSystem = Object.assign({},targetSystem, {
       ships: targetSystem.ships.filter((targetShip) => targetShip.id !== ship.id)
     });

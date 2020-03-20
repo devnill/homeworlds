@@ -1,12 +1,26 @@
+// todo move out of actions
+const { standardValidation } = require('../validators/');
+
 const {
-  standardValidation,
-  countPieces,
-  countPiecesOfColor,
-  returnToBank,
-  findSystem,
+  find,
+  action,
+  bank
+} = require('../util/');
+
+const {
+  findPiecesByColor,
+  findSystem
+} = find;
+
+const {
+  returnPiecesToBank,
+} = bank;
+
+const {
   actionSuccess,
   actionFailure
-} = require('../util/');
+} = action;
+
 const _ = require('lodash');
 const { error } = require('../strings');
 
@@ -30,7 +44,7 @@ function catastrophy(state, args) {
     ...targetSystem.stars
   ];
 
-  if (countPiecesOfColor(piecesToCount, color) < 4) {
+  if (findPiecesByColor(piecesToCount, color) < 4) {
     return actionFailure(state, error.catastrophyFailed);
   } else {
     // we can catastrophy. remove pieces from system
@@ -38,8 +52,7 @@ function catastrophy(state, args) {
     const [removedShips, remainingShips] = _.partition(targetSystem.ships, (ship) => ship.color === color);
     if (remainingStars.length === 0 || remainingShips.length === 0) {
       // remove all pieces and return to bank
-      const piecesToReturn = countPieces([...targetSystem.stars, ...targetSystem.ships]);
-      const updatedBank = returnToBank(bank, piecesToReturn);
+      const updatedBank = returnPiecesToBank(bank, [...targetSystem.stars, ...targetSystem.ships]);
       // const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'catastrophy' }];
       // create new state;
       return actionSuccess(Object.assign({}, state, {
@@ -48,8 +61,7 @@ function catastrophy(state, args) {
         //history: updatedHistory
       }));
     } else {
-      const piecesToReturn = countPieces([...removedStars, ...removedShips]);
-      const updatedBank = returnToBank(bank, piecesToReturn);
+      const updatedBank = returnPiecesToBank(bank, [...removedStars, ...removedShips]);
       const updatedSystem = Object.assign({}, targetSystem, {
         stars: remainingStars,
         ships: remainingShips

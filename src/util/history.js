@@ -9,6 +9,7 @@ function getHistoryItem(initialState, updatedState, action, args) {
     patch
   };
 }
+
 function getPreviousState(state) {
   const lastAction = state.history[state.history.length - 1];
   const previousHistory = state.history.slice(0, -1);

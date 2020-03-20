@@ -1,8 +1,14 @@
+//todo this should be outside actions
+const { standardValidation } = require('../validators');
+
 const {
-  standardValidation,
+  action
+} = require('../util');
+
+const {
   actionSuccess,
   actionFailure
-} = require('../util');
+} = action;
 
 const colorActions = {
   red: require('./attack'),

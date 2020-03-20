@@ -1,9 +1,11 @@
 const { expect, assert } = require('chai');
 const deepfreeze = require('deepfreeze');
-const { createSystem, getHistoryItem, getPreviousState } = require('../src/util/');
+const { bank, history } = require('../src/util/');
 const { systemLost } = require('./mocks/move');
 const historyMock = require('./mocks/history');
 
+const { getHistoryItem, getPreviousState } = history;
+const { createSystem } = bank;
 
 describe('Utility Methods', function () {
   describe('createSystem', function () {
@@ -60,7 +62,7 @@ describe('Utility Methods', function () {
   });
   describe('history',
     function () {
-      
+
       describe('getHistoryItem', function () {
         it('can create a history item', function () {
           const updatedState = deepfreeze(systemLost.result);
@@ -72,10 +74,10 @@ describe('Utility Methods', function () {
         });
       });
       describe('getPreviousState', function () {
-        it('can restore a previous state', function(){
+        it('can restore a previous state', function () {
           const expectedResult = systemLost.state;
           const state = deepfreeze(systemLost.result);
-          const previousState = getPreviousState({...state, history:[historyMock]});
+          const previousState = getPreviousState({ ...state, history: [historyMock] });
           expect(previousState).to.deep.equal(expectedResult);
 
         });

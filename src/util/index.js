@@ -1,13 +1,9 @@
-const validate = require('./validate');
-const pieces = require('./pieces');
 const action = require('./action');
-const board = require('./board');
-const ship = require('./ship');
-const player = require('./player');
-const system = require('./system');
 const bank = require('./bank');
+const find = require('./find');
 const history = require('./history');
 const normalize = require('./normalize');
+const player = require('./player');
 
 
 function initState() {
@@ -21,36 +17,13 @@ function initState() {
 }
 
 const util = {
-  initState,  
-  validate,
-  // standardValidation,
-  pieces,
-  // countPieces,
-  // countPiecesOfColor,
+  initState,
   action,
-  // actionSuccess,
-  // actionFailure,
-  board,
-  // findSystem,// these should be refactored
-  ship,
-  //findShip,
   player,
-  // isCurrentPlayer,
-  // playerHasColorAbility,
-  // colorsAvailableToPlayer,
-  // isPlayersTurn,
-  system,
-  // largestShipInSystem,
   bank,
-  // createSystem,
-  // returnSystemToBank,
-  // getEmptyBank,
-  // returnToBank,
-  // takeFromBank,
-  // getUpdatedBank,
   history,
-  // getHistoryItem,
-  // getPreviousState
-  normalize
+  normalize,
+  find
+
 };
 module.exports = util;
