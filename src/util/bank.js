@@ -71,7 +71,7 @@ function takeFromBank(bank, delta) {
 }
 
 function getEmptyBank() {
-  return createBank(3);
+  return createBank(0);
 }
 
 function createBank(size = 3) {
