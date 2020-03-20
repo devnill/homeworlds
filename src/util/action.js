@@ -1,14 +1,14 @@
 const {validateAction} = require('../validators/');
 
-
-function performAction(state, action, args) {
-  const err = validateAction(state, action);
-  if (err) {
-    return actionFailure(err, state);
-  }
-  return actionSuccess(null, state);
-}
-///////////////////////
+// TODO: 
+//function performAction(state, action, args) {
+//  const err = validateAction(state, action);
+//  if (err) {
+//    return actionFailure(err, state);
+//  }
+//  return actionSuccess(null, state);
+//}
+/////////////////////////
 
 function actionSuccess(state) {
   return {
@@ -26,7 +26,7 @@ function actionFailure(state, reason) {
 const action = {
   actionSuccess,
   actionFailure,
-  performAction
+//  performAction
 };
 
 module.exports = action;
