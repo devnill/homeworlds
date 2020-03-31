@@ -1,10 +1,8 @@
 const {normalize} = require('./util/');
-
-
-
 const validate = require('./validators/');
 const actions = require('./actions/');
-const types = [
+
+const actionTypes = [
   'attack',
   'build',
   'catastrophy',
@@ -17,41 +15,25 @@ const types = [
   'transform'
 ];
 
-
 function performAction(state, action, args) {
+  if(actionTypes.indexof(action) === -1){
+    return {
+      err: 'invalid move type',
+      state
+    }
+  }
   const err = validate.action(state, action, args);
   if (err) {
-    return actionFailure(err, state);
+    return { 
+      err,
+      state
+    };
   }
-  return actionSuccess(null, actions[action](state, args));
-}
-
-
-function actionSuccess(state) {
   return {
     err: null,
-    state
+    state: actions[action](state, args);
   };
-}
-function actionFailure(state, reason) {
-  return {
-    err: reason || true,
-    state
-  };
-}
-
-const action = {
-  actionSuccess,
-  actionFailure,
-  performAction,
-  //types
-  // getAvailable
 };
-
-module.exports = action;
-
-
-
 
 const create = {
   ship(args){
@@ -68,7 +50,10 @@ const create = {
   }
 };
 
+
 module.export = {
-  action,
-  create
+  create,
+  validate,
+  performAction,
+  util
 };
