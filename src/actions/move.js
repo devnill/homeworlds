@@ -9,7 +9,6 @@
 const {
   find,
   bank,
-  action,
   history
 } = require('../util/');
 
@@ -18,16 +17,9 @@ const {
   createSystem
 } = bank;
 
-const {
-  actionFailure,
-  actionSuccess
-} = action;
-
 const { findSystem,
   findShip,
 } = find;
-
-const { error } = require('../strings');
 
 function move(state, args) {
   // validate if move can be made
@@ -36,19 +28,9 @@ function move(state, args) {
   const [startSystem, otherSystems] = findSystem(board, from);
   let updatedBank = bank;
 
-  // validate starting system exists
-  // todo move validation
-  if (!startSystem) {
-    return actionFailure(state, error.invalidSystem);
-  }
 
   // find the ship we are trying to move
   const [targetShip, otherShips] = findShip(startSystem.ships, ship);
-
-  // fail if target ship is not in the starting system
-  if (!targetShip) {
-    return actionFailure(state, error.invalidShip);
-  }
 
   // see if we can find the destination system
   let [endSystem, remainingSystems] = findSystem(otherSystems, to);
@@ -56,27 +38,9 @@ function move(state, args) {
   // if not, attempt to create one
   if(!endSystem){
     let [newSystem, newBank] = createSystem(bank, to);
-
-    if(!newSystem) {
-      return actionFailure(state, error.invalidSystem);
-    } else {
-      endSystem = newSystem;
-      updatedBank = newBank;
-    }
+    endSystem = newSystem;
+    updatedBank = newBank;
   }
-
-  const startStarSizes = startSystem.stars.map((star) => star.size);
-  const endStarSizes = endSystem.stars.map((star) => star.size);
-
-  // cast star object to bool if existant.
-  const starsHaveCommonSize = !!startStarSizes.find((startStarSize) => {
-    return endStarSizes.find((targetSize) => targetSize === startStarSize);
-  });
-
-  if (starsHaveCommonSize) {
-    return actionFailure(state, error.invalidMove);
-  }
-
 
   // check to see if starting system is still occupied
   if (otherShips.length) {
@@ -94,13 +58,11 @@ function move(state, args) {
         ships: [...otherShips]
       }
     ];
-
     const updatedState = history.add(state, { ...state, bank: updatedBank, board: updatedBoard }, 'move', args);
-    return actionSuccess(updatedState);
+    return updatedState;
   } else {
     // otherwise, return system to bank
     const updatedBank = returnPiecesToBank(bank, startSystem.stars);
-
     const updatedBoard = [
       ...remainingSystems,
       {
@@ -111,9 +73,8 @@ function move(state, args) {
         ]
       }
     ];
-
     const updatedState = history.add(state, updatedState, 'move', args);
-    return actionSuccess({ ...state, bank: updatedBank, board: updatedBoard });
+    return { ...state, bank: updatedBank, board: updatedBoard };
   }
 }
 

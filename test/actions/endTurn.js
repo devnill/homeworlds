@@ -14,16 +14,14 @@ module.exports = function endTurnSpecs() {
       'players': ['player1', 'player2'],
       'activePlayer': 0
     });
-    assert.isNotNull(actionResponse.err);
-    expect(actionResponse.state.activePlayer).to.not.equal(initialState.currentPlayer);
+    expect(actionResponse.activePlayer).to.not.equal(initialState.currentPlayer);
   });
   it('will reset turn state', function () {
     const mock = mocks.sacrificeInProgress;
     const initialState = mock.state;
     deepfreeze(initialState);
     const actionResponse = endTurn(initialState, mock.action);
-    assert.isNull(actionResponse.err);
-    expect(actionResponse.state.activePlayer).to.not.equal(initialState.currentPlayer);
-    expect(actionResponse.state.turn).to.not.exist;
+    expect(actionResponse.activePlayer).to.not.equal(initialState.currentPlayer);
+    expect(actionResponse.turn).to.not.exist;
   });
 };

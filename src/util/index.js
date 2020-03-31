@@ -1,9 +1,7 @@
-const action = require('./action');
 const bank = require('./bank');
 const find = require('./find');
 const history = require('./history');
 const normalize = require('./normalize');
-const player = require('./player');
 
 
 function initState() {
@@ -18,12 +16,9 @@ function initState() {
 
 const util = {
   initState,
-  action,
-  player,
   bank,
   history,
   normalize,
   find
-
 };
 module.exports = util;
