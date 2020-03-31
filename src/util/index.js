@@ -3,7 +3,7 @@ const find = require('./find');
 const history = require('./history');
 const normalize = require('./normalize');
 
-
+//todo remove this
 function initState() {
   return {
     bank: bank.createBank(),
