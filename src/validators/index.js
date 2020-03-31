@@ -1,7 +1,38 @@
+const validators = {
+  attack: require('./attack'),
+  build: require('./build'),
+  catastrophy: require('./catastrophy'),
+  chooseHomeworld: require('./chooseHomeworld'),
+  concede: require('./concede'),
+  endTurn: require('./endTurn'),
+  move: require('./move'),
+  sacrifice: require('./sacrifice'),
+  sacrificeStart: require('./sacrificeStart'),
+  transform: require('./transform')
+};
+const util = require('../util/');
+const types = [
+  'attack',
+  'build',
+  'catastrophy',
+  'chooseHomeworld',
+  'concede',
+  'endTurn',
+  'move',
+  'sacrifice',
+  'sacrificeStart',
+  'transform'
+];
 
-function standardValidation(state, args) {
+function action(state, action, args) {
+  if (types.indexof(state === -1)) {
+    return 'invalid action';
+  }
+}
+
+function standardValidation(state, action, args) {
   // check to see if its the players turn
-  if (!isCurrentPlayer(state, args)) {
+  if (!util.player.isCurrentPlayer(state, args)) {
     return 'not your turn';
   }
 
@@ -12,13 +43,11 @@ function standardValidation(state, args) {
   return null;
 }
 
-function isCurrentPlayer(state, args) {
-  return args.player === state.players[state.activePlayer];
-}
 
-const validators = {
-  isCurrentPlayer,
-  standardValidation
+
+
+module.exports = {
+  ...validators,
+  standardValidation,
+  action
 };
-
-module.exports=validators;

@@ -14,12 +14,14 @@ function colorsAvailableToPlayer(system, player) {
 function playerHasColorAbility(system, player, color) {
   return colorsAvailableToPlayer(system, player).indexOf(color) !== -1;
 }
-
+function isCurrentPlayer(state, args) {
+  return args.player === state.players[state.activePlayer];
+}
 
 const player = {
   colorsAvailableToPlayer,
   playerHasColorAbility,
-
+  isCurrentPlayer
 };
 
 module.exports = player;

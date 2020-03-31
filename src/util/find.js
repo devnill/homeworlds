@@ -1,5 +1,8 @@
 const _ = require('lodash');
 function findSystem(board, system) {
+  if(!system){
+    return [null, [...board]];
+  }
   const [targetSystems, otherSystems] = _.partition(board, (s) => s.id === system.id);
   const targetSystem = targetSystems.length ? targetSystems[0] : null;
   return [targetSystem, otherSystems];
@@ -29,12 +32,12 @@ function largestShipInSystem(system, player = null) {
 function findPiecesByColor(pieces, color) {
   return pieces.filter((piece) => piece.color === color).length;
 }
+
 const find = {
   findPiecesByColor,
   largestShipInSystem,
   findShip,
   findSystem
-}
-
+};
 
 module.exports = find;
