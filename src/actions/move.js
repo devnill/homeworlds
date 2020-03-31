@@ -55,7 +55,7 @@ function move(state, args) {
 
   // if not, attempt to create one
   if(!endSystem){
-    let [newSystem, newBank] = createSystem(bank, to)
+    let [newSystem, newBank] = createSystem(bank, to);
 
     if(!newSystem) {
       return actionFailure(state, error.invalidSystem);

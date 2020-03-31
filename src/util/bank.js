@@ -37,6 +37,7 @@ function getUpdatedBank(bank, delta, operator = 1) {
     for (let size = 0; size < 3; size++) {
       updatedBank[color][size] = bank[color][size] + (delta[color][size] * operator);
 
+      // validate piece can be removed from bank.
       if (updatedBank[color][size] < 0) {
         return null;
       }
@@ -74,7 +75,8 @@ const bank = {
   takeFromBank,
   getEmptyBank,
   createBank,
-  createSystem
+  createSystem,
+  countPieces
 };
 
 module.exports = bank;

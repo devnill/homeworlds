@@ -1,4 +1,4 @@
-const util = require('./util/');
+const {normalize} = require('./util/');
 
 const action = {
   getAvailable,
@@ -6,10 +6,18 @@ const action = {
 } = util.action;
 
 const create = {
-  ship({color, size, owner}){},
-  star({color, size}){},
-  system({name, stars, ships, isHomeworld}){},
-  state({players}){}
+  ship(args){
+    return normalize.ship(args);
+  },
+  star(args){
+    return normalize.star(args);
+  },
+  system(args){
+    return normalize.system(args);
+  },
+  state(args){
+    return normalize.state(args);
+  }
 };
 
 module.export = {

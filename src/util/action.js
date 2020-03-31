@@ -1,5 +1,18 @@
-const {validateAction} = require('../validators/');
+const { validateAction } = require('../validators/');
+const actions = require('../actions/');
 
+const types = [
+  'attack',
+  'build',
+  'catastrophy',
+  'chooseHomeworld',
+  'concede',
+  'endTurn',
+  'move',
+  'sacrifice',
+  'sacrificeStart',
+  'transform'
+];
 // TODO: 
 //function performAction(state, action, args) {
 //  const err = validateAction(state, action);
@@ -26,7 +39,9 @@ function actionFailure(state, reason) {
 const action = {
   actionSuccess,
   actionFailure,
-//  performAction
+  // performAction,
+  types
+  // getAvailable
 };
 
 module.exports = action;

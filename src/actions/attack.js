@@ -34,7 +34,7 @@ function attack(state, args) {
     return actionFailure(state, error.invalidShip);
   }
   if (playerHasColorAbility(targetSystem, player, color)) {
-    return actionFailure(state, error.invalidAccessRed);
+    return actionFailure(state, error.invalidAbility);
   }
   if (largestShipInSystem(targetSystem, player) < targetShip.size) {
     return actionFailure(state, error.shipAttackSize);
