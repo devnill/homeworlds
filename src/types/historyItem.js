@@ -1,9 +1,2 @@
-function historyItem(action, args, delta, isSacrifice) {
-  return {
-    action,
-    args,
-    delta,
-    isSacrifice
-  };
-}
+function 
 module.exports = historyItem;
