@@ -2,7 +2,7 @@ const {normalize} = require('./util/');
 const validate = require('./validators/');
 const actions = require('./actions/');
 
-const types = [
+const actionTypes = [
   'attack',
   'build',
   'catastrophy',
@@ -16,6 +16,12 @@ const types = [
 ];
 
 function performAction(state, action, args) {
+  if(actionTypes.indexof(action) === -1){
+    return {
+      err: 'invalid move type',
+      state
+    }
+  }
   const err = validate.action(state, action, args);
   if (err) {
     return { 
