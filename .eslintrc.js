@@ -1,10 +1,11 @@
 module.exports = {
+    'parser':  '@typescript-eslint/parser',
     'env': {
         'browser': true,
         'commonjs': true,
         'es6': true
     },
-    'extends': 'eslint:recommended',
+    'extends':  ['plugin:@typescript-eslint/recommended'],
     'globals': {
         'Atomics': 'readonly',
         'SharedArrayBuffer': 'readonly'
@@ -17,10 +18,10 @@ module.exports = {
             'error',
             2
         ],
-        'linebreak-style': [
-            'error',
-            'unix'
-        ],
+        // 'linebreak-style': [
+        //     'error',
+        //    'unix'
+        // ],
         'quotes': [
             'error',
             'single'

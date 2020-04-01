@@ -37,7 +37,7 @@ function move(state, args) {
 
   // if not, attempt to create one
   if(!endSystem){
-    let [newSystem, newBank] = createSystem(bank, to);
+    const [newSystem, newBank] = createSystem(bank, to);
     endSystem = newSystem;
     updatedBank = newBank;
   }
