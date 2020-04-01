@@ -20,7 +20,7 @@ function performAction(state, action, args) {
     return {
       err: 'invalid move type',
       state
-    }
+    };
   }
   const err = validate.action(state, action, args);
   if (err) {
@@ -31,7 +31,7 @@ function performAction(state, action, args) {
   }
   return {
     err: null,
-    state: actions[action](state, args);
+    state: actions[action](state, args)
   };
 };
 
