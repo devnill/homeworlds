@@ -3,11 +3,12 @@ const _ = require('lodash');
 
 
 function colorsAvailableToPlayer(system, player) {
+  const playerShips = system.ships.filter((ship) => ship.owner === player);
+  const shipColors = playerShips.map((ship) => ship.color);
+  const starColors = system.stars.map((star) => star.color);
   return _.uniq([
-    ...system.ships
-      .filter((ship) => ship.owner === player)
-      .map((ship) => ship.color),
-    ...system.stars.map((star) => star.color)
+    ...shipColors,
+    ...starColors    
   ]);
 }
 
