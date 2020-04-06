@@ -10,3 +10,5 @@ function basic(state, args) {
 
   return null;
 }
+
+module.exports = basic;
