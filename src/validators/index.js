@@ -1,4 +1,5 @@
 const validators = {
+  basic: require('./basic'),
   attack: require('./attack'),
   build: require('./build'),
   catastrophy: require('./catastrophy'),
@@ -10,7 +11,7 @@ const validators = {
   sacrificeStart: require('./sacrificeStart'),
   transform: require('./transform')
 };
-const util = require('../util/');
+
 const types = [
   'attack',
   'build',
@@ -30,24 +31,7 @@ function action(state, action, args) {
   }
 }
 
-function standardValidation(state, action, args) {
-  // check to see if its the players turn
-  if (!util.player.isCurrentPlayer(state, args)) {
-    return 'not your turn';
-  }
-
-  // check to see if the player has played yet
-  if (state.history.filter((actionObj) => actionObj.player === args.player && actionObj.action !== 'endTurn') > 1) {
-    return 'already player';
-  }
-  return null;
-}
-
-
-
-
 module.exports = {
   ...validators,
-  standardValidation,
   action
 };

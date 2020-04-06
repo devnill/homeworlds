@@ -1,5 +1,6 @@
 
 const error = {
+  invalidTurn: 'It is not your turn.',
   invalidSystem: 'invalid system',
   invalidShip: 'invalid ship',
   bankInsufficent: 'insufficent resources in bank to perform action',
