@@ -3,8 +3,8 @@ const util = require('../util/');
 const { error } = require('../strings');
 
 function basic(state, args) {
-  // check to see if it's the players turn
-  if (!util.player.isCurrentPlayer(state, args)) {
+  // Is the player making this action currently playing accoring to the state?
+  if(args.player != state.players[state.activePlayer]) {
     return error.invalidTurn;
   }
 
