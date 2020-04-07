@@ -1,7 +1,5 @@
-import createPatch from 'json-patch-gen';
+const createPatch = require('json-patch-gen');
 const jsonpatch = require('jsonpatch');
-console.log(jsonpatch)
-console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz')
 const applyPatch = jsonpatch.apply_patch;
 
 import {omit} from 'lodash';

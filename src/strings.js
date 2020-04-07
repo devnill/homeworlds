@@ -11,6 +11,7 @@ const error = {
   shipAttackSize: 'Invalid attack. Is your ship large enough?'
 };
 
+export {error};
 
 export default {
   error

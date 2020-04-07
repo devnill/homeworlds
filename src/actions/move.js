@@ -1,4 +1,4 @@
-import { find, bank, history } from '../util/';
+import { find, bank, history } from '../util/index';
 
 const {
   returnPiecesToBank,

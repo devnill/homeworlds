@@ -3,8 +3,9 @@ import {
   playerHasColorAbility,
 } from './player';
 
-const basic = require('./basic');
-const util = require('../util/');
+import basic from './basic';
+import util from '../util/';
+
 const {
   findSystem,
   largestShipInSystem,

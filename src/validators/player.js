@@ -1,10 +1,10 @@
-import _ from 'lodash';
+import {uniq} from 'lodash';
 
 function colorsAvailableToPlayer(system, player) {
   const playerShips = system.ships.filter((ship) => ship.owner === player);
   const shipColors = playerShips.map((ship) => ship.color);
   const starColors = system.stars.map((star) => star.color);
-  return _.uniq([
+  return uniq([
     ...shipColors,
     ...starColors    
   ]);
@@ -22,5 +22,9 @@ const player = {
   playerHasColorAbility,
   isCurrentPlayer
 };
-
+export {
+  colorsAvailableToPlayer,
+  playerHasColorAbility,
+  isCurrentPlayer
+};
 export default player;

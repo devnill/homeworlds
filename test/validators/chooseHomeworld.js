@@ -1,5 +1,5 @@
 const mocks = require('../mocks/').chooseHomeworld;
-const {chooseHomeworld} = require('../../src/validators');
+const {chooseHomeworld} = require('../../src/validators/index');
 const _ = require('lodash');
 const { expect, assert } = require('chai');
 

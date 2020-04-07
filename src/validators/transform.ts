@@ -1,13 +1,13 @@
 import {State, Error, ActionArgs} from '../types/index.d';
 import basic from './basic';
 import {find} from '../util/index';
+import { error } from '../strings';
 
 const {
   findSystem,
   findShip
 } = find;
 
-const { error } = require('../strings');
 
 function transform(state, args) {
   const basicValidationError = basic(state, args);

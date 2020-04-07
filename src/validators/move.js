@@ -69,5 +69,4 @@ function move(state, args) {
   return null;
 
 }
-
-module.exports = move;
+export default move;

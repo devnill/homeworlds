@@ -22,3 +22,16 @@ export default {
   endTurn,
   chooseHomeworld
 };
+
+export {
+  build,
+  move,
+  attack,
+  transform,
+  catastrophy,
+  sacrificeStart,
+  sacrifice,
+  concede,
+  endTurn,
+  chooseHomeworld
+};
