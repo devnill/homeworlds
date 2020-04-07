@@ -1,17 +1,16 @@
+import build from './build';
+import move from './move';
+import attack from './attack';
+import transform from './transform';
+import catastrophy from './catastrophy';
+import sacrificeStart from './sacrificeStart';
+import sacrifice from './sacrifice';
+import concede from './concede';
+import endTurn from './endTurn';
+import chooseHomeworld from './chooseHomeworld';
 
-const build = require('./build');
-const move = require('./move');
-const attack = require('./attack');
-const transform = require('./transform');
-const catastrophy = require('./catastrophy');
-const sacrificeStart = require('./sacrificeStart');
-const sacrifice = require('./sacrifice');
-const concede = require('./concede');
-const endTurn = require('./endTurn');
-const chooseHomeworld = require('./chooseHomeworld');
 
-
-module.exports = {
+export default {
   build,
   move,
   attack,

@@ -1,9 +1,7 @@
-const _ = require('lodash');
-
-
+import { uniq } from 'lodash';
 
 function colorsAvailableToPlayer(system, player) {
-  return _.uniq([
+  return uniq([
     ...system.ships
       .filter((ship) => ship.owner === player)
       .map((ship) => ship.color),
@@ -24,4 +22,4 @@ const player = {
   isCurrentPlayer
 };
 
-module.exports = player;
+export default player;

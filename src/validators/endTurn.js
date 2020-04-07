@@ -1,6 +1,6 @@
 
 //todo move out of actions
-const { player } = require('../util/');
+import { player } from '../util/';
 
 function endTurn(state, args) {
   // check to see if its the players turn
@@ -10,4 +10,4 @@ function endTurn(state, args) {
   return null;
 }
 
-module.exports = endTurn;
+export default endTurn;

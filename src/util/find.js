@@ -1,14 +1,14 @@
-const _ = require('lodash');
+import {partition} from 'lodash';
 function findSystem(board, system) {
   if(!system){
     return [null, [...board]];
   }
-  const [targetSystems, otherSystems] = _.partition(board, (s) => s.id === system.id);
+  const [targetSystems, otherSystems] = partition(board, (s) => s.id === system.id);
   const targetSystem = targetSystems.length ? targetSystems[0] : null;
   return [targetSystem, otherSystems];
 }
 function findShip(ships, ship) {
-  const [targetShips, otherShips] = _.partition(ships, (s) => s.id === ship.id);
+  const [targetShips, otherShips] = partition(ships, (s) => s.id === ship.id);
   const targetShip = targetShips.length ? targetShips[0] : null;
   return [targetShip, otherShips];
 }
@@ -40,4 +40,4 @@ const find = {
   findSystem
 };
 
-module.exports = find;
+export default find;

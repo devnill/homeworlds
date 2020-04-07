@@ -1,8 +1,4 @@
-const {
-  find,
-  bank,
-  history
-} = require('../util/');
+import { find, bank, history } from '../util/';
 
 const {
   returnPiecesToBank,
@@ -54,4 +50,4 @@ function sacrificeStart(state, args) {
   }
 
 }
-module.exports = sacrificeStart;
+export default sacrificeStart;

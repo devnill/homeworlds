@@ -1,16 +1,29 @@
+import attack from './attack';
+import build from './build';
+import catastrophy from './catastrophy';
+import chooseHomeworld from './chooseHomeworld';
+import concede from './concede';
+import endTurn from './endTurn';
+import move from './move';
+import sacrifice from './sacrifice';
+import sacrificeStart from './sacrificeStart';
+import transform from './transform';
+
 const validators = {
-  attack: require('./attack'),
-  build: require('./build'),
-  catastrophy: require('./catastrophy'),
-  chooseHomeworld: require('./chooseHomeworld'),
-  concede: require('./concede'),
-  endTurn: require('./endTurn'),
-  move: require('./move'),
-  sacrifice: require('./sacrifice'),
-  sacrificeStart: require('./sacrificeStart'),
-  transform: require('./transform')
+  attack,
+  build,
+  catastrophy,
+  chooseHomeworld,
+  concede,
+  endTurn,
+  move,
+  sacrifice,
+  sacrificeStart,
+  transform
 };
-const util = require('../util/');
+
+import util from '../util/';
+
 const types = [
   'attack',
   'build',
@@ -46,7 +59,7 @@ function standardValidation(state, action, args) {
 
 
 
-module.exports = {
+export default {
   ...validators,
   standardValidation,
   action

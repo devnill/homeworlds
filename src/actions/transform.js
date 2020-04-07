@@ -1,8 +1,4 @@
-const {
-  bank,
-  find,
-  history
-} = require('../util/');
+import { bank, find, history } from '../util/';
 
 const {
   returnToBank,
@@ -41,4 +37,4 @@ function transform(state, args) {
   }), 'transform', args);
   return updatedState;
 }
-module.exports = transform;
+export default transform;

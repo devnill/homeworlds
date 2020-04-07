@@ -4,4 +4,4 @@ function concede(state, args) {
   return updatedState;
 }
 
-module.exports = concede;
+export default concede;

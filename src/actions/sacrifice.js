@@ -1,12 +1,14 @@
-const {
-  history
-} = require('../util');
+import { history } from '../util';
+import red from './attack';
+import blue from './transform';
+import green from './build';
+import yellow from './move';
 
 const colorActions = {
-  red: require('./attack'),
-  blue: require('./transform'),
-  green: require('./build'),
-  yellow: require('./move')
+  red,
+  blue,
+  green,
+  yellow
 };
 
 function sacrifice(state, args) {
@@ -24,4 +26,4 @@ function sacrifice(state, args) {
   return updatedState;
 }
 
-module.exports = sacrifice;
+export default sacrifice;

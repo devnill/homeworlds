@@ -1,16 +1,15 @@
 
-const {
-  playerHasColorAbility,
-} = require('./player');
+import { playerHasColorAbility } from './player';
 
-const util = require('../util/');
+import util from '../util/';
+
 const {
   findSystem,
   largestShipInSystem,
   findShip
 } = util.find;
 
-const { error } = require('../strings');
+import { error } from '../strings';
 
 function attack(state, args) {
   const { board } = state;
@@ -32,4 +31,4 @@ function attack(state, args) {
   return null;
 }
 
-module.exports = attack;
+export default attack;

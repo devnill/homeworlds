@@ -1,7 +1,8 @@
-const bank = require('./bank');
-const find = require('./find');
-const history = require('./history');
-const normalize = require('./normalize');
+import bank from './bank';
+import find from './find';
+import history from './history';
+import normalize from './normalize';
+// import {State} from '../types/index';
 
 //todo remove this
 function initState() {
@@ -21,4 +22,5 @@ const util = {
   normalize,
   find
 };
-module.exports = util;
+
+export default util;

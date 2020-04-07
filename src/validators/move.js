@@ -1,15 +1,4 @@
-
-//{
-// player: 'player1',
-// from: System
-// to: System,
-// ship: Ship
-//}
-
-const {
-  find,
-  bank,
-} = require('../util/');
+import { find, bank } from '../util/';
 
 const {
   createSystem
@@ -19,7 +8,7 @@ const { findSystem,
   findShip,
 } = find;
 
-const { error } = require('../strings');
+import { error } from '../strings';
 
 function move(state, args) {
   // validate if move can be made
@@ -70,4 +59,4 @@ function move(state, args) {
   
 }
 
-module.exports = move;
+export default move;
