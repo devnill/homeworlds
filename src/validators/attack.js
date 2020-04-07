@@ -3,6 +3,7 @@ const {
   playerHasColorAbility,
 } = require('./player');
 
+const basic = require('./basic');
 const util = require('../util/');
 const {
   findSystem,
@@ -13,6 +14,12 @@ const {
 const { error } = require('../strings');
 
 function attack(state, args) {
+  const basicValidationError = basic(state, args);
+
+  if (basicValidationError) {
+    return basicValidationError;
+  }
+
   const { board } = state;
   const { system, ship, player, color } = args;
   const [targetSystem] = findSystem(board, system);

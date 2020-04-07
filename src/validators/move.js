@@ -6,6 +6,7 @@
 // ship: Ship
 //}
 
+const basic = require('./basic');
 const {
   find,
   bank,
@@ -22,11 +23,17 @@ const { findSystem,
 const { error } = require('../strings');
 
 function move(state, args) {
+  const basicValidationError = basic(state, args);
+
+  if (basicValidationError) {
+    return basicValidationError;
+  }
+
   // validate if move can be made
   const { board, bank } = state;
   const { from, to, ship } = args;
   const [startSystem, otherSystems] = findSystem(board, from);
-  
+
   // validate starting system exists
   // todo move validation
   if (!startSystem) {
@@ -67,7 +74,7 @@ function move(state, args) {
     return error.invalidMove;
   }
   return null;
-  
+
 }
 
 module.exports = move;

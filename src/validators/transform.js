@@ -1,3 +1,4 @@
+const basic = require('./basic');
 const {
   find,
 } = require('../util/');
@@ -10,6 +11,12 @@ const {
 const { error } = require('../strings');
 
 function transform(state, args) {
+  const basicValidationError = basic(state, args);
+
+  if (basicValidationError) {
+    return basicValidationError;
+  }
+
   const { board, bank } = state;
   const { ship, system, color } = args;
   const [targetSystem] = findSystem(board, system);

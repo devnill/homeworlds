@@ -46,10 +46,10 @@ const valid = {
 };
 const missingColorInSystem = {
   action: {
-    player: 'playerOne',
+    player: 'player1',
     system: {id: 1},
     color: 'blue'
-  }, 
+  },
   state: {
     'bank': {
       'red': [3, 3, 3],
@@ -99,19 +99,19 @@ const missingPieceInBank = {
     'bank': {
       'red': [3, 3, 3],
       'yellow': [3, 3, 3],
-      'green': [3, 3, 3],
-      'blue': [1, 0, 0]
+      'green': [2, 3, 3],
+      'blue': [0, 0, 0]
     },
     'board': [{
       id: 1,
       name: 'Andoria',
-      stars: [{ color: 'blue', size: 1 }],
+      stars: [{ color: 'green', size: 1 }],
       ships: [
         { id: 3, color: 'blue', size: 1, owner: 'player1' }
       ]
     }],
     'players': ['player1', 'player2'],
-    'activePlayer': 1,
+    'activePlayer': 0,
     'history': [/*{
       action: 'build',
       args: {
@@ -127,19 +127,19 @@ const missingPieceInBank = {
     'bank': {
       'red': [3, 3, 3],
       'yellow': [3, 3, 3],
-      'green': [3, 3, 3],
-      'blue': [1, 0, 0]
+      'green': [2, 3, 3],
+      'blue': [0, 0, 0]
     },
     'board': [{
       id: 1,
       name: 'Andoria',
-      stars: [{ color: 'blue', size: 1 }],
+      stars: [{ color: 'green', size: 1 }],
       ships: [
         { id: 3, color: 'blue', size: 1, owner: 'player1' }
       ]
     }],
     'players': ['player1', 'player2'],
-    'activePlayer': 1,
+    'activePlayer': 0,
     'history': [/*{
       action: 'build',
       args: {
