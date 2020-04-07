@@ -1,4 +1,6 @@
 
+import { State, ActionArgs } from '../types/index';
+
 import { find, bank, history } from '../util/';
 
 const {
@@ -13,7 +15,7 @@ const {
 import { partition } from 'lodash';
 
 
-function catastrophy(state, args) {
+function catastrophy(state: State, args: ActionArgs): State {
 
   const { board, bank } = state;
   const { system, color } = args;

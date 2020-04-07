@@ -1,4 +1,5 @@
-import { bank, find, history } from '../util/';
+import { bank, find, history } from '../util/index';
+import { State, ActionArgs } from '../types/index';
 
 const {
   returnToBank,
@@ -12,7 +13,7 @@ const {
 
 
 
-function transform(state, args) {
+function transform(state: State, args: ActionArgs): State {
   const { board, bank } = state;
   const { ship, system, color } = args;
   const [targetSystem, otherSystems] = findSystem(board, system);

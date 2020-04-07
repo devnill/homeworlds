@@ -1,3 +1,4 @@
+import {Error, State, ActionArgs} from '../types/index.d';
 import { find } from '../util/';
 
 const {
@@ -7,7 +8,7 @@ const {
 
 import { error } from '../strings';
 
-function build(state, args){
+function build(state: State, args: ActionArgs): Error{
   const { board } = state;
   const { system, color } = args;
   const [targetSystem] = findSystem(board, system);

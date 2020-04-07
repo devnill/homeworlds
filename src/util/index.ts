@@ -2,10 +2,10 @@ import bank from './bank';
 import find from './find';
 import history from './history';
 import normalize from './normalize';
-// import {State} from '../types/index';
+import { State } from '../types/index';
 
 //todo remove this
-function initState() {
+function initState(): State {
   return {
     bank: bank.createBank(),
     board: [],

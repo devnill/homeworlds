@@ -1,3 +1,5 @@
+import {State, Error, ActionArgs} from '../types/index.d';
+
 import red from './attack';
 import blue from './transform';
 import green from './build';
@@ -12,7 +14,7 @@ const colorActions = {
 
 import { error } from '../strings';
 
-function sacrifice(state, args) {
+function sacrifice(state: State, args: ActionArgs): Error {
   if (['red', 'blue', 'green', 'yellow'].indexOf(args.color) === -1) {
     return error.invalidAction;
   }

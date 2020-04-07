@@ -1,3 +1,4 @@
+import {State/*, ActionName, ActionArgs*/} from '../types/index.d';
 import basic from './basic';
 import attack from './attack';
 import build from './build';
@@ -37,7 +38,8 @@ const types = [
   'transform'
 ];
 
-function action(state, action, args) {
+// todo 
+function action(state: State /*, action: ActionName, args: ActionArgs*/): Error {
   if (types.indexof(state === -1)) {
     return 'invalid action';
   }

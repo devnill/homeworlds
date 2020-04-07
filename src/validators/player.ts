@@ -1,6 +1,8 @@
+import {System, Player, Color, State, ActionArgs} from '../types/index.d';
+
 import {uniq} from 'lodash';
 
-function colorsAvailableToPlayer(system, player) {
+function colorsAvailableToPlayer(system, player):Color[] {
   const playerShips = system.ships.filter((ship) => ship.owner === player);
   const shipColors = playerShips.map((ship) => ship.color);
   const starColors = system.stars.map((star) => star.color);
@@ -10,10 +12,10 @@ function colorsAvailableToPlayer(system, player) {
   ]);
 }
 
-function playerHasColorAbility(system, player, color) {
+function playerHasColorAbility(system: System, player: Player, color: Color): Boolean {
   return colorsAvailableToPlayer(system, player).indexOf(color) !== -1;
 }
-function isCurrentPlayer(state, args) {
+function isCurrentPlayer(state: State, args: ActionArgs): Boolean {
   return args.player === state.players[state.activePlayer];
 }
 

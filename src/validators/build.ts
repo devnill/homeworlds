@@ -1,9 +1,4 @@
-/**
- * action: {
-  system: {id: 1},
-  color: 'blue',
-  player: 'player1'
-}, */
+import {Error, State, ActionArgs} from '../types/index.d';
 import basic from './basic';
 import util from '../util/';
 const { findSystem } = util.find;
@@ -11,7 +6,7 @@ import { playerHasColorAbility } from './player';
 
 import { error } from '../strings';
 
-function build(state, args) {
+function build(state: State, args: ActionArgs): Error {
   const basicValidationError = basic(state, args);
 
   if (basicValidationError) {

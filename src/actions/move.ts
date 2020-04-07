@@ -1,4 +1,5 @@
 import { find, bank, history } from '../util/index';
+import {State, ActionArgs} from '../types/index.d';
 
 const {
   returnPiecesToBank,
@@ -9,7 +10,7 @@ const { findSystem,
   findShip,
 } = find;
 
-function move(state, args) {
+function move(state: State, args: ActionArgs): State{
   // validate if move can be made
   const { board, bank } = state;
   const { from, to, ship } = args;

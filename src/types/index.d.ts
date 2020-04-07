@@ -27,25 +27,29 @@ export interface Ship {
   size: Size;
   owner: Player;
 }
-/*
+
 export interface System {
   id: string;
   stars: Star[];
   ships: Ship[];
   name: string;
-  isHomeworld?: boolean;
+  isHomeworldFor?: Player;
 }
-*/
 
-export type Board = object; //System[];
+//todo
+export type HistoryDelta = {};
+//const { action: ActionName, args: ActionArgs, delta: HistoryDelta, isSacrifice: boolean } = historyArgs;
+export type HistoryArgs = {};
+
+export type Board = System[];
 
 // todo well define types
 export interface ActionArgs {
   player: Player;
   from?: object;
-  to?: object; // System;
+  to?: System;
   ship?: Ship;
-  system?: object; // System;
+  system?: System;
   color?: Color;
   stars?: object[]; 
   ships?: object[];

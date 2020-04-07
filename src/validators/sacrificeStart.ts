@@ -1,3 +1,5 @@
+import {State, Error, ActionArgs} from '../types/index.d';
+
 import {
   find
 } from '../util/';
@@ -12,7 +14,7 @@ import {
   error
 } from '../strings';
 
-function sacrificeStart(state, args) {
+function sacrificeStart(state:State, args:ActionArgs):Error {
   const {
     board
   } = state;

@@ -1,4 +1,4 @@
-
+import {Error, State, ActionArgs} from '../types/index.d';
 import {
   playerHasColorAbility,
 } from './player';
@@ -14,7 +14,7 @@ const {
 
 import { error } from '../strings';
 
-function attack(state, args) {
+function attack(state: State, args: ActionArgs): Error {
   const basicValidationError = basic(state, args);
 
   if (basicValidationError) {

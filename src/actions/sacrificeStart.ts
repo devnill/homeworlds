@@ -1,3 +1,4 @@
+import { State, ActionArgs } from '../types/index';
 import { find, bank, history } from '../util/';
 
 const {
@@ -8,7 +9,7 @@ const {  findSystem,
   findShip,
 } = find;
 
-function sacrificeStart(state, args) {
+function sacrificeStart(state: State, args: ActionArgs): State {
   const { board, bank } = state;
   const { ship, system } = args;
   const [targetSystem, otherSystems] = findSystem(board, system);

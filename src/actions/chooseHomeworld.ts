@@ -1,9 +1,10 @@
-import { bank, history } from '../util/';
+import { bank, history } from '../util/index';
+import { State, ActionArgs } from '../types/index';
 
 
 const {createSystem} = bank;
 
-function chooseHomeworld(state, args) {
+function chooseHomeworld(state: State, args: ActionArgs): State {
   const {bank} = state;
   const {ships, stars, player} = args;
   const [homeworld, updatedBank] = createSystem(bank, {

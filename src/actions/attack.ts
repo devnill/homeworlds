@@ -1,3 +1,4 @@
+import { State, ActionArgs } from '../types/index';
 import { find, history } from '../util/';
 
 
@@ -7,7 +8,7 @@ const {
 } = find;
 
 
-function attack(state, args) {
+function attack(state: State, args: ActionArgs): State {
   const { board } = state;
   const { system, ship, player} = args;
   const [targetSystem, otherSystems] = findSystem(board, system);

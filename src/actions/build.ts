@@ -1,9 +1,4 @@
-/**
- * action: {
-    system: {id: 1},
-    color: 'blue',
-    player: 'player1'
-  }, */
+import { State, ActionArgs } from '../types/index';
 import {normalize}  from '../util/';
 
 import util from '../util/';
@@ -12,7 +7,7 @@ const { findSystem } = util.find;
 const { takeFromBank, countPieces } = util.bank;
 
 
-function build(state, args) {
+function build(state: State, args: ActionArgs): State {
   const { board, bank } = state;
   const { system, color, player } = args;
   const [targetSystem, otherSystems] = findSystem(board, system);
