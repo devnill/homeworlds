@@ -23,12 +23,4 @@ const util = {
   find
 };
 
-export {
-  initState,
-  bank,
-  history,
-  normalize,
-  find
-};
-
 export default util;
