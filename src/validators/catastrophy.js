@@ -1,13 +1,11 @@
-const {
-  find,
-} = require('../util/');
+import { find } from '../util/';
 
 const {
   findPiecesByColor,
   findSystem
 } = find;
 
-const { error } = require('../strings');
+import { error } from '../strings';
 
 function build(state, args){
   const { board } = state;
@@ -29,4 +27,4 @@ function build(state, args){
     return null;
   }
 }
-module.exports = build;
+export default build;

@@ -1,26 +1,19 @@
-
-//{
-// player: 'player1',
-// from: System
-// to: System,
-// ship: Ship
-//}
-
-const basic = require('./basic');
-const {
+import basic from './basic';
+import {
   find,
   bank,
-} = require('../util/');
+} from '../util/';
 
 const {
   createSystem
 } = bank;
 
-const { findSystem,
+const { 
+  findSystem,
   findShip,
 } = find;
 
-const { error } = require('../strings');
+import { error } from '../strings';
 
 function move(state, args) {
   const basicValidationError = basic(state, args);

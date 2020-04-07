@@ -1,7 +1,4 @@
-const {
-  find,
-  history
-} = require('../util/');
+import { find, history } from '../util/';
 
 
 const {
@@ -28,4 +25,4 @@ function attack(state, args) {
   return updatedState;
 }
 
-module.exports = attack;
+export default attack;

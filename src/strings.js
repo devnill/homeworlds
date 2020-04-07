@@ -12,6 +12,6 @@ const error = {
 };
 
 
-module.exports = {
+export default {
   error
 };

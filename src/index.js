@@ -1,6 +1,6 @@
-const {normalize} = require('./util/');
-const validate = require('./validators/');
-const actions = require('./actions/');
+import {normalize} from './util/';
+import validate from './validators/';
+import actions from './actions/';
 
 const actionTypes = [
   'attack',
@@ -51,7 +51,7 @@ const create = {
 };
 
 
-module.export = {
+export default {
   create,
   validate,
   performAction,

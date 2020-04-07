@@ -1,6 +1,5 @@
 // Generic validation rules for basic actions
-const util = require('../util/');
-const { error } = require('../strings');
+import { error } from '../strings';
 
 function basic(state, args) {
   // Is the player making this action currently playing accoring to the state?
@@ -11,4 +10,4 @@ function basic(state, args) {
   return null;
 }
 
-module.exports = basic;
+export default basic;

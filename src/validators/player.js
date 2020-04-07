@@ -1,6 +1,4 @@
-const _ = require('lodash');
-
-
+import _ from 'lodash';
 
 function colorsAvailableToPlayer(system, player) {
   const playerShips = system.ships.filter((ship) => ship.owner === player);
@@ -25,4 +23,4 @@ const player = {
   isCurrentPlayer
 };
 
-module.exports = player;
+export default player;

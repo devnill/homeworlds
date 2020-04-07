@@ -1,17 +1,25 @@
-const {
+import {
   find
-} = require('../util/');
+} from '../util/';
 
 
-const {  findSystem,
+const {
+  findSystem,
   findShip,
 } = find;
 
-const { error } = require('../strings');
+import {
+  error
+} from '../strings';
 
 function sacrificeStart(state, args) {
-  const { board } = state;
-  const { ship, system } = args;
+  const {
+    board
+  } = state;
+  const {
+    ship,
+    system
+  } = args;
   const [targetSystem] = findSystem(board, system);
   if (!targetSystem) {
     return error.invalidSystem;
@@ -22,4 +30,4 @@ function sacrificeStart(state, args) {
   }
   return null;
 }
-module.exports = sacrificeStart;
+export default sacrificeStart;

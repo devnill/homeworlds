@@ -1,4 +1,4 @@
-const { v4: uuid } = require('uuid');
+import { v4 as uuid } from 'uuid';
 
 function historyItem({ action, args, delta, isSacrifice }) {
   return {
@@ -41,4 +41,4 @@ const normalize = {
   ship
 };
 
-module.exports = normalize;
+export default normalize;

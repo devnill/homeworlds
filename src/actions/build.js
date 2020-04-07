@@ -4,9 +4,9 @@
     color: 'blue',
     player: 'player1'
   }, */
-const {normalize} = require('../util/');
+import {normalize}  from '../util/';
 
-const util = require('../util/');
+import util from '../util/';
 const { history} = util;
 const { findSystem } = util.find;
 const { takeFromBank, countPieces } = util.bank;
@@ -39,4 +39,4 @@ function build(state, args) {
   },'attack', args);
   return updatedState;  
 }
-module.exports = build;
+export default build;

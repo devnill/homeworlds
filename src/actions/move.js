@@ -1,16 +1,4 @@
-
-//{
-// player: 'player1',
-// from: System
-// to: System,
-// ship: Ship
-//}
-
-const {
-  find,
-  bank,
-  history
-} = require('../util/');
+import { find, bank, history } from '../util/';
 
 const {
   returnPiecesToBank,
@@ -78,4 +66,4 @@ function move(state, args) {
   }
 }
 
-module.exports = move;
+export default move;

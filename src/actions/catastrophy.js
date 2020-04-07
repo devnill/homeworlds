@@ -1,9 +1,5 @@
 
-const {
-  find,
-  bank,
-  history
-} = require('../util/');
+import { find, bank, history } from '../util/';
 
 const {
   findSystem
@@ -14,7 +10,7 @@ const {
 } = bank;
 
 
-const _ = require('lodash');
+import { partition } from 'lodash';
 
 
 function catastrophy(state, args) {
@@ -25,8 +21,8 @@ function catastrophy(state, args) {
 
 
   // we can catastrophy. remove pieces from system
-  const [removedStars, remainingStars] = _.partition(targetSystem.stars, (star) => star.color === color);
-  const [removedShips, remainingShips] = _.partition(targetSystem.ships, (ship) => ship.color === color);
+  const [removedStars, remainingStars] = partition(targetSystem.stars, (star) => star.color === color);
+  const [removedShips, remainingShips] = partition(targetSystem.ships, (ship) => ship.color === color);
   if (remainingStars.length === 0 || remainingShips.length === 0) {
     // remove all pieces and return to bank
     const updatedBank = returnPiecesToBank(bank, [...targetSystem.stars, ...targetSystem.ships]);
@@ -52,11 +48,12 @@ function catastrophy(state, args) {
     }), 'catastrophy', args);
 
     return updatedState;
-    //system is not destroyed. handle it.
+    // TODO:
+    ///system is not destroyed. handle it.
     //const piecesToReturn = countPieces([...targetSystem.stars, ...targetSystem.ships]);
     //updatedBank = returnToBank(bank, piecesToReturn);
     //updatedBoard = state.board.filter((targetSystem) => targetSystem.id !== system.id)
   }
 }
 
-module.exports = catastrophy;
+export default catastrophy;

@@ -1,7 +1,7 @@
 
-const {
+import {
   playerHasColorAbility,
-} = require('./player');
+} from './player';
 
 const basic = require('./basic');
 const util = require('../util/');
@@ -11,7 +11,7 @@ const {
   findShip
 } = util.find;
 
-const { error } = require('../strings');
+import { error } from '../strings';
 
 function attack(state, args) {
   const basicValidationError = basic(state, args);
@@ -39,4 +39,4 @@ function attack(state, args) {
   return null;
 }
 
-module.exports = attack;
+export default attack;

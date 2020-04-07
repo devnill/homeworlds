@@ -1,13 +1,11 @@
-const _ = require('lodash');
-const {
-  history
-} = require('../util/');
+import {omit} from 'lodash';
+import { history } from '../util/';
 
 function endTurn(state, args) {
-  const updatedState = history.add(state, Object.assign({}, _.omit(state, ['turn']), {
+  const updatedState = history.add(state, Object.assign({}, omit(state, ['turn']), {
     activePlayer: (state.activePlayer + 1) % state.players.length,
   }), 'endTurn', args);
   return updatedState;
 }
 
-module.exports = endTurn;
+export default endTurn;

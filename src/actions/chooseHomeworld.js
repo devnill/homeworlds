@@ -1,7 +1,4 @@
-const {
-  bank,
-  history
-} = require('../util/');
+import { bank, history } from '../util/';
 
 
 const {createSystem} = bank;
@@ -24,5 +21,4 @@ function chooseHomeworld(state, args) {
 
   return updatedState;
 }
-
-module.exports = chooseHomeworld;
+export default chooseHomeworld;

@@ -1,3 +1,4 @@
+
 function countPieces(pieces) {
   return pieces.reduce((requiredPieces, piece) => {
     const size = piece.size - 1;
@@ -79,4 +80,4 @@ const bank = {
   countPieces
 };
 
-module.exports = bank;
+export default bank;

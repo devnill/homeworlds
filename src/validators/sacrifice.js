@@ -1,13 +1,16 @@
-
+import red from './attack';
+import blue from './transform';
+import green from './build';
+import yellow from './move';
 
 const colorActions = {
-  red: require('./attack'),
-  blue: require('./transform'),
-  green: require('./build'),
-  yellow: require('./move')
+  red,
+  blue,
+  green,
+  yellow
 };
 
-const { error } = require('../strings');
+import { error } from '../strings';
 
 function sacrifice(state, args) {
   if (['red', 'blue', 'green', 'yellow'].indexOf(args.color) === -1) {
@@ -30,4 +33,4 @@ function sacrifice(state, args) {
   return null;
 }
 
-module.exports = sacrifice;
+export default sacrifice;

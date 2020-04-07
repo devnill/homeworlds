@@ -4,12 +4,12 @@
   color: 'blue',
   player: 'player1'
 }, */
-const basic = require('./basic');
-const util = require('../util/');
+import basic from './basic';
+import util from '../util/';
 const { findSystem } = util.find;
-const { playerHasColorAbility } = require('./player');
+import { playerHasColorAbility } from './player';
 
-const { error } = require('../strings');
+import { error } from '../strings';
 
 function build(state, args) {
   const basicValidationError = basic(state, args);
@@ -36,4 +36,4 @@ function build(state, args) {
     return error.bankInsufficent;
   }
 }
-module.exports = build;
+export default build;

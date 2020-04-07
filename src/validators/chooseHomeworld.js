@@ -1,6 +1,6 @@
-const util = require('../util/');
+import util from '../util/';
 const {createSystem} = util.bank;
-const { error } = require('../strings');
+import { error } from '../strings';
 
 function chooseHomeworld(state, args) {
   const {bank} = state;
@@ -17,4 +17,4 @@ function chooseHomeworld(state, args) {
   return null;
 }
 
-module.exports = chooseHomeworld;
+export default chooseHomeworld;

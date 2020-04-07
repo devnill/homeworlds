@@ -1,15 +1,27 @@
+import basic from './basic';
+import attack from './attack';
+import build from './build';
+import catastrophy from './catastrophy';
+import chooseHomeworld from './chooseHomeworld';
+import concede from './concede';
+import endTurn from './endTurn';
+import move from './move';
+import sacrifice from './sacrifice';
+import sacrificeStart from './sacrificeStart';
+import transform from './transform';
+
 const validators = {
-  basic: require('./basic'),
-  attack: require('./attack'),
-  build: require('./build'),
-  catastrophy: require('./catastrophy'),
-  chooseHomeworld: require('./chooseHomeworld'),
-  concede: require('./concede'),
-  endTurn: require('./endTurn'),
-  move: require('./move'),
-  sacrifice: require('./sacrifice'),
-  sacrificeStart: require('./sacrificeStart'),
-  transform: require('./transform')
+  basic,
+  attack,
+  build,
+  catastrophy,
+  chooseHomeworld,
+  concede,
+  endTurn,
+  move,
+  sacrifice,
+  sacrificeStart,
+  transform
 };
 
 const types = [
@@ -31,7 +43,7 @@ function action(state, action, args) {
   }
 }
 
-module.exports = {
+export default {
   ...validators,
   action
 };

@@ -1,9 +1,13 @@
-const createPatch = require('json-patch-gen');
-const applyPatch = require('jsonpatch').apply_patch;
-const _ = require('lodash');
+import createPatch from 'json-patch-gen';
+const jsonpatch = require('jsonpatch');
+console.log(jsonpatch)
+console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz')
+const applyPatch = jsonpatch.apply_patch;
+
+import {omit} from 'lodash';
 
 function add(initialState, updatedState, action, args) {
-  const patch = createPatch(_.omit(updatedState, ['history']), _.omit(initialState,'history'));
+  const patch = createPatch(omit(updatedState, ['history']), omit(initialState,'history'));
   return {
     ...updatedState,
     history: [...initialState.history, {
@@ -30,4 +34,4 @@ const history = {
   revert
 };
 
-module.exports = history;
+export default history;

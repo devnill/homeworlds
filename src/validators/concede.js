@@ -1,8 +1,6 @@
-
-const util = require('../validators/');
-
+// TODO
 function concede(state, args) {
   return null;
 }
 
-module.exports = concede;
+export default concede;
