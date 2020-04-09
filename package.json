@@ -9,7 +9,7 @@
   "scripts": {
     "test": "mocha -r ts-node/register",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test",
-    "lint": "eslint src/"
+    "lint": "eslint src/**/*.ts"
   },
   "author": "",
   "license": "ISC",

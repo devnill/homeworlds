@@ -1,10 +1,10 @@
-import {Error, State, ActionArgs} from '../types/index.d';
+import {ErrorMessage, State, ActionArgs, Color} from '../types/index.d';
 import {
   playerHasColorAbility,
 } from './player';
 
 import basic from './basic';
-import util from '../util/';
+import util from '../util/index';
 
 const {
   findSystem,
@@ -14,7 +14,7 @@ const {
 
 import { error } from '../strings';
 
-function attack(state: State, args: ActionArgs): Error {
+function attack(state: State, args: ActionArgs): ErrorMessage {
   const basicValidationError = basic(state, args);
 
   if (basicValidationError) {

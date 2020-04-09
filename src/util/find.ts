@@ -1,7 +1,7 @@
 import {partition} from 'lodash';
-import {Board, System, Ship, Player} from '../types/index.d';
+import {Board, System, Ship, Player, Piece, Color} from '../types/index.d';
 
-function findSystem(board: Board, system: System) {
+function findSystem(board: Board, system: System): [System, Board] {
   if(!system){
     return [null, [...board]];
   }
@@ -9,13 +9,13 @@ function findSystem(board: Board, system: System) {
   const targetSystem = targetSystems.length ? targetSystems[0] : null;
   return [targetSystem, otherSystems];
 }
-function findShip(ships: Ship[], ship: Ship) {
+function findShip(ships: Ship[], ship: Ship): [Ship, Board] {
   const [targetShips, otherShips] = partition(ships, (s) => s.id === ship.id);
   const targetShip = targetShips.length ? targetShips[0] : null;
   return [targetShip, otherShips];
 }
 
-function largestShipInSystem(system: System, player?: Player) {
+function largestShipInSystem(system: System, player?: Player): number {
   const { ships = [] } = system;
   const shipsToSearch = player === null ? ships : ships.filter((ship) => ship.owner === player);
   let largest = 0;
@@ -31,7 +31,7 @@ function largestShipInSystem(system: System, player?: Player) {
   return largest;
 }
 
-function findPiecesByColor(pieces, color) {
+function findPiecesByColor(pieces: Piece[], color: Color): number {
   return pieces.filter((piece) => piece.color === color).length;
 }
 

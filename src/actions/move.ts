@@ -22,7 +22,8 @@ function move(state: State, args: ActionArgs): State{
   const [targetShip, otherShips] = findShip(startSystem.ships, ship);
 
   // see if we can find the destination system
-  let [endSystem, remainingSystems] = findSystem(otherSystems, to);
+  const [targetEndSystem, remainingSystems] = findSystem(otherSystems, to);
+  let endSystem = targetEndSystem;
 
   // if not, attempt to create one
   if(!endSystem){
@@ -62,8 +63,8 @@ function move(state: State, args: ActionArgs): State{
         ]
       }
     ];
-    const updatedState = history.add(state, updatedState, 'move', args);
-    return { ...state, bank: updatedBank, board: updatedBoard };
+    const updatedState = history.add(state, { ...state, bank: updatedBank, board: updatedBoard }, 'move', args);
+    return updatedState;
   }
 }
 

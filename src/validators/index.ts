@@ -1,4 +1,4 @@
-import {State/*, ActionName, ActionArgs*/} from '../types/index.d';
+import {State, ActionName, ActionArgs, ErrorMessage} from '../types/index.d';
 import basic from './basic';
 import attack from './attack';
 import build from './build';
@@ -10,6 +10,7 @@ import move from './move';
 import sacrifice from './sacrifice';
 import sacrificeStart from './sacrificeStart';
 import transform from './transform';
+import player from './player';
 
 const validators = {
   basic,
@@ -22,7 +23,8 @@ const validators = {
   move,
   sacrifice,
   sacrificeStart,
-  transform
+  transform,
+  player
 };
 
 const types = [
@@ -39,10 +41,11 @@ const types = [
 ];
 
 // todo 
-function action(state: State /*, action: ActionName, args: ActionArgs*/): Error {
-  if (types.indexof(state === -1)) {
+function action(state: State, action: ActionName, args: ActionArgs): ErrorMessage {
+  if (types.indexOf(action) === -1) {
     return 'invalid action';
   }
+  return validators[action](state, args);
 }
 
 
@@ -58,7 +61,8 @@ export {
   sacrifice,
   sacrificeStart,
   transform,
-  action
+  action,
+  player
 };
 
 export default {

@@ -1,8 +1,9 @@
-import {HistoryItem, System, Star, Ship, System} from '../types/index';
+import {/*HistoryItem, */ System, Star, Ship} from '../types/index';
 import { v4 as uuid } from 'uuid';
 
 //todo figure out any
-function historyItem(historyArgs: any): HistoryItem {
+/*
+function historyItem(historyArgs: any): jos {
   const { action, args, delta, isSacrifice } = historyArgs;
   return {
     action,
@@ -10,9 +11,10 @@ function historyItem(historyArgs: any): HistoryItem {
     delta,
     isSacrifice
   };
-}
+}*/
+
 function system(system: any): System{
-  const { name, ships, stars } = system;
+  const { name, ships, stars, isHomeworldFor } = system;
   return {
     name,
     id: uuid(),
@@ -22,15 +24,14 @@ function system(system: any): System{
   };
 }
 function star(star: any): Star {
-  const { color, size, ships, isHomeworldFor = null } = star;
+  const { color, size } = star;
   return {
     color,
-    size,
-    ships
+    size
   };
 }
-function ship(ship): Ship {
-  const ship = { color, size, owner } = ship;
+function ship(ship: any): Ship {
+  const { color, size, owner } = ship;
   return {
     id: uuid(),
     color,
@@ -41,7 +42,7 @@ function ship(ship): Ship {
 
 
 const normalize = {
-  historyItem,
+  //historyItem,
   system,
   star,
   ship

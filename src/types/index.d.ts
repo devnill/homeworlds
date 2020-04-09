@@ -1,30 +1,34 @@
 
 export type ActionName = string;
 
-export type Error = string | null;
+export type ErrorMessage = string | null;
 export type ActivePlayer = string;
 export type Player = string;
 export type PlayerList = Player[];
 export type PlayerId = number;
-export type Size = string;
+export type Size = number;
 
 
-
+/*
 export enum Color {
-  red,
-  blue,
-  green,
-  yellow
+  red = 'red',
+  blue = 'blue',
+  green = 'green',
+  yellow = 'yellow'
 }
+*/
+export type Color = 'red' | 'blue' | 'green' | 'yellow';
 
-export interface Star {
+
+export interface Piece {
+  id?: string;
   color: Color;
   size: Size;
 }
 
-export interface Ship {
-  color: Color;
-  size: Size;
+export type Star = Piece;
+
+export interface Ship extends Piece {
   owner: Player;
 }
 
@@ -46,20 +50,20 @@ export type Board = System[];
 // todo well define types
 export interface ActionArgs {
   player: Player;
-  from?: object;
+  from?: System;
   to?: System;
   ship?: Ship;
   system?: System;
   color?: Color;
-  stars?: object[]; 
-  ships?: object[];
+  stars?: Star[]; 
+  ships?: Ship[];
 }
 
 export interface Bank{
-  red: number[];
-  blue: number[];
-  green: number[];
-  yellow: number[];
+  red: Array<number>;
+  blue: Array<number>;
+  green: Array<number>;
+  yellow: Array<number>;
 }
 
 //todo define patch
@@ -77,5 +81,5 @@ export interface State{
   players: PlayerList;
   activePlayer: PlayerId;
   history: History;
-  turn?: object;
+  turn?: any;
 }

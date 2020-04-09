@@ -1,8 +1,8 @@
-import {State, Error, ActionArgs} from '../types/index.d';
+import {State, ErrorMessage, ActionArgs} from '../types/index.d';
 
 import {
   find
-} from '../util/';
+} from '../util/index';
 
 
 const {
@@ -14,7 +14,7 @@ import {
   error
 } from '../strings';
 
-function sacrificeStart(state:State, args:ActionArgs):Error {
+function sacrificeStart(state: State, args: ActionArgs): ErrorMessage {
   const {
     board
   } = state;

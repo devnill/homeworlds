@@ -1,5 +1,5 @@
 import { State, ActionArgs } from '../types/index';
-import { find, history } from '../util/';
+import { find, history } from '../util/index';
 
 
 const {

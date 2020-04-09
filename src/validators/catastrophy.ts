@@ -1,5 +1,5 @@
-import {Error, State, ActionArgs} from '../types/index.d';
-import { find } from '../util/';
+import {ErrorMessage, State, ActionArgs} from '../types/index.d';
+import { find } from '../util/index';
 
 const {
   findPiecesByColor,
@@ -8,7 +8,7 @@ const {
 
 import { error } from '../strings';
 
-function build(state: State, args: ActionArgs): Error{
+function build(state: State, args: ActionArgs): ErrorMessage{
   const { board } = state;
   const { system, color } = args;
   const [targetSystem] = findSystem(board, system);

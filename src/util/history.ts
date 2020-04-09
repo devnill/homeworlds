@@ -1,9 +1,7 @@
 import {State, ActionName, ActionArgs, History} from '../types/index.d';
+import * as createPatch from 'json-patch-gen'; 
+import * as jsonpatch from 'jsonpatch';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const createPatch = require('json-patch-gen');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const jsonpatch = require('jsonpatch');
 const applyPatch = jsonpatch.apply_patch;
 
 import {omit} from 'lodash';

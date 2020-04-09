@@ -1,5 +1,5 @@
 import { State, ActionArgs } from '../types/index';
-import { find, bank, history } from '../util/';
+import { find, bank, history } from '../util/index';
 
 const {
   returnPiecesToBank,
@@ -14,7 +14,7 @@ function sacrificeStart(state: State, args: ActionArgs): State {
   const { ship, system } = args;
   const [targetSystem, otherSystems] = findSystem(board, system);
   const [targetShip, otherShips] = findShip(targetSystem.ships, ship);
-  if (!otherShips.length && typeof targetSystem.homeworldFor != 'number') {
+  if (!otherShips.length && typeof targetSystem.isHomeworldFor != 'number') {
     // this is an empty, non-homeworld system    
     const updatedBank = returnPiecesToBank(bank, [...targetSystem.stars, ...targetSystem.ships]);
     // create new state;

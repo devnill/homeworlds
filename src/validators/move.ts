@@ -1,8 +1,12 @@
+import {State, ActionArgs, ErrorMessage} from '../types/index.d';
+
+import { intersection } from 'lodash';
+
 import basic from './basic';
 import {
   find,
   bank,
-} from '../util/';
+} from '../util/index';
 
 const {
   createSystem
@@ -15,7 +19,7 @@ const {
 
 import { error } from '../strings';
 
-function move(state, args) {
+function move(state: State, args: ActionArgs): ErrorMessage {
   const basicValidationError = basic(state, args);
 
   if (basicValidationError) {
@@ -58,12 +62,9 @@ function move(state, args) {
   const startStarSizes = startSystem.stars.map((star) => star.size);
   const endStarSizes = endSystem.stars.map((star) => star.size);
 
-  // cast star object to bool if existant.
-  const starsHaveCommonSize = !!startStarSizes.find((startStarSize) => {
-    return endStarSizes.find((targetSize) => targetSize === startStarSize);
-  });
-
-  if (starsHaveCommonSize) {
+  const commonStarSizes = intersection(startStarSizes, endStarSizes);
+  
+  if (commonStarSizes.length > 0) {
     return error.invalidMove;
   }
   return null;

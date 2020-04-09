@@ -1,5 +1,7 @@
 
-const error = {
+import {ErrorMessage} from './types/index.d';
+
+const error: {[key: string]: ErrorMessage} = { 
   invalidTurn: 'It is not your turn.',
   invalidSystem: 'invalid system',
   invalidShip: 'invalid ship',

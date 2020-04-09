@@ -1,6 +1,8 @@
-import {normalize} from './util/';
-import validate from './validators/';
-import actions from './actions/';
+import {State, Star, System, Ship, ActionName, ActionArgs, ErrorMessage} from './types/index.d';
+
+import {normalize} from './util/index';
+import validate from './validators/index';
+import actions from './actions/index';
 
 const actionTypes = [
   'attack',
@@ -15,8 +17,8 @@ const actionTypes = [
   'transform'
 ];
 
-function performAction(state, action, args) {
-  if(actionTypes.indexof(action) === -1){
+function performAction(state: State, action: ActionName, args: ActionArgs): {err: ErrorMessage; state: State} {
+  if(actionTypes.indexOf(action) === -1){
     return {
       err: 'invalid move type',
       state
@@ -36,24 +38,24 @@ function performAction(state, action, args) {
 };
 
 const create = {
-  ship(args){
+  ship(args: Ship): Ship{
     return normalize.ship(args);
   },
-  star(args){
+  star(args: Star): Star{
     return normalize.star(args);
   },
-  system(args){
+  system(args: System): System{
     return normalize.system(args);
-  },
-  state(args){
-    return normalize.state(args);
-  }
+  }//,
+  //state(args: State): State{
+  //  return normalize.state(args);
+  //}
 };
 
 
 export default {
   create,
   validate,
-  performAction,
-  util
+  performAction//,
+ // util
 };

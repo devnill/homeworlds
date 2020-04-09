@@ -2,11 +2,19 @@
     "compilerOptions": {
         "outDir": "./built",
         "allowJs": true,
-        "target": "esnext"
+        "target": "esnext",
+        "composite": true,
+        "declaration": true,
+        "declarationMap": true,
+        "rootDir": "./src",
+        "lib": ["esnext"]
     },
     "include": [
-        "./src/**/*"
+        "src/**/*.ts"
     ],
-    "typeRoots": ["node_modules/@types", "src/types"],
+    "exclude": [
+      "node_modules"
+    ],
+    "typeRoots": ["node_modules/@types", "types"],
     "compileOnSave": true
 }

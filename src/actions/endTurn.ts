@@ -3,7 +3,7 @@ import {
 } from 'lodash';
 import {
   history
-} from '../util/';
+} from '../util/index';
 import {
   State,
   ActionArgs

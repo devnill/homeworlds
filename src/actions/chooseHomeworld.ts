@@ -1,5 +1,6 @@
 import { bank, history } from '../util/index';
 import { State, ActionArgs } from '../types/index';
+import {normalize}  from '../util/index';
 
 
 const {createSystem} = bank;
@@ -7,12 +8,12 @@ const {createSystem} = bank;
 function chooseHomeworld(state: State, args: ActionArgs): State {
   const {bank} = state;
   const {ships, stars, player} = args;
-  const [homeworld, updatedBank] = createSystem(bank, {
+  const [homeworld, updatedBank] = createSystem(bank, normalize.system({
     name: player,
     stars,
     ships,
-    isHomeworld: true
-  });  
+    isHomeworldFor: player
+  }));  
   
   const updatedState = history.add(state, {
     ...state,

@@ -1,17 +1,18 @@
-import {Error, State, ActionArgs} from '../types/index.d';
-import util from '../util/';
+import {ErrorMessage, State, ActionArgs} from '../types/index.d';
+import util from '../util/index';
 const {createSystem} = util.bank;
 import { error } from '../strings';
+import { normalize } from '../util/index';
 
-function chooseHomeworld(state: State, args: ActionArgs): Error {
+function chooseHomeworld(state: State, args: ActionArgs): ErrorMessage {
   const {bank} = state;
   const {ships, stars, player} = args;
-  const [homeworld] = createSystem(bank, {
+  const [homeworld] = createSystem(bank, util.normalize.system({
     name: player,
     stars,
     ships,
-    isHomeworld: true
-  });
+    isHomeworldFor: player
+  }));
   if(homeworld === null){
     return error.bankInsufficent;
   }  

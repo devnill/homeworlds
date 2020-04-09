@@ -1,9 +1,8 @@
 
-//todo move out of actions
-import { player } from '../util/';
-import {State, ActionArgs} from '../types/index.d';
+import { player } from './index';
+import {State, ActionArgs, ErrorMessage} from '../types/index.d';
 
-function endTurn(state: State, args: ActionArgs): Error {
+function endTurn(state: State, args: ActionArgs): ErrorMessage {
   // check to see if its the players turn
   if (!player.isCurrentPlayer(state, args)) {
     return 'not your turn';

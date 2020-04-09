@@ -1,7 +1,7 @@
 
 import { State, ActionArgs } from '../types/index';
-
-import { find, bank, history } from '../util/';
+import { partition } from 'lodash';
+import { find, bank, history } from '../util/index';
 
 const {
   findSystem
@@ -12,7 +12,7 @@ const {
 } = bank;
 
 
-import { partition } from 'lodash';
+
 
 
 function catastrophy(state: State, args: ActionArgs): State {

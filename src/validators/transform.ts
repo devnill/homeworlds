@@ -1,4 +1,4 @@
-import {State, Error, ActionArgs} from '../types/index';
+import {State, ErrorMessage, ActionArgs} from '../types/index';
 import basic from './basic';
 import {find} from '../util/index';
 import { error } from '../strings';
@@ -9,7 +9,7 @@ const {
 } = find;
 
 
-function transform(state:State, args:ActionArgs):Error {
+function transform(state: State, args: ActionArgs): ErrorMessage {
   const basicValidationError = basic(state, args);
 
   if (basicValidationError) {
