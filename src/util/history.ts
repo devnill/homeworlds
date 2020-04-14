@@ -1,6 +1,6 @@
 import {State, ActionName, ActionArgs} from '../types/index.d';
-import * as createPatch from 'json-patch-gen'; 
-import * as jsonpatch from 'jsonpatch';
+import createPatch from 'json-patch-gen'; 
+import jsonpatch from 'jsonpatch';
 
 const applyPatch = jsonpatch.apply_patch;
 

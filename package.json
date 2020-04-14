@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha -r ts-node/register",
+    "test": "mocha -r ts-node/register test/**/*.spec.ts",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test",
     "lint": "eslint src/**/*.ts"
   },
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
+    "@types/json-patch-gen": "^1.0.0",
     "@types/mocha": "^7.0.2",
     "chai": "^4.2.0",
     "deepfreeze": "^2.0.0",
