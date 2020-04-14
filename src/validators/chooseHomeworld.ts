@@ -7,7 +7,7 @@ import { normalize } from '../util/index';
 function chooseHomeworld(state: State, args: ActionArgs): ErrorMessage {
   const {bank} = state;
   const {ships, stars, player} = args;
-  const [homeworld] = createSystem(bank, util.normalize.system({
+  const [homeworld] = createSystem(bank, normalize.system({
     name: player,
     stars,
     ships,

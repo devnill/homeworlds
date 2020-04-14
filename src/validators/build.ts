@@ -18,8 +18,8 @@ function build(state: State, args: ActionArgs): ErrorMessage {
   const [targetSystem] = findSystem(board, system);
 
   //todo move to validators
-  
-  const smallestSize = (bank[color].findIndex((size) => size > 0)) + 1;
+  const colorSlots = bank[color];
+  const smallestSize = (colorSlots.findIndex((size) => size > 0)) + 1;
   if (smallestSize !== 0) {
     if (playerHasColorAbility(targetSystem, player, color)) {
       return null;

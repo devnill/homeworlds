@@ -1,4 +1,4 @@
-import {State, ActionName, ActionArgs, History} from '../types/index.d';
+import {State, ActionName, ActionArgs} from '../types/index.d';
 import * as createPatch from 'json-patch-gen'; 
 import * as jsonpatch from 'jsonpatch';
 
@@ -6,7 +6,7 @@ const applyPatch = jsonpatch.apply_patch;
 
 import {omit} from 'lodash';
 
-function add(initialState: State, updatedState: State, action: ActionName, args: ActionArgs): History {
+function add(initialState: State, updatedState: State, action: ActionName, args: ActionArgs): State {
   const patch = createPatch(omit(updatedState, ['history']), omit(initialState,'history'));
   return {
     ...updatedState,

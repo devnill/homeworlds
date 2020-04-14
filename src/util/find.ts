@@ -9,7 +9,7 @@ function findSystem(board: Board, system: System): [System, Board] {
   const targetSystem = targetSystems.length ? targetSystems[0] : null;
   return [targetSystem, otherSystems];
 }
-function findShip(ships: Ship[], ship: Ship): [Ship, Board] {
+function findShip(ships: Ship[], ship: Ship): [Ship, Ship[]] {
   const [targetShips, otherShips] = partition(ships, (s) => s.id === ship.id);
   const targetShip = targetShips.length ? targetShips[0] : null;
   return [targetShip, otherShips];

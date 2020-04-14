@@ -3,3 +3,5 @@ notes
 .scratch
 .nyc_output/
 coverage/
+dist/
+tsconfig.tsbuildinfo
