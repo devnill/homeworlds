@@ -3,7 +3,7 @@ import {
   endTurn,
   sacrificeStart,
   sacrifice,
-  catastrope,
+  catastrophe,
   build,
   transform,
   attack,
