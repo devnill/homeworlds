@@ -2,17 +2,18 @@
   "name": "homeworlds",
   "version": "0.0.1",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.spec.ts",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint src/**/*.ts",
+    "build": "npm run test && tsc"
   },
   "author": "",
-  "license": "ISC",
+  "license": "UNLICENCED",
   "dependencies": {
     "@types/lodash": "^4.14.149",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
