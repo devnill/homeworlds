@@ -1,4 +1,4 @@
-import {/*HistoryItem, */ System, Star, Ship} from '../types/index';
+import {/*HistoryItem, */ System, Star, Ship, Player, State} from '../types/index';
 import { v4 as uuid } from 'uuid';
 
 //todo figure out any
@@ -39,13 +39,17 @@ function ship(ship: any): Ship {
     owner
   };
 }
+function state(players: [Player, Player]): State{
+
+}
 
 
 const normalize = {
   //historyItem,
   system,
   star,
-  ship
+  ship,
+  state
 };
 
 export default normalize;

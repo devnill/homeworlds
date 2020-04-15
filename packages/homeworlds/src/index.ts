@@ -53,7 +53,7 @@ const create = {
 };
 
 
-export default {
+export {
   create,
   validate,
   performAction//,
