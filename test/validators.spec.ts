@@ -3,7 +3,7 @@ import {
   endTurn,
   sacrificeStart,
   sacrifice,
-  catastrophy,
+  catastrope,
   build,
   transform,
   attack,
@@ -14,7 +14,7 @@ import {
 function universalValidators(action) {
   it('will update history');
   it('will fail if its not the current players turn');
-  it('will fail if another (non-catastrophy or sacrifice[Start] ) turn action has already made');
+  it('will fail if another (non-catastrophe  or sacrifice[Start] ) turn action has already made');
 }
 
 function standardActionValidators(action) {
@@ -29,7 +29,7 @@ describe('validators', function () {
   describe('endTurn', endTurn);
   describe('sacrificeStart', sacrificeStart);
   describe('sacrifice', sacrifice);
-  describe('catastrophy', catastrophy);
+  describe('catastrophe', catastrophe);
   describe('build', build);
   describe('transform', transform);
   describe('attack', attack);

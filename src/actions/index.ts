@@ -2,7 +2,7 @@ import build from './build';
 import move from './move';
 import attack from './attack';
 import transform from './transform';
-import catastrophy from './catastrophy';
+import catastrophe from './catastrophe';
 import sacrificeStart from './sacrificeStart';
 import sacrifice from './sacrifice';
 import concede from './concede';
@@ -15,7 +15,7 @@ export default {
   move,
   attack,
   transform,
-  catastrophy,
+  catastrophe,
   sacrificeStart,
   sacrifice,
   concede,
@@ -28,7 +28,7 @@ export {
   move,
   attack,
   transform,
-  catastrophy,
+  catastrophe,
   sacrificeStart,
   sacrifice,
   concede,

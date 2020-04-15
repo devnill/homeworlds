@@ -23,7 +23,7 @@ function build(state: State, args: ActionArgs): ErrorMessage{
   ];
 
   if (findPiecesByColor(piecesToCount, color) < 4) {
-    return error.catastrophyFailed;
+    return error.catastropheFailed;
   } else {
     return null;
   }

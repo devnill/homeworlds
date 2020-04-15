@@ -1,6 +1,6 @@
 import attack from './attack';
 import build  from './build';
-import catastrophy from './catastrophy';
+import catastrophe from './catastrophe';
 import chooseHomeworld from './chooseHomeworld';
 import concede from './concede';
 import endTurn from './endTurn';
@@ -16,7 +16,7 @@ export {
   endTurn,
   sacrificeStart,
   sacrifice,
-  catastrophy,
+  catastrophe,
   transform,
   attack,
   move
@@ -29,7 +29,7 @@ export default {
   endTurn,
   sacrificeStart,
   sacrifice,
-  catastrophy,
+  catastrophe,
   transform,
   attack,
   move

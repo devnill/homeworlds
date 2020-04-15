@@ -37,7 +37,7 @@ const valid = {
     'players': ['player1', 'player2'],
     'activePlayer': 0,
     'history': [/*{
-      'action': 'catastrophy',
+      'action': 'catastrophe',
       'args': {
         'color': 'blue',
         'system': {id: 1},
@@ -155,7 +155,7 @@ const starIntact = {
     'players': ['player1', 'player2'],
     'activePlayer': 0,
     'history': [/*{
-      'action': 'catastrophy',
+      'action': 'catastrophe',
       'args': {
         'color': 'blue',
         'systemd': {id: 1},

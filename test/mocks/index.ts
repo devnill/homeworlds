@@ -2,7 +2,7 @@ import chooseHomeworld from './chooseHomeworld';
 import endTurn from './endTurn';
 import sacrificeStart from './sacrificeStart';
 import sacrifice from './sacrifice';
-import catastrophy from './catastrophy';
+import catastrophe from './catastrophe';
 import transform from './transform';
 import attack from './attack';
 import move from './move';
@@ -13,7 +13,7 @@ export {
   endTurn,
   sacrificeStart,
   sacrifice,
-  catastrophy,
+  catastrophe,
   transform,
   attack,
   move,
@@ -25,7 +25,7 @@ export default {
   endTurn,
   sacrificeStart,
   sacrifice,
-  catastrophy,
+  catastrophe,
   transform,
   attack,
   move,

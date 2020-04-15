@@ -2,7 +2,7 @@ import {State, ActionName, ActionArgs, ErrorMessage} from '../types/index.d';
 import basic from './basic';
 import attack from './attack';
 import build from './build';
-import catastrophy from './catastrophy';
+import catastrophe from './catastrophe';
 import chooseHomeworld from './chooseHomeworld';
 import concede from './concede';
 import endTurn from './endTurn';
@@ -16,7 +16,7 @@ const validators = {
   basic,
   attack,
   build,
-  catastrophy,
+  catastrophe,
   chooseHomeworld,
   concede,
   endTurn,
@@ -30,7 +30,7 @@ const validators = {
 const types = [
   'attack',
   'build',
-  'catastrophy',
+  'catastrophe',
   'chooseHomeworld',
   'concede',
   'endTurn',
@@ -53,7 +53,7 @@ export {
   basic,
   attack,
   build,
-  catastrophy,
+  catastrophe,
   chooseHomeworld,
   concede,
   endTurn,

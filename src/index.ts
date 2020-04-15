@@ -7,7 +7,7 @@ import actions from './actions/index';
 const actionTypes = [
   'attack',
   'build',
-  'catastrophy',
+  'catastrophe',
   'chooseHomeworld',
   'concede',
   'endTurn',

@@ -15,25 +15,25 @@ const {
 
 
 
-function catastrophy(state: State, args: ActionArgs): State {
+function catastrophe(state: State, args: ActionArgs): State {
 
   const { board, bank } = state;
   const { system, color } = args;
   const [targetSystem, otherSystems] = findSystem(board, system);
 
 
-  // we can catastrophy. remove pieces from system
+  // we can catastrophe. remove pieces from system
   const [removedStars, remainingStars] = partition(targetSystem.stars, (star) => star.color === color);
   const [removedShips, remainingShips] = partition(targetSystem.ships, (ship) => ship.color === color);
   if (remainingStars.length === 0 || remainingShips.length === 0) {
     // remove all pieces and return to bank
     const updatedBank = returnPiecesToBank(bank, [...targetSystem.stars, ...targetSystem.ships]);
-    // const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'catastrophy' }];
+    // const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'catastrophe' }];
     // create new state;
     const updatedState = history.add(state, Object.assign({}, state, {
       board: otherSystems,
       bank: updatedBank
-    }), 'catastrophy', args);
+    }), 'catastrophe', args);
     return updatedState;
   } else {
     const updatedBank = returnPiecesToBank(bank, [...removedStars, ...removedShips]);
@@ -42,12 +42,12 @@ function catastrophy(state: State, args: ActionArgs): State {
       ships: remainingShips
     });
     const updatedBoard = [...otherSystems, updatedSystem];
-    // const updatedHistory = [...state.history, { args, action: 'catastrophy', systems: [targetSystem] }];
+    // const updatedHistory = [...state.history, { args, action: 'catastrophe', systems: [targetSystem] }];
 
     const updatedState = history.add(state, Object.assign({}, state, {
       board: updatedBoard,
       bank: updatedBank,
-    }), 'catastrophy', args);
+    }), 'catastrophe', args);
 
     return updatedState;
     // TODO:
@@ -58,4 +58,4 @@ function catastrophy(state: State, args: ActionArgs): State {
   }
 }
 
-export default catastrophy;
+export default catastrophe;
