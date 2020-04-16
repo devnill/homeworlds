@@ -10,6 +10,8 @@
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
-    "homeworlds": "^0.0.1" 
+    "blessed": "^0.1.81",
+    "homeworlds": "^0.0.1",
+    "inquirer": "^7.1.0"
   }
 }
