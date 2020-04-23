@@ -5,7 +5,7 @@ import normalize from './normalize';
 import { State, Player } from '../types/index';
 
 
-function initState(players:[Player, Player]): State {
+function initState(players: [Player, Player]): State {
   return {
     bank: bank.createBank(),
     board: [],

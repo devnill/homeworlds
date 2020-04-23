@@ -6,7 +6,9 @@
   "directories": {
     "test": "test"
   },
-  "files": ["dist/**/*"],
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.spec.ts",
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test",
