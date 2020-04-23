@@ -1,2 +1,0 @@
-function 
-module.exports = historyItem;
