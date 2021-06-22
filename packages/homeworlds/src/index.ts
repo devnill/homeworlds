@@ -1,6 +1,6 @@
 import {State, Star, System, Ship, ActionName, ActionArgs, ErrorMessage} from './types/index.d';
 
-import {normalize} from './util/index';
+import {normalize, initState} from './util/index';
 import validate from './validators/index';
 import actions from './actions/index';
 
@@ -46,14 +46,12 @@ const create = {
   },
   system(args: System): System{
     return normalize.system(args);
-  }//,
-  //state(args: State): State{
-  //  return normalize.state(args);
-  //}
+  },
+  state: initState
 };
 
 
-export default {
+export {
   create,
   validate,
   performAction//,

@@ -2,14 +2,14 @@ import bank from './bank';
 import find from './find';
 import history from './history';
 import normalize from './normalize';
-import { State } from '../types/index';
+import { State, Player } from '../types/index';
 
-//todo remove this
-function initState(): State {
+
+function initState(players: [Player, Player]): State {
   return {
     bank: bank.createBank(),
     board: [],
-    players: ['player1', 'player2'],
+    players: [players[0], players[1]],
     activePlayer: 0,
     history: []
   };

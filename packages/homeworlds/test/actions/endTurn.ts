@@ -7,7 +7,7 @@ import deepfreeze from 'deepfreeze';
 
 export default function endTurnSpecs(): void {
   it('will updateCurrentPlayer', function () {
-    const initialState = game.initState();
+    const initialState = game.initState(['player1', 'player2']);
     deepfreeze(initialState);
     const actionResponse = endTurn(initialState, {
       'player': 'player1'
