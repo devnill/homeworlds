@@ -1,7 +1,48 @@
 {
-  "name": "root",
-  "private": true,
+  "name": "homeworlds",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.ts",
+  "types": "src/types.d.ts",
+  "publishConfig": {
+    "main": "dist/index.js",
+    "types": "dist/types.d.ts"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "test": "mocha -r ts-node/register test/**/*.spec.ts",
+    "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test",
+    "lint": "eslint src/**/*.ts",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "UNLICENCED",
+  "dependencies": {
+    "json-patch-gen": "^1.0.2",
+    "jsonpatch": "^3.0.1",
+    "lodash": "^4.17.15",
+    "uuid": "^7.0.2"
+  },
   "devDependencies": {
-    "lerna": "^3.20.2"
+    "@types/chai": "^4.2.11",
+    "@types/deep-freeze": "^0.1.2",
+    "@types/json-patch-gen": "^1.0.0",
+    "@types/lodash": "^4.14.149",
+    "@types/mocha": "^7.0.2",
+    "@types/uuid": "^9.0.1",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "chai": "^4.2.0",
+    "deep-freeze": "^0.0.1",
+    "eslint": "^6.8.0",
+    "mocha": "^7.1.1",
+    "nyc": "^15.0.0",
+    "ts-node": "^8.8.1",
+    "typescript": "^4.9.5"
   }
 }
