@@ -23,15 +23,19 @@ function attack(state: State, args: ActionArgs): State {
     ships: [...otherShips, updatedShip],
   };
 
-  const updatedState = history.add(
-    state,
-    {
-      ...state,
-      board: [...otherSystems, updatedSystem],
-    },
-    "ATTACK",
-    args
-  );
+  //const updatedState = history.add(
+  //  state,
+  //  {
+  //    ...state,
+  //    board: [...otherSystems, updatedSystem],
+  //  },
+  //  "ATTACK",
+  //  args
+  //);
+  const updatedState = {
+    ...state,
+    board: [...otherSystems, updatedSystem],
+  };
   return updatedState;
 }
 

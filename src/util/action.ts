@@ -13,10 +13,11 @@ export function performAction(
   args: ActionArgs
 ): ActionResult {
   const err = validate.action(state, action, args);
-  return {
+  const result = {
     err: err || null,
     state: err ? state : actions[action](state, args),
   };
+  return result;
 }
 
 function canPlay(state: State): boolean {

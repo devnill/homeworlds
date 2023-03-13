@@ -55,16 +55,21 @@ function catastrophe(state: State, args: ActionArgs): State {
     const updatedBoard = [...otherSystems, updatedSystem];
     // const updatedHistory = [...state.history, { args, action: 'catastrophe', systems: [targetSystem] }];
 
-    const updatedState = history.add(
-      state,
-      Object.assign({}, state, {
-        board: updatedBoard,
-        bank: updatedBank,
-      }),
-      "CATASTROPHY",
-      args
-    );
+    //const updatedState = history.add(
+    //  state,
+    //  Object.assign({}, state, {
+    //    board: updatedBoard,
+    //    bank: updatedBank,
+    //  }),
+    //  "CATASTROPHY",
+    //  args
+    //);
 
+    const updatedState = Object.assign({
+      ...state,
+      board: updatedBoard,
+      bank: updatedBank,
+    });
     return updatedState;
     // TODO:
     ///system is not destroyed. handle it.

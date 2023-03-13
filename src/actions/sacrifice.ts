@@ -23,19 +23,27 @@ function sacrifice(state: State, args: ActionArgs): State {
     return state;
   }
   const result = colorActions[color](state, args);
-  const updatedState = history.add(
-    state,
-    Object.assign({}, result, {
-      turn: {
-        sacrifice: {
-          count: sacrificeState.count - 1,
-          color: sacrificeState.color,
-        },
+  //const updatedState = history.add(
+  //  state,
+  //  Object.assign({}, result, {
+  //    turn: {
+  //      sacrifice: {
+  //        count: sacrificeState.count - 1,
+  //        color: sacrificeState.color,
+  //      },
+  //    },
+  //  }),
+  //  "SACRIFICE",
+  //  args
+  //);
+  const updatedState = Object.assign({}, result, {
+    turn: {
+      sacrifice: {
+        count: sacrificeState.count - 1,
+        color: sacrificeState.color,
       },
-    }),
-    "SACRIFICE",
-    args
-  );
+    },
+  });
   return updatedState;
 }
 

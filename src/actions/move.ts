@@ -70,12 +70,14 @@ function move(state: State, args: ActionArgs): State {
         ships: [...endSystem.ships, targetShip],
       },
     ];
-    const updatedState = history.add(
-      state,
-      { ...state, bank: updatedBank, board: updatedBoard },
-      "MOVE",
-      args
-    );
+    //const updatedState = history.add(
+    //  state,
+    //  { ...state, bank: updatedBank, board: updatedBoard },
+    //  "MOVE",
+    //  args
+    //);
+    const updatedState = { ...state, bank: updatedBank, board: updatedBoard };
+
     return updatedState;
   }
 }

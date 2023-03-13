@@ -37,15 +37,19 @@ function transform(state: State, args: ActionArgs): State {
   });
 
   // update state
-  const updatedState = history.add(
-    state,
-    Object.assign({}, state, {
-      bank: updatedBank,
-      board: [...otherSystems, updatedSystem],
-    }),
-    "TRANSFORM",
-    args
-  );
+  //const updatedState = history.add(
+  //  state,
+  //  Object.assign({}, state, {
+  //    bank: updatedBank,
+  //    board: [...otherSystems, updatedSystem],
+  //  }),
+  //  "TRANSFORM",
+  //  args
+  //);
+  const updatedState = Object.assign({}, state, {
+    bank: updatedBank,
+    board: [...otherSystems, updatedSystem],
+  });
   return updatedState;
 }
 export default transform;

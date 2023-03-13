@@ -34,16 +34,21 @@ function build(state: State, args: ActionArgs): State {
       ships: [...targetSystem.ships, ship],
     },
   ];
-  const updatedState = history.add(
-    state,
-    {
-      ...state,
-      board: updatedBoard,
-      bank: updatedBank,
-    },
-    "ATTACK",
-    args
-  );
+  //const updatedState = history.add(
+  //  state,
+  //  {
+  //    ...state,
+  //    board: updatedBoard,
+  //    bank: updatedBank,
+  //  },
+  //  "ATTACK",
+  //  args
+  //);
+  const updatedState = {
+    ...state,
+    board: updatedBoard,
+    bank: updatedBank,
+  };
   return updatedState;
 }
 export default build;

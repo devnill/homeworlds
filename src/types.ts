@@ -120,6 +120,12 @@ export interface ActionTransform {
   color: Color;
 }
 
+export interface TurnAction {
+  action: Action;
+  args: ActionArgs;
+  diff: HistoryItem;
+}
+
 export type Turn = null | {
   sacrifice?: {
     count: number;

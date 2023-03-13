@@ -21,17 +21,22 @@ function chooseHomeworld(state: State, args: ActionArgs): State {
     return state;
   }
 
-  const updatedState = history.add(
-    state,
-    {
-      ...state,
-      bank: updatedBank,
-      board: [...state.board, homeworld],
-    },
-    "CHOOSE_HOMEWORLD",
-    args
-  );
+  //const updatedState = history.add(
+  //  state,
+  //  {
+  //    ...state,
+  //    bank: updatedBank,
+  //    board: [...state.board, homeworld],
+  //  },
+  //  "CHOOSE_HOMEWORLD",
+  //  args
+  //);
 
+  const updatedState = {
+    ...state,
+    bank: updatedBank,
+    board: [...state.board, homeworld],
+  };
   return updatedState;
 }
 export default chooseHomeworld;

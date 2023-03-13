@@ -51,21 +51,31 @@ function sacrificeStart(state: State, args: ActionArgs): State {
       ),
     });
     // create new state;
-    const updatedState = history.add(
-      state,
-      Object.assign({}, state, {
-        board: [...otherSystems, updatedSystem],
-        bank: updatedBank,
-        turn: {
-          sacrifice: {
-            color: targetShip.color,
-            count: targetShip.size,
-          },
+    //const updatedState = history.add(
+    //  state,
+    //  Object.assign({}, state, {
+    //    board: [...otherSystems, updatedSystem],
+    //    bank: updatedBank,
+    //    turn: {
+    //      sacrifice: {
+    //        color: targetShip.color,
+    //        count: targetShip.size,
+    //      },
+    //    },
+    //  }),
+    //  "SACRIFICE_START",
+    //  args
+    //);
+    const updatedState = Object.assign({}, state, {
+      board: [...otherSystems, updatedSystem],
+      bank: updatedBank,
+      turn: {
+        sacrifice: {
+          color: targetShip.color,
+          count: targetShip.size,
         },
-      }),
-      "SACRIFICE_START",
-      args
-    );
+      },
+    });
     return updatedState;
   }
 }
