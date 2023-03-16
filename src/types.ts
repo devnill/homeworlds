@@ -53,11 +53,7 @@ export type HistoryDelta = {};
 export type HistoryArgs = {};
 
 //todo define patch
-export interface HistoryItem {
-  action: Action;
-  args: ActionArgs;
-  patch: object[];
-}
+export type HistoryItem = [Action, ActionArgs, JsonDiff];
 
 export type History = HistoryItem[];
 
@@ -136,7 +132,7 @@ export type Turn = null | {
     count: number;
     color: Color;
   };
-  actions:Array<[Action, ActionArgs, JsonDiff]>
+  actions:Array<HistoryItem>
 };
 
 export interface State {

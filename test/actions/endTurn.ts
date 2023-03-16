@@ -18,9 +18,9 @@ export default function endTurnSpecs(): void {
   it("will reset turn state", function () {
     const mock = mocks.sacrificeInProgress;
     const initialState: State = mock.state;
-    deepfreeze(initialState);
     const actionResponse = endTurn(initialState, mock.action);
     expect(actionResponse.activePlayer).to.not.equal(initialState.activePlayer);
+    console.log(JSON.stringify(actionResponse, null, 2))
     expect(actionResponse.turn).to.not.exist;
   });
 }

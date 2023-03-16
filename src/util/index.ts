@@ -1,8 +1,8 @@
 import bank from "./bank";
 import find from "./find";
-import history from "./history";
+//import history from "./history";
 import normalize from "./normalize";
-import { State, PlayerId, Action, Turn, ActionArgs, TurnAction } from "../types";
+import { State, PlayerId, Action, Turn, ActionArgs, TurnAction, JsonDiff } from "../types";
 import { compare } from "fast-json-patch";
 
 function initState(players: [PlayerId, PlayerId]): State {
@@ -18,7 +18,8 @@ function initState(players: [PlayerId, PlayerId]): State {
 function updateTurn(state: State, updatedState: State, turnAction: TurnAction){
   const turn: Turn = state.turn || {actions: []};
   const {action, args} = turnAction
-  turn.actions=[...turn.actions, [action, args, compare(state, updatedState)]]
+  const newAction: [Action, ActionArgs, JsonDiff]= [action, args, compare(state, updatedState)];
+  turn.actions=[...turn.actions, newAction]
   return {
     ...updatedState, 
     turn
@@ -28,12 +29,12 @@ function updateTurn(state: State, updatedState: State, turnAction: TurnAction){
 const util = {
   initState,
   bank,
-  history,
+//  history,
   normalize,
   find,
   updateTurn
 };
 
-export { initState, bank, history, normalize, find, updateTurn };
+export { initState, bank/*, history*/, normalize, find, updateTurn };
 
 export default util;

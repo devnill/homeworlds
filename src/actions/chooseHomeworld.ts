@@ -1,4 +1,4 @@
-import { bank, history, updateTurn } from "../util/index";
+import { bank, updateTurn } from "../util/index";
 import { State, ActionArgs } from "../types";
 import { normalize } from "../util/index";
 

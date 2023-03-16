@@ -1,5 +1,5 @@
 import { State, ActionArgs, System, Ship, Turn } from "../types";
-import { find, history, updateTurn } from "../util/index";
+import { find, updateTurn } from "../util/index";
 import {compare as diff} from "fast-json-patch"
 
 const { findSystem, findShip } = find;

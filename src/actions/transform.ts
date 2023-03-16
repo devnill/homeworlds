@@ -1,4 +1,4 @@
-import { bank, find, history, updateTurn } from "../util/index";
+import { bank, find, updateTurn } from "../util/index";
 import { State, ActionArgs } from "../types";
 
 const { returnToBank, getEmptyBank } = bank;

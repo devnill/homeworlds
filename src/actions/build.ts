@@ -2,7 +2,6 @@ import { State, ActionArgs } from "../types";
 import { normalize, updateTurn } from "../util/index";
 
 import util from "../util/index";
-const { history } = util;
 const { findSystem } = util.find;
 const { takeFromBank, countPieces } = util.bank;
 

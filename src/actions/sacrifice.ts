@@ -1,6 +1,6 @@
 import { State, ActionArgs, Turn } from "../types";
 
-import { history, updateTurn } from "../util/index";
+import {  updateTurn } from "../util/index";
 import RED from "./attack";
 import BLUE from "./transform";
 import GREEN from "./build";

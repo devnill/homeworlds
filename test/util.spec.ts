@@ -1,11 +1,10 @@
 import { expect, assert } from "chai";
 import deepfreeze from "deep-freeze";
-import { bank, history } from "../src/util/";
+import { bank  } from "../src/util/";
 import { systemLost } from "./mocks/move";
 import historyMock from "./mocks/history";
 import { Bank, System } from "../src/types";
 
-const { add, revert } = history;
 const { createSystem } = bank;
 
 describe("Utility Methods", function () {
@@ -83,7 +82,8 @@ describe("Utility Methods", function () {
       expect(updatedBank).to.equal(initialBank);
     });
   });
-  describe("history", function () {
+
+  /*describe.skip("history", function () {
     describe("add", function () {
       it("can create a history item", function () {
         const updatedState = systemLost.result;
@@ -103,5 +103,5 @@ describe("Utility Methods", function () {
         expect(expectedResult).to.deep.equal(previousState);
       });
     });
-  });
+  });*/
 });

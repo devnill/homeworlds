@@ -1,5 +1,5 @@
 import { omit } from "lodash";
-import { history, updateTurn } from "../util/index";
+import {  updateTurn } from "../util/index";
 import { State, ActionArgs } from "../types";
 
 function endTurn(state: State, args: ActionArgs): State {
@@ -16,8 +16,14 @@ function endTurn(state: State, args: ActionArgs): State {
     activePlayer: (state.activePlayer + 1) % state.players.length,
   });
   //return updatedState;
-  return updateTurn(state, updatedState, {action: 'END_TURN', args}) 
+  
+  const resetState: State = updateTurn(state, updatedState, {action: 'END_TURN', args}) 
 
+  const historyActions = resetState.turn?.actions || []
+  resetState.history = [...resetState.history, ...historyActions];
+  resetState.activePlayer = resetState.activePlayer++ % resetState.players.length;
+  resetState.turn = undefined;
+  return resetState
 }
 
 export default endTurn;

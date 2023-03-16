@@ -1,6 +1,6 @@
 import { State, ActionArgs } from "../types";
 import { partition } from "lodash";
-import { find, bank, history, updateTurn } from "../util/index";
+import { find, bank, updateTurn } from "../util/index";
 
 const { findSystem } = find;
 
@@ -33,16 +33,22 @@ function catastrophe(state: State, args: ActionArgs): State {
     ]);
     // const updatedHistory = [...state.history, { systems: [targetSystem], args, action: 'catastrophe' }];
     // create new state;
-    const updatedState = history.add(
-      state,
-      Object.assign({}, state, {
-        board: otherSystems,
-        bank: updatedBank,
-      }),
-      "CATASTROPHY",
-      args
-    );
-    return updatedState;
+    //const updatedState = history.add(
+    //  state,
+    //  Object.assign({}, state, {
+    //    board: otherSystems,
+    //    bank: updatedBank,
+    //  }),
+    //  "CATASTROPHY",
+    //  args
+    //);
+    const updatedState = Object.assign({
+      ...state,
+      board: otherSystems,
+      bank: updatedBank,
+    });
+    //return updatedState;
+    return updateTurn(state, updatedState, {action: 'CATASTROPHY', args}) 
   } else {
     const updatedBank = returnPiecesToBank(bank, [
       ...removedStars,
