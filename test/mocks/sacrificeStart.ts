@@ -50,6 +50,7 @@ const valid: ActionTestFixture = {
         color: "BLUE",
         count: 3,
       },
+      actions:[]
     },
     history: [
       /*{
@@ -113,6 +114,7 @@ const starReturned: ActionTestFixture = {
         color: "BLUE",
         count: 1,
       },
+      actions:[]
     },
     history: [
       /*{

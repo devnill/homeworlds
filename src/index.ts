@@ -12,11 +12,27 @@ import { normalize, initState } from "./util/index";
 import validate from "./validators/index";
 import actions from "./actions/index";
 
+function prepareState(state: State): State {
+  const turn = {
+    actions:[]
+  }
+  return {
+    ...state,
+    turn
+  }
+}
+
 function performAction(
   state: State,
   action: Action,
   args: ActionArgs
 ): { err: ErrorMessage; state: State } {
+
+  // TODO- Unhandled cases:
+  // Concede on other players turn
+  // Switching turn to other player
+  // taking multiple actions in a turn (sacrifices, action+catastrophy, etc)
+  // win conditions
   const err = validate.action(state, action, args);
   if (err) {
     return {
@@ -24,9 +40,11 @@ function performAction(
       state,
     };
   }
+  const preparedState = prepareState(state)
+  const resultingState = actions[action](preparedState, args)
   return {
     err: null,
-    state: actions[action](state, args),
+    state: resultingState,
   };
 }
 

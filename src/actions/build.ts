@@ -1,5 +1,5 @@
 import { State, ActionArgs } from "../types";
-import { normalize } from "../util/index";
+import { normalize, updateTurn } from "../util/index";
 
 import util from "../util/index";
 const { history } = util;
@@ -49,6 +49,6 @@ function build(state: State, args: ActionArgs): State {
     board: updatedBoard,
     bank: updatedBank,
   };
-  return updatedState;
+  return updateTurn(state, updatedState, {action: 'BUILD', args}) 
 }
 export default build;

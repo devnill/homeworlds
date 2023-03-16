@@ -1,4 +1,4 @@
-import { find, bank, history } from "../util/index";
+import { find, bank, history, updateTurn } from "../util/index";
 import { State, ActionArgs, Board } from "../types";
 
 const { returnPiecesToBank, createSystem } = bank;
@@ -78,7 +78,9 @@ function move(state: State, args: ActionArgs): State {
     //);
     const updatedState = { ...state, bank: updatedBank, board: updatedBoard };
 
-    return updatedState;
+    //return updatedState;
+    return updateTurn(state, updatedState, {action: 'MOVE', args}) 
+
   }
 }
 

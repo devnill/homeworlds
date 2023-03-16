@@ -1,6 +1,6 @@
 import { State, ActionArgs } from "../types";
 import { partition } from "lodash";
-import { find, bank, history } from "../util/index";
+import { find, bank, history, updateTurn } from "../util/index";
 
 const { findSystem } = find;
 
@@ -70,7 +70,8 @@ function catastrophe(state: State, args: ActionArgs): State {
       board: updatedBoard,
       bank: updatedBank,
     });
-    return updatedState;
+    //return updatedState;
+    return updateTurn(state, updatedState, {action: 'CATASTROPHY', args}) 
     // TODO:
     ///system is not destroyed. handle it.
     //const piecesToReturn = countPieces([...targetSystem.stars, ...targetSystem.ships]);

@@ -1,4 +1,4 @@
-import { bank, history } from "../util/index";
+import { bank, history, updateTurn } from "../util/index";
 import { State, ActionArgs } from "../types";
 import { normalize } from "../util/index";
 
@@ -37,6 +37,7 @@ function chooseHomeworld(state: State, args: ActionArgs): State {
     bank: updatedBank,
     board: [...state.board, homeworld],
   };
-  return updatedState;
+  return updateTurn(state, updatedState, {action: 'CHOOSE_HOMEWORLD', args}) 
+  //return updatedState;
 }
 export default chooseHomeworld;

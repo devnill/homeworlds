@@ -1,4 +1,4 @@
-import { bank, find, history } from "../util/index";
+import { bank, find, history, updateTurn } from "../util/index";
 import { State, ActionArgs } from "../types";
 
 const { returnToBank, getEmptyBank } = bank;
@@ -50,6 +50,7 @@ function transform(state: State, args: ActionArgs): State {
     bank: updatedBank,
     board: [...otherSystems, updatedSystem],
   });
-  return updatedState;
+  //return updatedState;
+  return updateTurn(state, updatedState, {action: 'TRANSFORM', args}) 
 }
 export default transform;

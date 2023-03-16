@@ -34,6 +34,7 @@ const blue: ActionTestFixture = {
         color: "BLUE",
         count: 1,
       },
+      actions:[]
     },
     history: [
       /*
@@ -76,6 +77,7 @@ const blue: ActionTestFixture = {
         color: "BLUE",
         count: 0,
       },
+      actions:[]
     },
     history: [
       /*{

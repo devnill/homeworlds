@@ -16,6 +16,7 @@ const state: State = {
       color: "BLUE",
       count: 3,
     },
+    actions: []
   },
 };
 const sacrificeInProgress = {
@@ -46,6 +47,7 @@ const sacrificeInProgress = {
         color: "BLUE",
         count: 3,
       },
+      actions: []
     },
   },
 };

@@ -1,5 +1,5 @@
 import { State, ActionArgs } from "../types";
-import { find, bank, history } from "../util/index";
+import { find, bank, history, updateTurn } from "../util/index";
 
 const { returnPiecesToBank } = bank;
 
@@ -66,17 +66,20 @@ function sacrificeStart(state: State, args: ActionArgs): State {
     //  "SACRIFICE_START",
     //  args
     //);
+    const turn = state.turn || {actions: []}
     const updatedState = Object.assign({}, state, {
       board: [...otherSystems, updatedSystem],
       bank: updatedBank,
       turn: {
+        ...turn,
         sacrifice: {
           color: targetShip.color,
           count: targetShip.size,
         },
       },
     });
-    return updatedState;
+    return updateTurn(state, updatedState, {action: 'SACRIFICE_START', args}) 
+    //return updatedState;
   }
 }
 export default sacrificeStart;

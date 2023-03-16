@@ -1,5 +1,6 @@
-import { State, ActionArgs, System, Ship } from "../types";
-import { find, history } from "../util/index";
+import { State, ActionArgs, System, Ship, Turn } from "../types";
+import { find, history, updateTurn } from "../util/index";
+import {compare as diff} from "fast-json-patch"
 
 const { findSystem, findShip } = find;
 
@@ -32,11 +33,10 @@ function attack(state: State, args: ActionArgs): State {
   //  "ATTACK",
   //  args
   //);
-  const updatedState = {
-    ...state,
-    board: [...otherSystems, updatedSystem],
-  };
-  return updatedState;
+  const updatedBoard = [...otherSystems, updatedSystem];
+  const updatedState = {...state, board: updatedBoard}
+  return updateTurn(state, updatedState, {action: 'ATTACK', args}) 
+  
 }
 
 export default attack;

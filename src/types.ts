@@ -1,14 +1,20 @@
+
+import { Operation } from "fast-json-patch";
+
 export type SparseEntity<T, K extends keyof T> = Partial<T> & Pick<T, K>;
 
-export interface User {
-  id: PlayerId;
-  name: string;
-}
+export type JSONPatchOp = "add"|"remove"|"replace"
+
+export type JsonDiff = Array<Operation>
+
 export type ErrorMessage = string | null;
 export type ActivePlayer = number;
 export type Id = string;
 export type PlayerId = string;
 export type PlayerList = PlayerId[];
+export interface User {
+  id: PlayerId
+}
 export type Size = 1 | 2 | 3;
 export type Color = "RED" | "GREEN" | "BLUE" | "YELLOW";
 export type ColorAction = "TRANSFORM" | "MOVE" | "ATTACK" | "BUILD";
@@ -123,7 +129,6 @@ export interface ActionTransform {
 export interface TurnAction {
   action: Action;
   args: ActionArgs;
-  diff: HistoryItem;
 }
 
 export type Turn = null | {
@@ -131,6 +136,7 @@ export type Turn = null | {
     count: number;
     color: Color;
   };
+  actions:Array<[Action, ActionArgs, JsonDiff]>
 };
 
 export interface State {
