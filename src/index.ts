@@ -1,18 +1,20 @@
-import {
-  State,
-  Star,
-  System,
-  Ship,
-  ActionArgs,
-  ErrorMessage,
-  Action,
-} from "./types";
+//import {
+//  State,
+//  Star,
+//  System,
+//  Ship,
+//  ActionArgs,
+//  ErrorMessage,
+//  Action,
+//} from "./types";
+
+import * as T from "./types";
 
 import { normalize, initState } from "./util/index";
 import validate from "./validators/index";
 import actions from "./actions/index";
 
-function prepareState(state: State): State {
+function prepareState(state: T.State): T.State {
   const turn = {
     actions:[]
   }
@@ -23,10 +25,10 @@ function prepareState(state: State): State {
 }
 
 function performAction(
-  state: State,
-  action: Action,
-  args: ActionArgs
-): { err: ErrorMessage; state: State } {
+  state: T.State,
+  action: T.Action,
+  args: T.ActionArgs
+): { err: T.ErrorMessage; state: T.State } {
 
   // TODO- Unhandled cases:
   // Concede on other players turn
@@ -49,13 +51,13 @@ function performAction(
 }
 
 const create = {
-  ship(args: Ship): Ship {
+  ship(args: T.Ship): T.Ship {
     return normalize.ship(args);
   },
-  star(args: Star): Star {
+  star(args: T.Star): T.Star {
     return normalize.star(args);
   },
-  system(args: System): System {
+  system(args: T.System): T.System {
     return normalize.system(args);
   },
   state: initState,
@@ -65,5 +67,5 @@ export {
   create,
   validate,
   performAction, //,
-  // util
+  T as types
 };
